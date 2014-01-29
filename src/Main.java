@@ -142,12 +142,12 @@ public class Main {
             currentCounter.setDY(0);
             onScreenCounters.add(currentCounter);
         }
-
+        /*
         for (int j = 0; j < COLUMN; j++) {
             if (currentCounter.intersects(board[0][j])){
                 currentCounter.center(board[0][j].getX(), board[0][j].getY(), board[0][j].getHeight(), board[0][j].getWidth());
             }
-        }
+        */
 
 
         for (int i=0; i<ROW; i++) {
@@ -182,7 +182,7 @@ public class Main {
     }
 
     synchronized private static void track() {
-        if (currentCounter.getDY() < .1 && currentCounter.getX() > 100) {
+        if (currentCounter.getDY() < .1) {
             int x = Mouse.getX();
             currentCounter.setX(x);
         }
