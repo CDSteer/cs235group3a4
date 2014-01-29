@@ -4,3 +4,13 @@
 *.jar
 *.war
 *.ear
+
+A4.iml
+
+.DS_Store
+
+.idea/copyright/profiles_settings.xml
+
+.idea/scopes/scope_settings.xml
+
+hs_err_pid64826.log
