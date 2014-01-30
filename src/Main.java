@@ -20,6 +20,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Main {
 
+    private static Mouse mouse;
+
     private static final int WIDTH = 640;
     private static final int HEIGHT = 480;
     private static boolean isRunning = true;
@@ -176,14 +178,14 @@ public class Main {
     }
 
     synchronized public static void drop(){
-        if(Mouse.isButtonDown(0) && currentCounter.getX() > 100){
+        if(mouse.isButtonDown(0) && currentCounter.getX() > 100){
             currentCounter.setDY(.1);
         }
     }
 
     synchronized private static void track() {
         if (currentCounter.getDY() < .1) {
-            int x = Mouse.getX();
+            int x = mouse.getX();
             currentCounter.setX(x);
         }
     }
