@@ -23,7 +23,6 @@ public class Counter extends AbstractMovableEntity {
 
     @Override
     public void draw() {
-        //glRectd(x, y, x + width, y + height);
         float x1 = (float)x;
         float y1 = (float)y;
 

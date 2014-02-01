@@ -14,7 +14,7 @@ public class C4Game implements Game{
     private HumPlayer player1;
     private HumPlayer player2;
     private C4Board c4Board;
-    List<Counter> onScreenCounters;
+    private List<Counter> onScreenCounters;
 
     public C4Game() {
         this.currentCounter = new Counter(115, 20, 10, 10, 1);
@@ -48,39 +48,12 @@ public class C4Game implements Game{
         return currentCounter;
     }
 
-    public void setCurrentCounter(Counter currentCounter) {
-        this.currentCounter = currentCounter;
-    }
-
-    public HumPlayer getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(HumPlayer player1) {
-        this.player1 = player1;
-    }
-
-    public HumPlayer getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(HumPlayer player2) {
-        this.player2 = player2;
-    }
-
     public C4Board getC4Board() {
         return c4Board;
     }
 
-    public void setC4Board(C4Board c4Board) {
-        this.c4Board = c4Board;
-    }
 
     public List<Counter> getOnScreenCounters() {
         return onScreenCounters;
-    }
-
-    public void setOnScreenCounters(List<Counter> onScreenCounters) {
-        this.onScreenCounters = onScreenCounters;
     }
 }

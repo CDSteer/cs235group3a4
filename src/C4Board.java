@@ -1,5 +1,3 @@
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  *
@@ -72,7 +70,6 @@ public class C4Board extends AbstractBoard{
     public void setM_board(Square[][] m_board) {
         this.m_board = m_board;
     }
-
 
     private static final int ROW = 7;
     private static final int COLUMN = 10;
