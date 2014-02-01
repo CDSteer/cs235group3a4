@@ -13,10 +13,12 @@ import static org.lwjgl.opengl.GL11.*;
 public class Square extends AbstractEntity {
 
     private boolean used;
+    private int player;
 
     public Square(double x, double y, double width, double height, boolean used) {
         super(x, y, width, height);
         this.used = used;
+        this.player = 0;
     }
 
     @Override
@@ -27,6 +29,14 @@ public class Square extends AbstractEntity {
 
     public void setUsed(boolean used){
         this.used = used;
+    }
+
+    public int getPlayer(){
+        return player;
+    }
+
+    public void setPlayer(int _player){
+        this.player = _player;
     }
 
     public boolean isUsed(){

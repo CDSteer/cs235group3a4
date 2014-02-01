@@ -1,4 +1,5 @@
 import Entity.AbstractMovableEntity;
+import org.lwjgl.input.Keyboard;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -56,8 +57,22 @@ public class Counter extends AbstractMovableEntity {
         return player;
     }
 
-    public void center(double _x, double _y, double _height, double _width){
-        x = _x + _width / 2 - 2.5 / 2;
-        y = _y + _height / 2 - 2.5 / 2;
+    public void center(Square square){
+        x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
+        y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
     }
+
+    public void drop(){
+        if (Keyboard.getEventKeyState()) {
+            if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
+                this.setDY(.2);
+            }
+        } else {
+            return;
+        }
+    }
+    public void dropCounter(int delta){
+        update(delta);
+    }
+
 }

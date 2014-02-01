@@ -6,55 +6,42 @@
  * @version *.*
  */
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.*;
-
-
 public class Main {
 
-    private static Mouse mouse;
 
-    private static final int WIDTH = 640;
-    private static final int HEIGHT = 480;
     private static boolean isRunning = true;
-    private static long lastFrame;
-
-
-    private static Counter currentCounter;
-    private static final List<Counter> onScreenCounters = new ArrayList<Counter>(10);
-
-    private static Square board[][] = new Square[7][10];
-    private static final int ROW = 7;
-    private static final int COLUMN = 10;
     private static final double COUNTERMOVE = 31;
 
-
-
     public static void main(String args[]) throws InterruptedException{
+        C4Display c4Display = new C4Display();
 
-        setUpDisplay();
-        setUpOpenGL();
-        setUpEntities();
-        setUpTimer();
+        C4Game c4Game = new C4Game();
+
+
+        c4Display.setUpDisplay();
+        c4Display.setUpOpenGL();
+        //setUpEntities();
+        Time.setUpTimer();
 
         while (isRunning) {
-            //track();
+
+            Counter currentCounter = c4Game.getCurrentCounter();
+            C4Board c4Board = c4Game.getC4Board();
+
             if (Keyboard.next()){
-                input();
+                input(c4Game.getCurrentCounter());
             }
-            drop();
-            boundCounter();
-            render();
-            dropCounter(getDelta());
+            currentCounter.drop();
+            currentCounter.dropCounter(Time.getDelta());
+            c4Board.placeCounter(c4Game);
+
+            c4Display.render(c4Game.getC4Board(), c4Game.getCurrentCounter(), c4Game.getOnScreenCounters());
             Display.update();
             Display.sync(60);
             if (Display.isCloseRequested()) {
@@ -65,117 +52,7 @@ public class Main {
         System.exit(0);
     }
 
-    public static void setUpDisplay(){
-        try {
-            Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-            Display.setTitle("Connect Four");
-            Display.create();
-        } catch (LWJGLException e) {
-            Display.destroy();
-            e.printStackTrace();
-            System.exit(1);
-        }
-    }
-
-    public static void setUpOpenGL(){
-        // Initialization code OpenGL
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, 640, 480, 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);
-    }
-
-    public static void render(){
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        for (int i=0; i< ROW; i++) {
-            for (int j=0; j< COLUMN; j++) {
-                board[i][j].draw();
-            }
-        }
-        currentCounter.draw();
-
-        for (Counter counters : onScreenCounters) {
-            counters.draw();
-        }
-    }
-
-    public static void setUpEntities(){
-       currentCounter = new Counter(115, 20, 10, 10, 1);
-       int xPos = 100, yPos = 50;
-       for (int i=0; i< ROW; i++) {
-           for (int j=0; j<COLUMN; j++) {
-               if (i != 6){
-                  board[i][j] = new Square(xPos, yPos, 30, 30, true);
-               } else {
-                  board[i][j] = new Square(xPos, yPos, 30, 30, false);
-               }
-
-               xPos += 31;
-               if (xPos > 409) {
-                   xPos = 100;
-                   yPos += 31;
-               }
-           }
-       }
-       for (int i=0; i<ROW; i++) {
-           for (int j=0; j< COLUMN; j++) {
-               System.out.println(i + ", " + j + ": " + board[i][j].getX() + ", " + board[i][j].getY()+ ", " + board[i][j].isUsed());
-           }
-       }
-
-    }
-
-    public static void dropCounter(int delta){
-        currentCounter.update(delta);
-    }
-
-    public static void boundCounter(){
-
-        for (int i=0; i<ROW; i++) {
-            for (int j=0; j<COLUMN; j++) {
-                if (currentCounter.intersects(board[i][j]) && !board[i][j].isUsed()) {
-                   currentCounter.center(board[i][j].getX(), board[i][j].getY(), board[i][j].getHeight(), board[i][j].getWidth());
-                   board[i][j].setUsed(true);
-
-                   if (i != 0){
-                    board[i-1][j].setUsed(false);
-                   }
-
-
-                   onScreenCounters.add(currentCounter);
-                   if (currentCounter.getPlayer() == 1){
-                        currentCounter = new Counter(115, 20, 10, 10, 2);
-                   } else {
-                        currentCounter = new Counter(115, 20, 10, 10, 1);;
-                   }
-
-                }
-            }
-        }
-
-    }
-
-    public static void drop(){
-        if (Keyboard.getEventKeyState()) {
-            if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
-                currentCounter.setDY(.2);
-            }
-        } else {
-            return;
-        }
-    }
-
-    /*
-    private static void track() {
-        if (currentCounter.getDY() < .1) {
-            int x = mouse.getX();
-            currentCounter.setX(x);
-        }
-    }
-    */
-
-    private static void input(){
+    private static void input(Counter currentCounter){
         if (Keyboard.getEventKeyState()) {
             if (Keyboard.getEventKey() == Keyboard.KEY_LEFT && currentCounter.getX() != 115) {
                double newPos = currentCounter.getX() - COUNTERMOVE;
@@ -186,27 +63,13 @@ public class Main {
                currentCounter.setX(newPos);
             }
         } else {
-
             if (Keyboard.getEventKey() == Keyboard.KEY_RIGHT) {
                 return;
             }
-
             if (Keyboard.getEventKey() == Keyboard.KEY_LEFT) {
                 return;
             }
         }
     }
 
-    private static int getDelta() {
-        long currentTime = getTime();
-        int delta = (int) (currentTime - lastFrame);
-        lastFrame = getTime();
-        return delta;
-    }
-    private static long getTime() {
-        return (Sys.getTime() * 1000) / Sys.getTimerResolution();
-    }
-    public static void setUpTimer(){
-        lastFrame = getTime();
-    }
 }
