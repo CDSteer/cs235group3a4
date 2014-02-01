@@ -28,24 +28,23 @@ public class Main {
     private static boolean isRunning = true;
     private static long lastFrame;
 
+
     private static Counter currentCounter;
     private static final List<Counter> onScreenCounters = new ArrayList<Counter>(10);
 
     private static Square board[][] = new Square[7][10];
     private static final int ROW = 7;
     private static final int COLUMN = 10;
+    private static final double COUNTERMOVE = 31;
 
 
 
     public static void main(String args[]) throws InterruptedException{
 
-
         setUpDisplay();
         setUpOpenGL();
         setUpEntities();
         setUpTimer();
-
-
 
         while (isRunning) {
             //track();
@@ -64,7 +63,6 @@ public class Main {
         }
         Display.destroy();
         System.exit(0);
-
     }
 
     public static void setUpDisplay(){
@@ -89,26 +87,24 @@ public class Main {
 
     public static void render(){
         glClear(GL_COLOR_BUFFER_BIT);
-        currentCounter.draw();
-
 
         for (int i=0; i< ROW; i++) {
             for (int j=0; j< COLUMN; j++) {
                 board[i][j].draw();
             }
         }
+        currentCounter.draw();
 
         for (Counter counters : onScreenCounters) {
             counters.draw();
         }
     }
 
-   public static void setUpEntities(){
-       currentCounter = new Counter(115, 20, 20, 20, 1);
+    public static void setUpEntities(){
+       currentCounter = new Counter(115, 20, 10, 10, 1);
        int xPos = 100, yPos = 50;
        for (int i=0; i< ROW; i++) {
            for (int j=0; j<COLUMN; j++) {
-               System.out.println(i);
                if (i != 6){
                   board[i][j] = new Square(xPos, yPos, 30, 30, true);
                } else {
@@ -136,36 +132,22 @@ public class Main {
 
     public static void boundCounter(){
 
-        //bottom
-        if (currentCounter.getY()+20 > HEIGHT) {
-            currentCounter.setDY(0);
-            onScreenCounters.add(currentCounter);
-        }
-        /*
-        for (int j = 0; j < COLUMN; j++) {
-            if (currentCounter.intersects(board[0][j])){
-                currentCounter.center(board[0][j].getX(), board[0][j].getY(), board[0][j].getHeight(), board[0][j].getWidth());
-            }
-        */
-
-
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
                 if (currentCounter.intersects(board[i][j]) && !board[i][j].isUsed()) {
-
-                   currentCounter.setDY(0);
                    currentCounter.center(board[i][j].getX(), board[i][j].getY(), board[i][j].getHeight(), board[i][j].getWidth());
                    board[i][j].setUsed(true);
-                   if (i == 0){
-                       board[0][j].setUsed(false);
-                   } else {
-                       board[i-1][j].setUsed(false);
+
+                   if (i != 0){
+                    board[i-1][j].setUsed(false);
                    }
+
+
                    onScreenCounters.add(currentCounter);
                    if (currentCounter.getPlayer() == 1){
-                        currentCounter = new Counter(300, 20, 20, 20, 2);;
+                        currentCounter = new Counter(115, 20, 10, 10, 2);
                    } else {
-                        currentCounter = new Counter(300, 20, 20, 20, 1);;
+                        currentCounter = new Counter(115, 20, 10, 10, 1);;
                    }
 
                 }
@@ -196,11 +178,11 @@ public class Main {
     private static void input(){
         if (Keyboard.getEventKeyState()) {
             if (Keyboard.getEventKey() == Keyboard.KEY_LEFT && currentCounter.getX() != 115) {
-               double newPos = currentCounter.getX() - 31;
+               double newPos = currentCounter.getX() - COUNTERMOVE;
                currentCounter.setX(newPos);
             }
             if (Keyboard.getEventKey() == Keyboard.KEY_RIGHT && currentCounter.getX() != 394) {
-               double newPos = currentCounter.getX() + 31;
+               double newPos = currentCounter.getX() + COUNTERMOVE;
                currentCounter.setX(newPos);
             }
         } else {
