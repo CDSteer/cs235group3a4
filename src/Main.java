@@ -175,8 +175,12 @@ public class Main {
     }
 
     public static void drop(){
-        if(mouse.isButtonDown(0) && currentCounter.getX() > 100){
-            currentCounter.setDY(.1);
+        if (Keyboard.getEventKeyState()) {
+            if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
+                currentCounter.setDY(.2);
+            }
+        } else {
+            return;
         }
     }
 
@@ -202,11 +206,11 @@ public class Main {
         } else {
 
             if (Keyboard.getEventKey() == Keyboard.KEY_RIGHT) {
-                System.out.println("Right Key Released");
+                return;
             }
 
             if (Keyboard.getEventKey() == Keyboard.KEY_LEFT) {
-                System.out.println("Left Key Released");
+                return;
             }
         }
     }
