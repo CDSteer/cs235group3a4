@@ -8,6 +8,7 @@
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -38,24 +39,20 @@ public class Main {
 
     public static void main(String args[]) throws InterruptedException{
 
-        Thread input = new Thread(new Runnable() {
-            public void run() {
-                 while (isRunning){
-                    track();
-                    drop();
-                 }
-            }
-        });
 
         setUpDisplay();
         setUpOpenGL();
         setUpEntities();
         setUpTimer();
-        input.start();
 
 
 
         while (isRunning) {
+            //track();
+            if (Keyboard.next()){
+                input();
+            }
+            drop();
             boundCounter();
             render();
             dropCounter(getDelta());
@@ -90,7 +87,7 @@ public class Main {
         glMatrixMode(GL_MODELVIEW);
     }
 
-    synchronized public static void render(){
+    public static void render(){
         glClear(GL_COLOR_BUFFER_BIT);
         currentCounter.draw();
 
@@ -107,7 +104,7 @@ public class Main {
     }
 
    public static void setUpEntities(){
-       currentCounter = new Counter(300, 20, 20, 20, 1);
+       currentCounter = new Counter(115, 20, 20, 20, 1);
        int xPos = 100, yPos = 50;
        for (int i=0; i< ROW; i++) {
            for (int j=0; j<COLUMN; j++) {
@@ -133,11 +130,11 @@ public class Main {
 
     }
 
-    synchronized public static void dropCounter(int delta){
+    public static void dropCounter(int delta){
         currentCounter.update(delta);
     }
 
-    synchronized public static void boundCounter(){
+    public static void boundCounter(){
 
         //bottom
         if (currentCounter.getY()+20 > HEIGHT) {
@@ -177,16 +174,40 @@ public class Main {
 
     }
 
-    synchronized public static void drop(){
+    public static void drop(){
         if(mouse.isButtonDown(0) && currentCounter.getX() > 100){
             currentCounter.setDY(.1);
         }
     }
 
-    synchronized private static void track() {
+    /*
+    private static void track() {
         if (currentCounter.getDY() < .1) {
             int x = mouse.getX();
             currentCounter.setX(x);
+        }
+    }
+    */
+
+    private static void input(){
+        if (Keyboard.getEventKeyState()) {
+            if (Keyboard.getEventKey() == Keyboard.KEY_LEFT && currentCounter.getX() != 115) {
+               double newPos = currentCounter.getX() - 31;
+               currentCounter.setX(newPos);
+            }
+            if (Keyboard.getEventKey() == Keyboard.KEY_RIGHT && currentCounter.getX() != 394) {
+               double newPos = currentCounter.getX() + 31;
+               currentCounter.setX(newPos);
+            }
+        } else {
+
+            if (Keyboard.getEventKey() == Keyboard.KEY_RIGHT) {
+                System.out.println("Right Key Released");
+            }
+
+            if (Keyboard.getEventKey() == Keyboard.KEY_LEFT) {
+                System.out.println("Left Key Released");
+            }
         }
     }
 
