@@ -11,8 +11,6 @@ import org.lwjgl.opengl.Display;
 
 public class Main {
 
-    private static boolean isRunning = true;
-
     public static void main(String args[]) throws InterruptedException{
         C4Display c4Display = new C4Display();
         C4Game c4Game = new C4Game();
@@ -20,7 +18,7 @@ public class Main {
         c4Display.setUpOpenGL();
         Time.setUpTimer();
 
-        while (isRunning) {
+        while (c4Game.isRunning()) {
             Counter currentCounter = c4Game.getCurrentCounter();
             C4Board c4Board = c4Game.getC4Board();
 
@@ -35,7 +33,7 @@ public class Main {
             Display.update();
             Display.sync(60);
             if (Display.isCloseRequested()) {
-                isRunning = false;
+                c4Game.setRunning(false);
             }
         }
         Display.destroy();

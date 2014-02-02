@@ -7,4 +7,17 @@
  */
 public abstract class AbstractGame implements Game{
 
+    private boolean isRunning;
+
+    public AbstractGame(boolean isRunning){
+        this.isRunning = isRunning;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
 }

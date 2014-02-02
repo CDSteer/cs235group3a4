@@ -10,4 +10,6 @@ public interface Game {
     public void playGame();
     public void nextTurn();
     public void gameOver();
+    public boolean isRunning();
+    public void setRunning(boolean running);
 }

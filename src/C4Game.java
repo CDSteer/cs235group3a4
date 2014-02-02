@@ -8,7 +8,7 @@ import java.util.List;
  *         - created 01/02/2014
  * @version *.*
  */
-public class C4Game implements Game{
+public class C4Game extends AbstractGame{
 
     private Counter currentCounter;
     private HumPlayer player1;
@@ -17,6 +17,7 @@ public class C4Game implements Game{
     private List<Counter> onScreenCounters;
 
     public C4Game() {
+        super(true);
         this.currentCounter = new Counter(115, 20, 10, 10, 1);
         this.c4Board = new C4Board();
         this.player1 = new HumPlayer(1);
