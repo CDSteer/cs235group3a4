@@ -5,11 +5,11 @@
  *         - created 01/02/2014
  * @version *.*
  */
-public abstract class Player {
+public abstract class AbstractPlayer {
 
-    int name;
+    private int name;
 
-    public Player(int name){
+    public AbstractPlayer(int name){
         this.name = name;
     }
 
