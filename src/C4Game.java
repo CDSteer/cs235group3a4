@@ -10,16 +10,17 @@ import java.util.List;
  */
 public class C4Game extends AbstractGame{
 
-    private Counter currentCounter;
+    private static Counter currentCounter;
     private HumPlayer player1;
     private HumPlayer player2;
-    private C4Board c4Board;
+
     private List<Counter> onScreenCounters;
 
+
+
     public C4Game() {
-        super(true);
+        super(true, c4Board);
         this.currentCounter = new Counter(115, 20, 10, 10, 1);
-        this.c4Board = new C4Board();
         this.player1 = new HumPlayer(1);
         this.player2 = new HumPlayer(2);
         this.onScreenCounters = new ArrayList<Counter>(10);
@@ -49,12 +50,12 @@ public class C4Game extends AbstractGame{
         return currentCounter;
     }
 
-    public C4Board getC4Board() {
-        return c4Board;
-    }
-
 
     public List<Counter> getOnScreenCounters() {
         return onScreenCounters;
     }
+
+    private static C4Board c4Board = new C4Board();
+
+
 }

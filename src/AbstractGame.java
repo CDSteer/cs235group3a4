@@ -7,17 +7,27 @@
  */
 public abstract class AbstractGame implements Game{
 
-    private boolean isRunning;
+    private boolean m_isRunning;
+    private AbstractBoard m_board;
 
-    public AbstractGame(boolean isRunning){
-        this.isRunning = isRunning;
+    public AbstractGame(boolean isRunning, AbstractBoard board){
+        this.m_isRunning = isRunning;
+        this.m_board = board;
     }
 
     public boolean isRunning() {
-        return isRunning;
+        return m_isRunning;
     }
 
     public void setRunning(boolean running) {
-        isRunning = running;
+        m_isRunning = running;
+    }
+
+    public AbstractBoard getBoard() {
+        return m_board;
+    }
+
+    public void setBoard(AbstractBoard m_board) {
+        this.m_board = m_board;
     }
 }

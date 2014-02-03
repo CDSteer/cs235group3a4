@@ -9,10 +9,12 @@ public abstract class AbstractBoard {
 
     private int m_Column;
     private int m_Row;
+    private Square[][] m_board;
 
-    public AbstractBoard(int m_Column, int m_Row){
-        this.m_Column = m_Column;
-        this.m_Row = m_Row;
+    public AbstractBoard(int column, int row){
+        this.m_Column = column;
+        this.m_Row = row;
+        this.m_board = new Square[row][column];
     }
 
     public int getM_Column() {
@@ -29,5 +31,62 @@ public abstract class AbstractBoard {
 
     public void setM_Row(int m_Row) {
         this.m_Row = m_Row;
+    }
+
+    public Square[][] getBoard() {
+        return m_board;
+    }
+
+    public void setBoard(Square[][] m_board) {
+        this.m_board = m_board;
+    }
+
+    public void fillBoard() {
+        int xPos = 100, yPos = 50;
+        for (int i=0; i< m_Row; i++) {
+            for (int j=0; j<m_Column; j++) {
+                if (i != 6){
+                    m_board[i][j] = new Square(xPos, yPos, 30, 30, true);
+                } else {
+                    m_board[i][j] = new Square(xPos, yPos, 30, 30, false);
+                }
+
+                xPos += 31;
+                if (xPos > 409) {
+                    xPos = 100;
+                    yPos += 31;
+                }
+            }
+        }
+    }
+
+    public void draw(){
+        for (int i=0; i< m_Row; i++) {
+            for (int j=0; j< m_Column; j++) {
+                m_board[i][j].draw();
+            }
+        }
+    }
+
+    public void placeCounter(C4Game c4Game){
+
+        for (int i=0; i<m_Row; i++) {
+            for (int j=0; j<m_Column; j++) {
+                if (c4Game.getCurrentCounter().intersects(m_board[i][j]) && !m_board[i][j].isUsed()) {
+                    c4Game.getCurrentCounter().setDY(0);
+                    c4Game.getCurrentCounter().center(m_board[i][j]);
+                    m_board[i][j].setUsed(true);
+
+                    if (i != 0){
+                        m_board[i-1][j].setUsed(false);
+                    }
+
+                    m_board[i][j].setPlayer(c4Game.getCurrentCounter().getPlayer());
+                    c4Game.getOnScreenCounters().add(c4Game.getCurrentCounter());
+                    c4Game.nextTurn();
+                }
+            }
+        }
+
     }
 }
