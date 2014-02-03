@@ -12,28 +12,29 @@ import org.lwjgl.opengl.Display;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException{
-        C4Display c4Display = new C4Display();
-        C4Game c4Game = new C4Game();
-        c4Display.setUpDisplay();
-        c4Display.setUpOpenGL();
+        C4Display display = new C4Display();
+        C4Game game = new C4Game();
+
+        display.setUpDisplay();
+        display.setUpOpenGL();
         Time.setUpTimer();
 
-        while (c4Game.isRunning()) {
-            Counter currentCounter = c4Game.getCurrentCounter();
-            C4Board c4Board = c4Game.getC4Board();
+        while (game.isRunning()) {
+            Counter currentCounter = game.getCurrentCounter();
+            C4Board c4Board = game.getC4Board();
 
             if (Keyboard.next()){
-                Input.moveC4Counter(c4Game.getCurrentCounter());
+                Input.moveC4Counter(game.getCurrentCounter());
             }
             currentCounter.drop();
             currentCounter.dropCounter(Time.getDelta());
-            c4Board.placeCounter(c4Game);
+            c4Board.placeCounter(game);
 
-            c4Display.render(c4Game.getC4Board(), c4Game.getCurrentCounter(), c4Game.getOnScreenCounters());
+            display.render(game.getC4Board(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
             Display.sync(60);
             if (Display.isCloseRequested()) {
-                c4Game.setRunning(false);
+                game.setRunning(false);
             }
         }
         Display.destroy();
