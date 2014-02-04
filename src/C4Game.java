@@ -57,7 +57,6 @@ public class C4Game extends AbstractGame{
 
     @Override
     public void gameLoop(AbstractGame game) {
-        currentCounter.drop();
         currentCounter.dropCounter(Time.getDelta());
         if (this.getBoard().placeCounter(currentCounter, this.onScreenCounters)){
             this.nextTurn();

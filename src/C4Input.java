@@ -33,6 +33,15 @@ public class C4Input extends AbstractInput {
                 }
             }
         }
+
+        if (Keyboard.getEventKeyState()) {
+            if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
+                currentCounter.setDY(.2);
+            }
+        } else {
+            return;
+        }
+
     }
 
     private static final double COUNTERMOVE = 31;

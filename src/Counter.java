@@ -61,17 +61,14 @@ public class Counter extends AbstractMovableEntity {
         y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
     }
 
-    public void drop(){
-        if (Keyboard.getEventKeyState()) {
-            if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
-                this.setDY(.2);
-            }
-        } else {
-            return;
-        }
-    }
+
     public void dropCounter(int delta){
         update(delta);
     }
 
+    public void reset(Square square) {
+        x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
+        y = 20;
+        this.setDY(0);
+    }
 }
