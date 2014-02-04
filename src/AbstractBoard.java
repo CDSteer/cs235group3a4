@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -68,25 +70,27 @@ public abstract class AbstractBoard {
         }
     }
 
-    public void placeCounter(C4Game c4Game){
 
+
+    public boolean placeCounter(Counter counter, List<Counter> onScreenCounters){
         for (int i=0; i<m_Row; i++) {
             for (int j=0; j<m_Column; j++) {
-                if (c4Game.getCurrentCounter().intersects(m_board[i][j]) && !m_board[i][j].isUsed()) {
-                    c4Game.getCurrentCounter().setDY(0);
-                    c4Game.getCurrentCounter().center(m_board[i][j]);
+                if (counter.intersects(m_board[i][j]) && !m_board[i][j].isUsed()) {
+                    counter.setDY(0);
+                    counter.center(m_board[i][j]);
                     m_board[i][j].setUsed(true);
 
                     if (i != 0){
                         m_board[i-1][j].setUsed(false);
                     }
 
-                    m_board[i][j].setPlayer(c4Game.getCurrentCounter().getPlayer());
-                    c4Game.getOnScreenCounters().add(c4Game.getCurrentCounter());
-                    c4Game.nextTurn();
+                    m_board[i][j].setPlayer(counter.getPlayer());
+                    onScreenCounters.add(counter);
+                    return true;
                 }
             }
         }
+        return false;
 
     }
 }

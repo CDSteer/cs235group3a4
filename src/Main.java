@@ -8,25 +8,38 @@
 
 import org.lwjgl.opengl.Display;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String args[]) throws InterruptedException{
         Time.setUpTimer();
-
         AbstractDisplay display = new C4Display();
-        C4Game game = new C4Game();
+        AbstractGame game = new C4Game();
+        AbstractInput gameInput = new C4Input();
+
+        Scanner scanner = new Scanner(System.in);
+        String userGame;
+
+        System.out.print("Enter game: ");
+        userGame = scanner.next();
+        if (userGame.equals("c4")){
+            display = new C4Display();
+            game = new C4Game();
+            gameInput = new C4Input();
+        }
+        if (userGame.equals("oth")){
+            display = new OthDisplay();
+            game = new OthGame();
+            gameInput = new OthInput();
+        }
 
         display.setUpDisplay();
         display.setUpOpenGL();
 
         while (game.isRunning()) {
-
-            Input.moveC4Counter(game.getCurrentCounter());
-
-            game.getCurrentCounter().drop();
-            game.getCurrentCounter().dropCounter(Time.getDelta());
-            game.getBoard().placeCounter(game);
-
+            gameInput.inputLoop(game.getCurrentCounter());
+            game.gameLoop(game);
             display.render(game.getBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
             Display.sync(60);

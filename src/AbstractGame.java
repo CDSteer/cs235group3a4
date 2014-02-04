@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -30,4 +32,11 @@ public abstract class AbstractGame implements Game{
     public void setBoard(AbstractBoard m_board) {
         this.m_board = m_board;
     }
+
+    public abstract Counter getCurrentCounter();
+
+
+    public abstract List<Counter> getOnScreenCounters();
+
+    public abstract void gameLoop(AbstractGame game);
 }
