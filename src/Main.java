@@ -13,16 +13,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String args[]) throws InterruptedException{
+        Scanner scanner = new Scanner(System.in);
         Time.setUpTimer();
         AbstractDisplay display = new C4Display();
         AbstractGame game = new C4Game();
         AbstractInput gameInput = new C4Input();
 
-        Scanner scanner = new Scanner(System.in);
-        String userGame;
-
+        //get user game selection
         System.out.print("Enter game: ");
-        userGame = scanner.next();
+        String userGame = scanner.next();
+
         if (userGame.equals("c4")){
             display = new C4Display();
             game = new C4Game();

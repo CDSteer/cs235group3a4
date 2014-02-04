@@ -11,7 +11,7 @@ public class OthGame extends AbstractGame {
 
 
     public OthGame() {
-        super(true, c4Board);
+        super(true, othBoard);
     }
 
     @Override
@@ -45,5 +45,5 @@ public class OthGame extends AbstractGame {
     }
 
     //remove this later
-    private static C4Board c4Board = new C4Board();
+    private static OthBoard othBoard = new OthBoard();
 }
