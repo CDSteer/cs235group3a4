@@ -1,11 +1,8 @@
 import Entity.AbstractMovableEntity;
-import org.lwjgl.input.Keyboard;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex2f;
 
 /**
  * @author cdsteer
@@ -60,7 +57,6 @@ public class Counter extends AbstractMovableEntity {
         x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
         y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
     }
-
 
     public void dropCounter(int delta){
         update(delta);
