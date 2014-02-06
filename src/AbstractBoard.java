@@ -34,6 +34,7 @@ public abstract class AbstractBoard {
     public boolean placeCounter(Counter counter, List<Counter> onScreenCounters){
         for (int i=0; i<m_Row; i++) {
             for (int j=0; j<m_Column; j++) {
+                //if the colunm full reset
                 if (counter.intersects(m_board[i][j]) && m_board[i][j].getPlayer() > 0){
                     counter.reset(m_board[i][j]);
                 }

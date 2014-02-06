@@ -30,9 +30,6 @@ public class C4Board extends AbstractBoard{
             }
         }
     }
-
     private static final int ROW = 7;
     private static final int COLUMN = 10;
-
-
 }
