@@ -42,27 +42,27 @@ public class C4Game extends AbstractGame{
         }
     }
 	
-	public void redTurn(){
-		//nextTurn() must return sth. or 
-		//implement this togather with nextTurn()
-		//This method is not on abstract class
-	}
-	
-	public void yellowTurn(){
-		//nextTurn() must return sth. 
-		//or implement this togather with nextTurn()
-		//This method is not on abstract class
-	}
-
-	public void setRed(player redPlayer){
-		//Need display class
-		//This method is not on abstract class
-	}
-	
-	public void setYellow(player yellowPlayer){
-		//Need display class
-		//This method is not on abstract class
-	}
+//	public void redTurn(){
+//		//nextTurn() must return sth. or
+//		//implement this togather with nextTurn()
+//		//This method is not on abstract class
+//	}
+//
+//	public void yellowTurn(){
+//		//nextTurn() must return sth.
+//		//or implement this togather with nextTurn()
+//		//This method is not on abstract class
+//	}
+//
+//	public void setRed(player redPlayer){
+//		//Need display class
+//		//This method is not on abstract class
+//	}
+//
+//	public void setYellow(player yellowPlayer){
+//		//Need display class
+//		//This method is not on abstract class
+//	}
 	
     @Override
     public void gameOver() {

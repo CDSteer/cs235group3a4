@@ -40,23 +40,23 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 	
-	public void blackTurn(){
-		//nextTurn() must return sth.
-		//or just implement it together.
-	}
-	
-	public void whiteTurn(){
-		//nextTurn() must return sth.
-		//or just implement it together.
-	}
-	
-	public void setBlack(player blackPlayer){
-		//Waiting for display class
-	}
-	
-	public void setWhite(player whitePlayer){
-		//waiting for display class
-	}
+//	public void blackTurn(){
+//		//nextTurn() must return sth.
+//		//or just implement it together.
+//	}
+//
+//	public void whiteTurn(){
+//		//nextTurn() must return sth.
+//		//or just implement it together.
+//	}
+//
+//	public void setBlack(player blackPlayer){
+//		//Waiting for display class
+//	}
+//
+//	public void setWhite(player whitePlayer){
+//		//waiting for display class
+//	}
 	
     @Override
     public void gameOver() {
