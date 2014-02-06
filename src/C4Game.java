@@ -4,9 +4,10 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  *
- * @author cdsteer
+ * @author cdsteer, Martin
  *         - created 01/02/2014
- * @version *.*
+ *		   - updated 06/02/2014
+ * @version *1.1*
  */
 public class C4Game extends AbstractGame{
 
@@ -40,7 +41,29 @@ public class C4Game extends AbstractGame{
             currentCounter = new Counter(115, 20, 10, 10, 1);;
         }
     }
+	
+	public void redTurn(){
+		//nextTurn() must return sth. or 
+		//implement this togather with nextTurn()
+		//This method is not on abstract class
+	}
+	
+	public void yellowTurn(){
+		//nextTurn() must return sth. 
+		//or implement this togather with nextTurn()
+		//This method is not on abstract class
+	}
 
+	public void setRed(player redPlayer){
+		//Need display class
+		//This method is not on abstract class
+	}
+	
+	public void setYellow(player yellowPlayer){
+		//Need display class
+		//This method is not on abstract class
+	}
+	
     @Override
     public void gameOver() {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -63,7 +86,7 @@ public class C4Game extends AbstractGame{
         }
 
     }
-
+	
     private static C4Board c4Board = new C4Board();
 
 
