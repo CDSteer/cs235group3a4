@@ -8,13 +8,16 @@
 
 import org.lwjgl.opengl.Display;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String args[]) throws InterruptedException{
+    public static void main(String args[]) throws InterruptedException, IOException {
         Scanner scanner = new Scanner(System.in);
-        Time.setUpTimer();
+        Time time = new Time();
+        time.setUpTimer();
         AbstractDisplay display = new C4Display();
         AbstractGame game = new C4Game();
         AbstractInput gameInput = new C4Input();
@@ -36,13 +39,14 @@ public class Main {
 
         display.setUpDisplay();
         display.setUpOpenGL();
+        Square.setTexture();
 
         while (game.isRunning()) {
             gameInput.inputLoop(game.getCurrentCounter());
-            game.gameLoop(game);
+            game.gameLoop(game, time.getDelta());
             display.render(game.getBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
-            Display.sync(60);
+            Display.sync(FRAMESPERSEC);
             if (Display.isCloseRequested()) {
                 game.setRunning(false);
             }
@@ -50,5 +54,7 @@ public class Main {
         Display.destroy();
         System.exit(0);
     }
+
+    private static final int FRAMESPERSEC = 60;
 
 }

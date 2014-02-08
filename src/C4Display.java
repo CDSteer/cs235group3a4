@@ -3,6 +3,8 @@ import java.util.List;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
+
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -19,12 +21,15 @@ public class C4Display extends AbstractDisplay{
     @Override
     public void render(AbstractBoard c4Board, Counter currentCounter, List<Counter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
-        c4Board.draw();
-        currentCounter.draw();
 
+        currentCounter.draw();
         for (Counter counters : onScreenCounters) {
             counters.draw();
         }
+
+        c4Board.draw();
+
+
     }
 
     private static final int WIDTH = 640;

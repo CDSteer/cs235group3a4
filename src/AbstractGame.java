@@ -38,5 +38,5 @@ public abstract class AbstractGame implements Game{
 
     public abstract List<Counter> getOnScreenCounters();
 
-    public abstract void gameLoop(AbstractGame game);
+    public abstract void gameLoop(AbstractGame game, int delta);
 }

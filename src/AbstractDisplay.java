@@ -1,6 +1,7 @@
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
@@ -40,10 +41,19 @@ public abstract class AbstractDisplay implements GameDisplay{
 
    @Override
    public void setUpOpenGL(){
-        // Initialization code OpenGL
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, 640, 480, 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);
+       // Initialization code OpenGL
+
+
+       // enable alpha blending
+       glEnable(GL_BLEND);
+       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+       glMatrixMode(GL_PROJECTION);
+       glLoadIdentity();
+       glOrtho(0, 640, 480, 0, 1, -1);
+       glMatrixMode(GL_MODELVIEW);
+
+
     }
 }

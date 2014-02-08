@@ -27,6 +27,15 @@ public class C4Game extends AbstractGame{
         this.onScreenCounters = new ArrayList<Counter>(10);
     }
 
+    public Counter getCurrentCounter() {
+        return currentCounter;
+    }
+
+
+    public List<Counter> getOnScreenCounters() {
+        return onScreenCounters;
+    }
+
     @Override
     public void playGame() {
         currentCounter = new Counter(115, 20, 10, 10, 1);
@@ -69,18 +78,9 @@ public class C4Game extends AbstractGame{
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public Counter getCurrentCounter() {
-        return currentCounter;
-    }
-
-
-    public List<Counter> getOnScreenCounters() {
-        return onScreenCounters;
-    }
-
     @Override
-    public void gameLoop(AbstractGame game) {
-        currentCounter.dropCounter(Time.getDelta());
+    public void gameLoop(AbstractGame game, int delta) {
+        currentCounter.dropCounter(delta);
         if (this.getBoard().placeCounter(currentCounter, this.onScreenCounters)){
             this.nextTurn();
         }
@@ -88,7 +88,5 @@ public class C4Game extends AbstractGame{
     }
 	
     private static C4Board c4Board = new C4Board();
-
-
 
 }

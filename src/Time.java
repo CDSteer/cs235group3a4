@@ -9,18 +9,18 @@ import org.lwjgl.Sys;
  */
 public class Time {
 
-    private static long lastFrame;
+    private long m_LastFrame;
 
-    public static int getDelta() {
+    public int getDelta() {
         long currentTime = getTime();
-        int delta = (int) (currentTime - lastFrame);
-        lastFrame = getTime();
+        int delta = (int) (currentTime - m_LastFrame);
+        m_LastFrame = getTime();
         return delta;
     }
-    public static long getTime() {
+    public long getTime() {
         return (Sys.getTime() * 1000) / Sys.getTimerResolution();
     }
-    public static void setUpTimer(){
-        lastFrame = getTime();
+    public void setUpTimer(){
+        m_LastFrame = getTime();
     }
 }

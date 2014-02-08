@@ -11,11 +11,15 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Counter extends AbstractMovableEntity {
 
-    private int player;
+    private int m_Player;
 
     public Counter(double x, double y, double width, double height, int player) {
         super(x, y, width, height);
-        this.player = player;
+        this.m_Player = player;
+    }
+
+    public int getPlayer(){
+        return m_Player;
     }
 
     @Override
@@ -28,9 +32,9 @@ public class Counter extends AbstractMovableEntity {
         float angle;
         float radius = 10;
 
-        if (player == 1) {
+        if (m_Player == 1) {
             glColor3d(1, 0, 0);
-        } else if (player == 2) {
+        } else if (m_Player == 2) {
             glColor3d(0, 1.5, 0);
         }
 
@@ -47,10 +51,6 @@ public class Counter extends AbstractMovableEntity {
             glVertex2f(x2,y2);
         }
         glEnd();
-    }
-
-    public int getPlayer(){
-        return player;
     }
 
     public void center(Square square){

@@ -26,7 +26,7 @@ public class OthGame extends AbstractGame {
     }
 
     @Override
-    public void gameLoop(AbstractGame game) {
+    public void gameLoop(AbstractGame game, int delta) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
