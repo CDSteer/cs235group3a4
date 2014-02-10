@@ -36,7 +36,10 @@ public abstract class AbstractBoard {
             for (int j=0; j<m_Column; j++) {
                 //if the colunm full reset
                 if (counter.intersects(m_board[i][j]) && m_board[i][j].getPlayer() > 0){
+                    counter.toSting();
                     counter.reset(m_board[i][j]);
+                    counter.toSting();
+
                 }
 
                 if (counter.intersects(m_board[i][j]) && !m_board[i][j].isUsed()) {
@@ -55,6 +58,15 @@ public abstract class AbstractBoard {
             }
         }
         return false;
+
+    }
+
+    public void unBind(){
+        for (int i=0; i<m_Row; i++) {
+            for (int j=0; j<m_Column; j++) {
+                m_board[i][j].releseTex();
+          }
+        }
 
     }
 

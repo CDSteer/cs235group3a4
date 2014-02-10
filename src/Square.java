@@ -71,6 +71,10 @@ public class Square extends AbstractEntity {
         glDisable(GL_TEXTURE_2D);
     }
 
+    public void releseTex(){
+        square.release();
+    }
+
     public void setUsed(boolean used){
         this.used = used;
     }

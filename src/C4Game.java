@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class C4Game extends AbstractGame{
 
-    private static Counter currentCounter;
+    private Counter currentCounter;
     private HumPlayer player1;
     private HumPlayer player2;
 
