@@ -30,6 +30,7 @@ public class C4Rules extends GameRules {
 	private Square[][] currentBoard;
 	private Square currentSquare;
 	private Square testSquare;
+	private boolean testing = false;
 	
 	/* Constructor
 	 * Could put something about setting the integers for players here
@@ -45,14 +46,17 @@ public class C4Rules extends GameRules {
 	public int winCondition(C4Board board) {
 	
 		currentBoard = board.getBoard();
-		// Loops through Rows
-		for (int x = 0; x < ROW_LENGTH; x++) {
-			// Loops through Columns
-			for (int y = 0; y < COLUMN_LENGTH; y++) {
-				testSquare = currentBoard[y][x];
-				System.out.print(testSquare.getPlayer());
+		
+		if (testing == true) {
+			// Loops through Rows
+			for (int x = 0; x < ROW_LENGTH; x++) {
+				// Loops through Columns
+				for (int y = 0; y < COLUMN_LENGTH; y++) {
+					testSquare = currentBoard[y][x];
+					System.out.print(testSquare.getPlayer());
+				}
 			}
-		}	
+		}
 		
 		
 		
@@ -81,7 +85,7 @@ public class C4Rules extends GameRules {
 			// Loops through Columns
 			for (int y = 0; y < COLUMN_LENGTH; y++) {
 			
-				System.out.println(ColLineOne);
+				if (testing == true) { System.out.println(ColLineOne); }
 				// Checks if a win condition was reached by a previous loop
 				if (RowLineOne >= WIN_LENGTH || ColLineOne >= WIN_LENGTH || DownDiagLineOne >= WIN_LENGTH || UpDiagLineOne >= WIN_LENGTH) {
 					PlayerOneWin = true;
