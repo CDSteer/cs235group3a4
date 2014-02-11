@@ -11,11 +11,17 @@
  */
 public class C4Rules extends GameRules {
 	
-	private final int PLAYER_ONE = 0;
-	private final int PLAYER_TWO = 1;
-	private final int NO_WINNER = 2;
-	private int LineOne = 0;
-	private int LineTwo = 0;
+	private final int PLAYER_ONE = 1;
+	private final int PLAYER_TWO = 2;
+	private final int NO_WINNER = 0;
+	private int RowLineOne = 0;
+	private int RowLineTwo = 0;
+	private int ColLineOne = 0;
+	private int ColLineTwo = 0;
+	private int DownDiagLineOne = 0;
+	private int DownDiagLineTwo = 0;
+	private int UpDiagLineOne = 0;
+	private int UpDiagLineTwo = 0;
 	private final int WIN_LENGTH = 4;
 	private boolean PlayerOneWin = false;
 	private boolean PlayerTwoWin = false;
@@ -23,6 +29,7 @@ public class C4Rules extends GameRules {
 	private final int COLUMN_LENGTH = 7;
 	private Square[][] currentBoard;
 	private Square currentSquare;
+	private Square testSquare;
 	
 	/* Constructor
 	 * Could put something about setting the integers for players here
@@ -38,6 +45,16 @@ public class C4Rules extends GameRules {
 	public int winCondition(C4Board board) {
 	
 		currentBoard = board.getBoard();
+		// Loops through Rows
+		for (int x = 0; x < ROW_LENGTH; x++) {
+			// Loops through Columns
+			for (int y = 0; y < COLUMN_LENGTH; y++) {
+				testSquare = currentBoard[y][x];
+				System.out.print(testSquare.getPlayer());
+			}
+		}	
+		
+		
 		
 		checkColumns();
 		checkRows();
@@ -64,26 +81,27 @@ public class C4Rules extends GameRules {
 			// Loops through Columns
 			for (int y = 0; y < COLUMN_LENGTH; y++) {
 			
+				System.out.println(ColLineOne);
 				// Checks if a win condition was reached by a previous loop
-				if (LineOne >= WIN_LENGTH) {
+				if (RowLineOne >= WIN_LENGTH || ColLineOne >= WIN_LENGTH || DownDiagLineOne >= WIN_LENGTH || UpDiagLineOne >= WIN_LENGTH) {
 					PlayerOneWin = true;
 				}
 				
-				if (LineTwo >= WIN_LENGTH) {
+				if (RowLineTwo >= WIN_LENGTH || ColLineTwo >= WIN_LENGTH || DownDiagLineTwo >= WIN_LENGTH || UpDiagLineTwo >= WIN_LENGTH) {
 					PlayerTwoWin = true;
 				}
 				
 				// Analyses the current Square indicated by the index
-				currentSquare = currentBoard[x][y];
+				currentSquare = currentBoard[y][x];
 				if (currentSquare.getPlayer() == PLAYER_ONE) {
-					LineOne++;
-					LineTwo = 0;
+					ColLineOne++;
+					ColLineTwo = 0;
 				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-					LineTwo++;
-					LineOne = 0;
+					ColLineTwo++;
+					ColLineOne = 0;
 				} else {
-					LineOne = 0;
-					LineTwo = 0;
+					ColLineOne = 0;
+					ColLineTwo = 0;
 				}
 			}
 		}
@@ -100,25 +118,25 @@ public class C4Rules extends GameRules {
 			for (int x = 0; x < ROW_LENGTH; x++) {
 			
 				// Checks if a win condition was reached by a previous loop
-				if (LineOne >= WIN_LENGTH) {
+				if (RowLineOne >= WIN_LENGTH) {
 					PlayerOneWin = true;
 				}
 				
-				if (LineTwo >= WIN_LENGTH) {
+				if (RowLineTwo >= WIN_LENGTH) {
 					PlayerTwoWin = true;
 				}
 				
 				// Analyses the current Square indicated by the index
-				currentSquare = currentBoard[x][y];
+				currentSquare = currentBoard[y][x];
 				if (currentSquare.getPlayer() == PLAYER_ONE) {
-					LineOne++;
-					LineTwo = 0;
+					RowLineOne++;
+					RowLineTwo = 0;
 				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-					LineTwo++;
-					LineOne = 0;
+					RowLineTwo++;
+					RowLineOne = 0;
 				} else {
-					LineOne = 0;
-					LineTwo = 0;
+					RowLineOne = 0;
+					RowLineTwo = 0;
 				}
 			}
 		}
@@ -137,26 +155,26 @@ public class C4Rules extends GameRules {
 				for( int a = x, b = y ; a < ROW_LENGTH && b < COLUMN_LENGTH ;  a++, b++ ) {
 				
 					// Checks if a win condition was reached by a previous loop
-					if (LineOne >= WIN_LENGTH) {
+					if (DownDiagLineOne >= WIN_LENGTH) {
 					PlayerOneWin = true;
 					}
 					
-					if (LineTwo >= WIN_LENGTH) {
+					if (DownDiagLineTwo >= WIN_LENGTH) {
 						PlayerTwoWin = true;
 					}
 					
 					// Analyses the current Square indicated by the index
-					currentSquare = currentBoard[a][b];
+					currentSquare = currentBoard[b][a];
 					
 					if (currentSquare.getPlayer() == PLAYER_ONE) {
-						LineOne++;
-						LineTwo = 0;
+						DownDiagLineOne++;
+						DownDiagLineTwo = 0;
 					} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-						LineTwo++;
-						LineOne = 0;
+						DownDiagLineTwo++;
+						DownDiagLineOne = 0;
 					} else {
-						LineOne = 0;
-						LineTwo = 0;
+						DownDiagLineOne = 0;
+						DownDiagLineTwo = 0;
 					}
 				}
 			}
@@ -176,26 +194,26 @@ public class C4Rules extends GameRules {
 				for( int a = x, b = y ;  a < ROW_LENGTH && b >= 0 ;  a++, b-- ) {
 				
 					// Checks if a win condition was reached by a previous loop
-					if (LineOne >= WIN_LENGTH) {
+					if (UpDiagLineOne >= WIN_LENGTH) {
 					PlayerOneWin = true;
 					}
 					
-					if (LineTwo >= WIN_LENGTH) {
+					if (UpDiagLineTwo >= WIN_LENGTH) {
 						PlayerTwoWin = true;
 					}
 					
 					// Analyses the current Square indicated by the index
-					currentSquare = currentBoard[a][b];
+					currentSquare = currentBoard[b][a];
 					
 					if (currentSquare.getPlayer() == PLAYER_ONE) {
-						LineOne++;
-						LineTwo = 0;
+						UpDiagLineOne++;
+						UpDiagLineTwo = 0;
 					} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-						LineTwo++;
-						LineOne = 0;
+						UpDiagLineTwo++;
+						UpDiagLineOne = 0;
 					} else {
-						LineOne = 0;
-						LineTwo = 0;
+						UpDiagLineOne = 0;
+						UpDiagLineTwo = 0;
 					}
 				}
 			}
