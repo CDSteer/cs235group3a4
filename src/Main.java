@@ -1,6 +1,6 @@
 /**
  * @file 	Main.java
- * @author 	cdsteer, jidavies
+ * @author 	Jamie Irving Davies, Cameron Steer
  * @date	28/01/2014
  * @see		http://zetcode.com/tutorials/javaswingtutorial/firstprograms/
  * 
