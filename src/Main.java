@@ -1,7 +1,6 @@
 /**
- * Created with IntelliJ IDEA.
  *
- * @author cdsteer
+ * @author cdsteer, jidavies
  *         - created 28/01/2014
  * @version *.*
  */
