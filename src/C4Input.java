@@ -37,12 +37,9 @@ public class C4Input extends AbstractInput {
         //if the down key is pressed then the counter is dropped to the board
         if (Keyboard.getEventKeyState()) {
             if (Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
-                currentCounter.setDY(.2);
+                currentCounter.setDY(DROP);
             }
-        } else {
-            return;
         }
-
     }
 
     private static final double COUNTERMOVE = 31;
