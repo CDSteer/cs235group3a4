@@ -1,5 +1,3 @@
-import org.lwjgl.input.Keyboard;
-
 /**
  * Created with IntelliJ IDEA.
  *

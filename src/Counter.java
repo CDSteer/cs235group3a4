@@ -63,8 +63,12 @@ public class Counter extends AbstractMovableEntity {
     }
 
     public void reset(Square square) {
-        x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
+        x = square.getX() + square.getWidth() / 2;
         y = 20;
         this.setDY(0);
+    }
+
+    public void toSting(){
+        System.out.println("x: " + x + "y: " + y);
     }
 }
