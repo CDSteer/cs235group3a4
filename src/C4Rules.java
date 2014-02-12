@@ -22,6 +22,7 @@ public class C4Rules extends GameRules {
 	private int DownDiagLineTwo = 0;
 	private int UpDiagLineOne = 0;
 	private int UpDiagLineTwo = 0;
+	private final int EMPTY = 0;
 	private final int WIN_LENGTH = 4;
 	private boolean PlayerOneWin = false;
 	private boolean PlayerTwoWin = false;
@@ -82,6 +83,8 @@ public class C4Rules extends GameRules {
 		
 		// Loops through Rows
 		for (int x = 0; x < ROW_LENGTH; x++) {
+			// ColLineOne = EMPTY;
+			// ColLineTwo = EMPTY;
 			// Loops through Columns
 			for (int y = 0; y < COLUMN_LENGTH; y++) {
 			
@@ -99,13 +102,13 @@ public class C4Rules extends GameRules {
 				currentSquare = currentBoard[y][x];
 				if (currentSquare.getPlayer() == PLAYER_ONE) {
 					ColLineOne++;
-					ColLineTwo = 0;
+					ColLineTwo = EMPTY;
 				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
 					ColLineTwo++;
-					ColLineOne = 0;
+					ColLineOne = EMPTY;
 				} else {
-					ColLineOne = 0;
-					ColLineTwo = 0;
+					ColLineOne = EMPTY;
+					ColLineTwo = EMPTY;
 				}
 			}
 		}
@@ -118,6 +121,8 @@ public class C4Rules extends GameRules {
 		
 		// Loops through Columns
 		for (int y = 0; y < COLUMN_LENGTH; y++) {
+			// RowLineOne = EMPTY;
+			// RowLineTwo = EMPTY;
 			// Loops through Rows
 			for (int x = 0; x < ROW_LENGTH; x++) {
 			
@@ -134,13 +139,13 @@ public class C4Rules extends GameRules {
 				currentSquare = currentBoard[y][x];
 				if (currentSquare.getPlayer() == PLAYER_ONE) {
 					RowLineOne++;
-					RowLineTwo = 0;
+					RowLineTwo = EMPTY;
 				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
 					RowLineTwo++;
-					RowLineOne = 0;
+					RowLineOne = EMPTY;
 				} else {
-					RowLineOne = 0;
-					RowLineTwo = 0;
+					RowLineOne = EMPTY;
+					RowLineTwo = EMPTY;
 				}
 			}
 		}
@@ -152,77 +157,102 @@ public class C4Rules extends GameRules {
 	private void checkDownDiag() {
 	
 		// Loops through Rows
-		for (int x = 0; x < ROW_LENGTH; x++) {
+		for (int x = 0; x < (ROW_LENGTH - 3); x++) {
+			// DownDiagLineOne = EMPTY;
+			// DownDiagLineTwo = EMPTY;
 			// Loops through Columns
-			for (int y = 0; y < COLUMN_LENGTH; y++) {
+			for (int y = 0; y < (COLUMN_LENGTH - 3); y++) {
+				// DownDiagLineOne = EMPTY;
+				// DownDiagLineTwo = EMPTY;
 				// Loops through a diagonal direction (opposite to UpDiag)
-				for( int a = x, b = y ; a < ROW_LENGTH && b < COLUMN_LENGTH ;  a++, b++ ) {
-				
-					// Checks if a win condition was reached by a previous loop
-					if (DownDiagLineOne >= WIN_LENGTH) {
-					PlayerOneWin = true;
-					}
-					
-					if (DownDiagLineTwo >= WIN_LENGTH) {
-						PlayerTwoWin = true;
-					}
-					
-					// Analyses the current Square indicated by the index
-					currentSquare = currentBoard[b][a];
-					
-					if (currentSquare.getPlayer() == PLAYER_ONE) {
-						DownDiagLineOne++;
-						DownDiagLineTwo = 0;
-					} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-						DownDiagLineTwo++;
-						DownDiagLineOne = 0;
-					} else {
-						DownDiagLineOne = 0;
-						DownDiagLineTwo = 0;
-					}
-				}
+				currentSquare = currentBoard[y][x];
+				downDiagSquares(currentSquare);
+				currentSquare = currentBoard[y+1][x+1];
+				downDiagSquares(currentSquare);
+				currentSquare = currentBoard[y+2][x+2];
+				downDiagSquares(currentSquare);
+				currentSquare = currentBoard[y+3][x+3];
+				downDiagSquares(currentSquare);				
 			}
 		}
 	}
 	
+	private void downDiagSquares(Square square) {
+		// Checks if a win condition was reached by a previous loop
+		if (DownDiagLineOne >= WIN_LENGTH) {
+			PlayerOneWin = true;
+		}
+		
+		if (DownDiagLineTwo >= WIN_LENGTH) {
+			PlayerTwoWin = true;
+		}
+		
+		// Analyses the current Square indicated by the index
+		
+		if (currentSquare.getPlayer() == PLAYER_ONE) {
+			DownDiagLineOne++;
+			DownDiagLineTwo = EMPTY;
+		} else if (currentSquare.getPlayer() == PLAYER_TWO) {
+			DownDiagLineTwo++;
+			DownDiagLineOne = EMPTY;
+		} else {
+			DownDiagLineOne = EMPTY;
+			DownDiagLineTwo = EMPTY;
+		}
+	}
+		
 	/*
 	 * Checks the Board UpwardsDiagonal (BottomLeft -> TopRight) for 4 counters in a row
 	 */
 	private void checkUpDiag() {
 	
 		// Loops through rows
-		for (int x = 0; x < ROW_LENGTH; x++) {
+		for (int x = 0; x < (ROW_LENGTH - 3); x++) {
+			// UpDiagLineOne = EMPTY;
+			// UpDiagLineTwo = EMPTY;
 			// Loops through columns
-			for (int y = 0; y < COLUMN_LENGTH; y++) {
+			for (int y = 0; y > 2; y++) {
+				// UpDiagLineOne = EMPTY;
+				// UpDiagLineTwo = EMPTY;
 				// Loops through a diagonal direction (opposite to DownDiag)
-				for( int a = x, b = y ;  a < ROW_LENGTH && b >= 0 ;  a++, b-- ) {
+				currentSquare = currentBoard[y][x];
+				upDiagSquares(currentSquare);
+				currentSquare = currentBoard[y-1][x+1];
+				upDiagSquares(currentSquare);
+				currentSquare = currentBoard[y-2][x+2];
+				upDiagSquares(currentSquare);
+				currentSquare = currentBoard[y-3][x+3];
+				upDiagSquares(currentSquare);	
+					
 				
-					// Checks if a win condition was reached by a previous loop
-					if (UpDiagLineOne >= WIN_LENGTH) {
-					PlayerOneWin = true;
-					}
-					
-					if (UpDiagLineTwo >= WIN_LENGTH) {
-						PlayerTwoWin = true;
-					}
-					
-					// Analyses the current Square indicated by the index
-					currentSquare = currentBoard[b][a];
-					
-					if (currentSquare.getPlayer() == PLAYER_ONE) {
-						UpDiagLineOne++;
-						UpDiagLineTwo = 0;
-					} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-						UpDiagLineTwo++;
-						UpDiagLineOne = 0;
-					} else {
-						UpDiagLineOne = 0;
-						UpDiagLineTwo = 0;
-					}
-				}
 			}
 		}
-	}	
+	}
+	
+	private void upDiagSquares(Square square) {
+		
+		// Checks if a win condition was reached by a previous loop
+		if (UpDiagLineOne >= WIN_LENGTH) {
+			PlayerOneWin = true;
+		}
+		
+		if (UpDiagLineTwo >= WIN_LENGTH) {
+			PlayerTwoWin = true;
+		}
+		
+		
+		// Analyses the current Square indicated by the index		
+		if (currentSquare.getPlayer() == PLAYER_ONE) {
+			UpDiagLineOne++;
+			UpDiagLineTwo = EMPTY;
+		} else if (currentSquare.getPlayer() == PLAYER_TWO) {
+			UpDiagLineTwo++;
+			UpDiagLineOne = EMPTY;
+		} else {
+			UpDiagLineOne = EMPTY;
+			UpDiagLineTwo = EMPTY;
+		}
+	}
 }
 	
 	
