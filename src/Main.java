@@ -91,7 +91,7 @@ public class Main extends JFrame {
             game.gameLoop(game, time.getDelta());
             display.render(game.getBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
-            Display.sync(FRAMESPERSEC);
+            Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
                 game.setRunning(false);
             }
@@ -119,6 +119,5 @@ public class Main extends JFrame {
         });
     }
 
-    private static final int FRAMESPERSEC = 60;
 
 }
