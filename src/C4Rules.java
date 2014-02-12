@@ -157,11 +157,11 @@ public class C4Rules extends GameRules {
 	private void checkDownDiag() {
 	
 		// Loops through Rows
-		for (int x = 0; x < (ROW_LENGTH - 3); x++) {
+		for (int x = 0; (x + 3) < ROW_LENGTH; x++) {
 			// DownDiagLineOne = EMPTY;
 			// DownDiagLineTwo = EMPTY;
 			// Loops through Columns
-			for (int y = 0; y < (COLUMN_LENGTH - 3); y++) {
+			for (int y = 0; ( y + 3) < COLUMN_LENGTH; y++) {
 				// DownDiagLineOne = EMPTY;
 				// DownDiagLineTwo = EMPTY;
 				// Loops through a diagonal direction (opposite to UpDiag)
@@ -211,7 +211,7 @@ public class C4Rules extends GameRules {
 			// UpDiagLineOne = EMPTY;
 			// UpDiagLineTwo = EMPTY;
 			// Loops through columns
-			for (int y = 0; y > 2; y++) {
+			for (int y = 3; y < COLUMN_LENGTH ; y++) {
 				// UpDiagLineOne = EMPTY;
 				// UpDiagLineTwo = EMPTY;
 				// Loops through a diagonal direction (opposite to DownDiag)
