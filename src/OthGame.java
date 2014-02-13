@@ -12,7 +12,7 @@ public class OthGame extends AbstractGame {
 
 
     public OthGame() {
-        super(true, othBoard);
+        super(true);
     }
 
     @Override

@@ -20,17 +20,26 @@ public class C4Game extends AbstractGame{
     // TW Test Code
     private C4Rules c4rules;
 
-
+    private C4Board c4Board;
 
     public C4Game() {
-        super(true, c4Board);
+        super(true);
         this.currentCounter = new Counter(115, 20, 10, 10, 1);
         this.player1 = new HumPlayer(1);
         this.player2 = new HumPlayer(2);
         this.onScreenCounters = new ArrayList<Counter>(10);
+        this.c4Board = new C4Board();
         // TW Test Code
         c4rules = new C4Rules();
         
+    }
+
+    public C4Board getC4Board() {
+        return c4Board;
+    }
+
+    public void setC4Board(C4Board c4Board) {
+        this.c4Board = c4Board;
     }
 
     public Counter getCurrentCounter() {
@@ -53,7 +62,7 @@ public class C4Game extends AbstractGame{
         if (currentCounter.getPlayer() == 1){
             currentCounter = new Counter(115, 20, 10, 10, 2);
         } else {
-            currentCounter = new Counter(115, 20, 10, 10, 1);;
+            currentCounter = new Counter(115, 20, 10, 10, 1);
         }
         // TW Test Code
         if(c4rules.winCondition(c4Board) == 0) {
@@ -98,12 +107,10 @@ public class C4Game extends AbstractGame{
     @Override
     public void gameLoop(AbstractGame game, int delta) {
         currentCounter.dropCounter(delta);
-        if (this.getBoard().placeCounter(currentCounter, this.onScreenCounters)){
+        if (c4Board.placeCounter(currentCounter, this.onScreenCounters)){
             this.nextTurn();
         }
 
     }
-	
-    private static C4Board c4Board = new C4Board();
 
 }

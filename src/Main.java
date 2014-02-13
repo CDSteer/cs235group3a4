@@ -68,28 +68,25 @@ public class Main extends JFrame {
 
 	/** initC4 method for calling C4 game board */
 	public void initC4() {
-		/** create C4 objects */
-		AbstractDisplay display = new C4Display();
-        AbstractGame game = new C4Game();
-        AbstractInput gameInput = new C4Input();
+
         
         /** set up timer for C4 game */
         Time time = new Time();
         time.setUpTimer();
         
         /** display the C4 game board */
-        display = new C4Display();
-        game = new C4Game();
-        gameInput = new C4Input();
+        C4Display display = new C4Display();
+        C4Game game = new C4Game();
+        C4Input gameInput = new C4Input();
         
         display.setUpDisplay();
         display.setUpOpenGL();
-        Square.setTexture();
+        C4Square.setTexture();
 
         while (game.isRunning()) {
             gameInput.inputLoop(game.getCurrentCounter());
             game.gameLoop(game, time.getDelta());
-            display.render(game.getBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
+            display.render(game.getC4Board(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {

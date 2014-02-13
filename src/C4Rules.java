@@ -28,9 +28,9 @@ public class C4Rules extends GameRules {
 	private boolean PlayerTwoWin = false;
 	private final int ROW_LENGTH = 10;
 	private final int COLUMN_LENGTH = 7;
-	private Square[][] currentBoard;
-	private Square currentSquare;
-	private Square testSquare;
+	private C4Square[][] currentBoard;
+	private C4Square currentSquare;
+	private C4Square testSquare;
 	private boolean testing = false;
 	
 	/* Constructor
@@ -48,19 +48,19 @@ public class C4Rules extends GameRules {
 	
 		currentBoard = board.getBoard();
 		
-		if (testing == true) {
-			// Loops through Rows
-			for (int x = 0; x < ROW_LENGTH; x++) {
-				// Loops through Columns
-				for (int y = 0; y < COLUMN_LENGTH; y++) {
-					testSquare = currentBoard[y][x];
-					System.out.print(testSquare.getPlayer());
-				}
-			}
-		}
-		
-		
-		
+//		if (testing == true) {
+//			// Loops through Rows
+//			for (int x = 0; x < ROW_LENGTH; x++) {
+//				// Loops through Columns
+//				for (int y = 0; y < COLUMN_LENGTH; y++) {
+//					testSquare = currentBoard[y][x];
+//					System.out.print(testSquare.getPlayer());
+//				}
+//			}
+//		}
+
+
+
 		checkColumns();
 		checkRows();
 		checkDownDiag();
@@ -177,7 +177,7 @@ public class C4Rules extends GameRules {
 		}
 	}
 	
-	private void downDiagSquares(Square square) {
+	private void downDiagSquares(C4Square square) {
 		// Checks if a win condition was reached by a previous loop
 		if (DownDiagLineOne >= WIN_LENGTH) {
 			PlayerOneWin = true;
@@ -229,7 +229,7 @@ public class C4Rules extends GameRules {
 		}
 	}
 	
-	private void upDiagSquares(Square square) {
+	private void upDiagSquares(C4Square square) {
 		
 		// Checks if a win condition was reached by a previous loop
 		if (UpDiagLineOne >= WIN_LENGTH) {

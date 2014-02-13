@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -7,9 +9,25 @@
  */
 public class OthBoard extends AbstractBoard{
 
+    private OthSquare[][] m_board;
+
     public OthBoard(){
         super(COLUMN, ROW);
         this.fillBoard();
+    }
+
+    @Override
+    public OthSquare[][] getBoard() {
+        return m_board;
+    }
+
+    @Override
+    public void draw(){
+        for (int i=0; i< ROW; i++) {
+            for (int j=0; j< COLUMN; j++) {
+                m_board[i][j].draw();
+            }
+        }
     }
 
     @Override
@@ -18,7 +36,7 @@ public class OthBoard extends AbstractBoard{
         for (int i=0; i< ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
 
-                this.getBoard()[i][j] = new Square(xPos, yPos, 30, 30, true);
+                m_board[i][j] = new OthSquare(xPos, yPos, 30, 30, true);
 
                 xPos += 31;
                 if (xPos > 317) {
@@ -27,6 +45,11 @@ public class OthBoard extends AbstractBoard{
                 }
             }
         }
+    }
+
+    @Override
+    public boolean placeCounter(Counter currentCounter, List<Counter> onScreenCounters) {
+        return false;
     }
 
     private static final int ROW = 8;

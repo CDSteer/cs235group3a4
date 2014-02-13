@@ -1,4 +1,3 @@
-import Entity.AbstractEntity;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -11,26 +10,42 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glDisable;
 
 /**
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 29/01/2014
+ *         - created 13/02/2014
  * @version *.*
  */
+public class C4Square extends AbstractSquare{
 
-public class Square extends AbstractEntity {
-
-    private boolean used;
-    private int player;
     private static Texture square;
 
-    public Square(double x, double y, double width, double height, boolean used) {
-        super(x, y, width, height);
-        this.used = used;
-        this.player = 0;
+    public C4Square(double x, double y, double width, double height, boolean used) {
+        super(x, y, width, height, used);
     }
+
+    @Override
+    public void draw(){
+        glEnable(GL_TEXTURE_2D);
+        Color.white.bind();
+        square.bind();
+        glBegin(GL11.GL_QUADS);
+        glTexCoord2f(0, 0);
+        glVertex2d(x, y);
+        glTexCoord2f(1, 0);
+        glVertex2d(x + square.getTextureWidth(), y);
+        glTexCoord2f(1, 1);
+        glVertex2d(x + square.getTextureWidth(), y + square.getTextureHeight());
+        glTexCoord2f(0, 1);
+        glVertex2d(x, y + square.getTextureHeight());
+        glEnd();
+        glDisable(GL_TEXTURE_2D);
+    }
+
     public static void setTexture(){
         try {
             square = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/square.png")));
@@ -53,47 +68,7 @@ public class Square extends AbstractEntity {
         }
     }
 
-    @Override
-    public void draw(){
-        glEnable(GL_TEXTURE_2D);
-        Color.white.bind();
-        square.bind();
-        glBegin(GL11.GL_QUADS);
-            glTexCoord2f(0, 0);
-            glVertex2d(x, y);
-            glTexCoord2f(1, 0);
-            glVertex2d(x + square.getTextureWidth(), y);
-            glTexCoord2f(1, 1);
-            glVertex2d(x + square.getTextureWidth(), y + square.getTextureHeight());
-            glTexCoord2f(0, 1);
-            glVertex2d(x, y + square.getTextureHeight());
-        glEnd();
-        glDisable(GL_TEXTURE_2D);
-    }
-
-    public void releseTex(){
+    public void releaseTexture(){
         square.release();
     }
-
-    public void setUsed(boolean used){
-        this.used = used;
-    }
-
-    public int getPlayer(){
-        return player;
-    }
-
-    public void setPlayer(int _player){
-        this.player = _player;
-    }
-
-    public boolean isUsed(){
-        return used;
-    }
-
-    @Override
-    public void update(int delta) {
-         // do nothing.
-    }
-
 }

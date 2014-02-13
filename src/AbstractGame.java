@@ -10,11 +10,9 @@ import java.util.List;
 public abstract class AbstractGame implements Game{
 
     private boolean m_isRunning;
-    private AbstractBoard m_board;
 
-    public AbstractGame(boolean isRunning, AbstractBoard board){
+    public AbstractGame(boolean isRunning){
         this.m_isRunning = isRunning;
-        this.m_board = board;
     }
 
     public boolean isRunning() {
@@ -25,18 +23,11 @@ public abstract class AbstractGame implements Game{
         m_isRunning = running;
     }
 
-    public AbstractBoard getBoard() {
-        return m_board;
-    }
-
-    public void setBoard(AbstractBoard m_board) {
-        this.m_board = m_board;
-    }
-
     public abstract Counter getCurrentCounter();
 
 
     public abstract List<Counter> getOnScreenCounters();
 
     public abstract void gameLoop(AbstractGame game, int delta);
+
 }

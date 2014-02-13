@@ -53,7 +53,7 @@ public class Counter extends AbstractMovableEntity {
         glEnd();
     }
 
-    public void center(Square square){
+    public void center(AbstractSquare square){
         x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
         y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
     }
@@ -62,7 +62,7 @@ public class Counter extends AbstractMovableEntity {
         update(delta);
     }
 
-    public void reset(Square square) {
+    public void reset(AbstractSquare square) {
         x = square.getX() + square.getWidth() / 2;
         y = 20;
         this.setDY(0);
