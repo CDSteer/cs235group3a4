@@ -1,9 +1,3 @@
-import Entity.AbstractMovableEntity;
-
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import static org.lwjgl.opengl.GL11.*;
-
 /**
  * @file 	Counter.java
  * @author 	Cameron Steer
