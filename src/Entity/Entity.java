@@ -1,9 +1,13 @@
 package Entity;
 
 /**
- * @author cdsteer
- * - created 19.23.2013
- * @version 1.0
+ * @file 	Entity.java
+ * @author 	Cameron Steer
+ * @date	January 28, 2014
+ * @see
+ * @brief	Interface for any entity within the program
+ * @details
+ *
  */
 public interface Entity {
     public void draw();

@@ -8,6 +8,8 @@ import org.lwjgl.Sys;
  * @author Cameron Steer
  *
  * @date 01.02.2014
+ * @see http://thecodinguniverse.com/tag/delta/
+ *
  **/
 
 
@@ -26,7 +28,7 @@ public class Time {
 
 
     /**
-     * Gettter method for the games frame rate.
+     * return games frame rate.
      *
      * @return programs frames per second
      */
@@ -35,7 +37,7 @@ public class Time {
     }
 
     /**
-     * Get the
+     * Get the delta based of current time and last frame
      *
      * @return delta
      */

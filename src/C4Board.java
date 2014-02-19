@@ -50,7 +50,7 @@ public class C4Board extends AbstractBoard{
         }
     }
 
-    public boolean placeCounter(Counter counter, List<Counter> onScreenCounters){
+    public boolean placeCounter(AbstractCounter counter, List<AbstractCounter> onScreenCounters){
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
                 //if the colunm full reset

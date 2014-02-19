@@ -23,10 +23,10 @@ public abstract class AbstractGame implements Game{
         m_isRunning = running;
     }
 
-    public abstract Counter getCurrentCounter();
+    public abstract AbstractCounter getCurrentCounter();
 
 
-    public abstract List<Counter> getOnScreenCounters();
+    public abstract List<AbstractCounter> getOnScreenCounters();
 
     public abstract void gameLoop(AbstractGame game, int delta);
 

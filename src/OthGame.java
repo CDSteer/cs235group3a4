@@ -16,12 +16,12 @@ public class OthGame extends AbstractGame {
     }
 
     @Override
-    public Counter getCurrentCounter() {
+    public AbstractCounter getCurrentCounter() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public List<Counter> getOnScreenCounters() {
+    public List<AbstractCounter> getOnScreenCounters() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

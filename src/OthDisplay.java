@@ -16,7 +16,7 @@ public class OthDisplay extends AbstractDisplay{
     }
 
     @Override
-    public void render(AbstractBoard board, Counter currentCounter, List<Counter> onScreenCounters) {
+    public void render(AbstractBoard board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
         board.draw();
     }

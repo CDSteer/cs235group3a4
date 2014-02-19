@@ -5,21 +5,40 @@ import static java.lang.Math.sin;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * @author cdsteer
- * - created 28/01/2014
- * @version 1.0
+ * @file 	Counter.java
+ * @author 	Cameron Steer
+ * @date	January 28, 2014
+ * @see     http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
+ * @brief	Counter holds data and methods fo the game counters
+ * @details
+ *
  */
-public class Counter extends AbstractMovableEntity {
+public class AbstractCounter extends AbstractMovableEntity {
 
     private int m_Player;
+    private float m_Radius;
 
-    public Counter(double x, double y, double width, double height, int player) {
+
+    public AbstractCounter(double x, double y, double width, double height, float radius, int player) {
         super(x, y, width, height);
         this.m_Player = player;
+        this.m_Radius = radius;
     }
 
     public int getPlayer(){
         return m_Player;
+    }
+
+    public void setPlayer(int m_Player) {
+        this.m_Player = m_Player;
+    }
+
+    public float getRadius() {
+        return m_Radius;
+    }
+
+    public void setRadius(float m_Radius) {
+        this.m_Radius = m_Radius;
     }
 
     @Override
@@ -30,7 +49,7 @@ public class Counter extends AbstractMovableEntity {
         //filled circle
         float x2,y2;
         float angle;
-        float radius = 10;
+
 
         if (m_Player == 1) {
             glColor3d(1, 0, 0);
@@ -43,8 +62,8 @@ public class Counter extends AbstractMovableEntity {
 
         for (angle=1.0f; angle < 10.61E02f; angle+= 2.0E-01f) {
 
-            double foo = x1+sin(angle)*radius;
-            double bar = y1+cos(angle)*radius;
+            double foo = x1+sin(angle)*m_Radius;
+            double bar = y1+cos(angle)*m_Radius;
 
             x2 = (float)foo;
             y2 = (float)bar;

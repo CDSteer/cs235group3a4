@@ -7,7 +7,7 @@
  */
 public class OthInput extends AbstractInput{
     @Override
-    public void inputLoop(Counter currentCounter) {
+    public void inputLoop(AbstractCounter currentCounter) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }

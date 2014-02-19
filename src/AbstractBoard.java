@@ -26,5 +26,5 @@ public abstract class AbstractBoard {
     //115 + (31 * (x-1))  were x is the number of squares across
     public abstract void fillBoard();
 
-    public abstract boolean placeCounter(Counter currentCounter, List<Counter> onScreenCounters);
+    public abstract boolean placeCounter(AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters);
 }

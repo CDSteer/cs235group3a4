@@ -19,11 +19,11 @@ public class C4Display extends AbstractDisplay{
     }
 
     @Override
-    public void render(AbstractBoard c4Board, Counter currentCounter, List<Counter> onScreenCounters) {
+    public void render(AbstractBoard c4Board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
 
         currentCounter.draw();
-        for (Counter counters : onScreenCounters) {
+        for (AbstractCounter counters : onScreenCounters) {
             counters.draw();
         }
 

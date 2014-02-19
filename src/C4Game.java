@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class C4Game extends AbstractGame{
 
-    private Counter currentCounter;
+    private C4Counter currentCounter;
     private HumPlayer player1;
     private HumPlayer player2;
 
-    private List<Counter> onScreenCounters;
+    private List<AbstractCounter> onScreenCounters;
     
     // TW Test Code
     private C4Rules c4rules;
@@ -24,10 +24,10 @@ public class C4Game extends AbstractGame{
 
     public C4Game() {
         super(true);
-        this.currentCounter = new Counter(115, 20, 10, 10, 1);
+        this.currentCounter = new C4Counter();
         this.player1 = new HumPlayer(1);
         this.player2 = new HumPlayer(2);
-        this.onScreenCounters = new ArrayList<Counter>(10);
+        this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.c4Board = new C4Board();
         // TW Test Code
         c4rules = new C4Rules();
@@ -42,27 +42,29 @@ public class C4Game extends AbstractGame{
         this.c4Board = c4Board;
     }
 
-    public Counter getCurrentCounter() {
+    public AbstractCounter getCurrentCounter() {
         return currentCounter;
     }
 
 
-    public List<Counter> getOnScreenCounters() {
+    public List<AbstractCounter> getOnScreenCounters() {
         return onScreenCounters;
     }
 
     @Override
     public void playGame() {
-        currentCounter = new Counter(115, 20, 10, 10, 1);
+        currentCounter = new C4Counter();
         c4Board = new C4Board();
     }
 
     @Override
     public void nextTurn() {
         if (currentCounter.getPlayer() == 1){
-            currentCounter = new Counter(115, 20, 10, 10, 2);
+            currentCounter = new C4Counter();
+            currentCounter.setPlayer(2);
         } else {
-            currentCounter = new Counter(115, 20, 10, 10, 1);
+            currentCounter = new C4Counter();
+            currentCounter.setPlayer(1);
         }
         // TW Test Code
         if(c4rules.winCondition(c4Board) == 0) {

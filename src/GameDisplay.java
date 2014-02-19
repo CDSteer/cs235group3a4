@@ -10,5 +10,5 @@ import java.util.List;
 public interface GameDisplay {
     public void setUpDisplay();
     public void setUpOpenGL();
-    public void render(AbstractBoard board, Counter currentCounter, List<Counter> onScreenCounters);
+    public void render(AbstractBoard board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters);
 }

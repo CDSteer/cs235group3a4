@@ -48,7 +48,7 @@ public class OthBoard extends AbstractBoard{
     }
 
     @Override
-    public boolean placeCounter(Counter currentCounter, List<Counter> onScreenCounters) {
+    public boolean placeCounter(AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         return false;
     }
 
