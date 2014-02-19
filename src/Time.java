@@ -1,25 +1,14 @@
 import org.lwjgl.Sys;
 
 /**
- * @file Time.java
- *
- * @brief
- *
- * @author Cameron Steer
- *
- * @date 01.02.2014
- * @see http://thecodinguniverse.com/tag/delta/
- *
- **/
-
-
-/**
- * @class Time
- *
- * @brief
- *
- * <description>
+ * @file 	Time.java
+ * @author 	Cameron Steer
+ * @date	February 1, 2014
+ * @see     http://thecodinguniverse.com/tag/delta/
+ * @brief	The class to get time information
+ * @details This class calculates frame information used for rendering and moving objects on the screen
  */
+
 public class Time {
 
     private long m_LastFrame;
@@ -37,7 +26,7 @@ public class Time {
     }
 
     /**
-     * Get the delta based of current time and last frame
+     * Get the delta based off the amount of time that has passed since the last frame is retrieved
      *
      * @return delta
      */

@@ -7,7 +7,6 @@ package Entity;
  * @see
  * @brief	Interface for any entity within the program
  * @details
- *
  */
 public interface Entity {
     public void draw();
