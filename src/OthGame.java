@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class OthGame extends AbstractGame {
     
     // TW Test Code
     //private OthRules othRules;                                //Waiting for othrules to implement
-    private Othoard othBoard;
+    //private Othoard othBoard;
 
 
     public OthGame() {
