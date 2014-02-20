@@ -103,7 +103,29 @@ public class Main extends JFrame {
 
 	/** initOthello method for calling Othello game board */
 	public void initOthello() {
-		System.out.println("No Othello game yet, exiting...");
+        /** set up timer for othello game */
+        Time time = new Time();
+        time.setUpTimer();
+
+        /** display the othello game board */
+        OthDisplay display = new OthDisplay();
+        OthGame game = new OthGame();
+        //OthInput gameInput = new OthInput();
+
+        display.setUpDisplay();
+        display.setUpOpenGL();
+
+        while (game.isRunning()) {
+            game.gameLoop(game, time.getDelta());
+            display.render(game.getOthBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
+            Display.update();
+            Display.sync(time.getFrameRate());
+            if (Display.isCloseRequested()) {
+                game.setRunning(false);
+            }
+        }
+
+        System.out.println("No Othello game yet, exiting...");
         System.exit(0);
 	}
 

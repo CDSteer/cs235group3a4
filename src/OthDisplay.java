@@ -22,9 +22,9 @@ public class OthDisplay extends AbstractDisplay{
 	* @return null
 	*/
     @Override
-    public void render(AbstractBoard board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
+    public void render(AbstractBoard othBoard, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
-        board.draw();
+        othBoard.draw();
     }
 
     private static final int WIDTH = 640;

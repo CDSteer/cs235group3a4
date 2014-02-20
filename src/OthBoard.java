@@ -13,6 +13,7 @@ public class OthBoard extends AbstractBoard{
 
     public OthBoard(){
         super(COLUMN, ROW);
+        this.m_board = new OthSquare[ROW][COLUMN];
         this.fillBoard();
     }
 

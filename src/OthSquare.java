@@ -1,3 +1,6 @@
+import static org.lwjgl.opengl.GL11.glColor3d;
+import static org.lwjgl.opengl.GL11.glRectd;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -18,6 +21,7 @@ public class OthSquare extends AbstractSquare{
 
     @Override
     public void draw() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        glColor3d(0.0, 1.0, 0.0);
+        glRectd(x, y, x + width, y + height);
     }
 }

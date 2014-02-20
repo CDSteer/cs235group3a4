@@ -18,7 +18,7 @@ public class OthGame extends AbstractGame {
     
     // TW Test Code
     //private OthRules othRules;                                //Waiting for othrules to implement
-    //private Othoard othBoard;
+    private OthBoard othBoard;
 
 
     public OthGame() {
@@ -30,6 +30,24 @@ public class OthGame extends AbstractGame {
         this.othBoard = new OthBoard();
         // TW Test Code
        // othrules = new OthRules();							//Waiting for othrules to implement
+    }
+
+    /**
+     * Recieve Board information from OthBoard Class
+     * @param  null
+     * @return OthBoard
+     */
+    public OthBoard getOthBoard() {
+        return othBoard;
+    }
+
+    /**
+     * Set OthBoard
+     * @param  OthBoard
+     * @return null
+     */
+    public void setOthBoard(C4Board c4Board) {
+        this.othBoard = othBoard;
     }
 
 	/**
@@ -61,7 +79,7 @@ public class OthGame extends AbstractGame {
     public void gameLoop(AbstractGame game, int delta) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
-	
+
 	/**
 	 * Game begin, Create Counter and Board
 	 * @param  null
@@ -130,6 +148,4 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    //remove this later
-    private static OthBoard othBoard = new OthBoard();
 }
