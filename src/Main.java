@@ -5,6 +5,7 @@
  * @author 	Jamie Irving Davies, Cameron Steer
  * @date	January 28, 2014
  * @see		http://zetcode.com/tutorials/javaswingtutorial/firstprograms/
+ * @version	1.1.2
  * @brief	Main class for GUI Splash
  * @details	Main class for displaying gui splash window to allow the player to select which game to play
  * 
