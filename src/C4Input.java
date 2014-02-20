@@ -4,12 +4,19 @@ import org.lwjgl.input.Keyboard;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 04/02/2014
- * @version *.*
+ * @since 04/02/2014
+ *		-update 20/2/2014
+ * @version *1.0.1*
  */
 public class C4Input extends AbstractInput {
     public static final double DROP = .2;
     @Override
+	
+	/**
+	* Description plz~
+	* @param AbstractCounter
+	* @return null
+	*/
     public void inputLoop(AbstractCounter currentCounter){
         //if counter not dropped listen for a left and right arrows to move counter each square until end of board
         if (currentCounter.getDY() != DROP){

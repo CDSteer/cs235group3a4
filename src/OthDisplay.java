@@ -7,7 +7,8 @@ import static org.lwjgl.opengl.GL11.glClear;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 04/02/2014
+ * @since 04/02/2014
+ * 		 	-update 20/02/2014
  * @version *.*
  */
 public class OthDisplay extends AbstractDisplay{
@@ -15,6 +16,11 @@ public class OthDisplay extends AbstractDisplay{
         super(WIDTH, HEIGHT, "Othello");
     }
 
+	/**
+	* Description plz~
+	* @param AbstractBoard, AbstractCounter, List<AbstractCounter>
+	* @return null
+	*/
     @Override
     public void render(AbstractBoard board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);

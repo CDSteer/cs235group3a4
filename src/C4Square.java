@@ -17,8 +17,9 @@ import static org.lwjgl.opengl.GL11.glDisable;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 13/02/2014
- * @version *.*
+ * @since 13/02/2014
+ * 			-update 20/02/2014
+ * @version *1.0.1*
  */
 public class C4Square extends AbstractSquare{
 
@@ -28,6 +29,11 @@ public class C4Square extends AbstractSquare{
         super(x, y, width, height, used);
     }
 
+	/**
+	* Description plz~
+	* @param null
+	* @return null
+	*/
     @Override
     public void draw(){
         glEnable(GL_TEXTURE_2D);
@@ -46,6 +52,11 @@ public class C4Square extends AbstractSquare{
         glDisable(GL_TEXTURE_2D);
     }
 
+	/**
+	* Description plz~
+	* @param null
+	* @return null
+	*/
     public static void setTexture(){
         try {
             square = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/square.png")));
@@ -68,6 +79,11 @@ public class C4Square extends AbstractSquare{
         }
     }
 
+	/**
+	* Description plz~
+	* @param null
+	* @return null
+	*/
     public void releaseTexture(){
         square.release();
     }

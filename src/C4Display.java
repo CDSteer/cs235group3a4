@@ -9,8 +9,9 @@ import static org.lwjgl.opengl.GL11.glClear;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 01/02/2014
- * @version *.*
+ * @since 01/02/2014
+ *			-update 20/2/2014		
+ * @version *1.0.1*
  */
 public class C4Display extends AbstractDisplay{
 
@@ -19,6 +20,12 @@ public class C4Display extends AbstractDisplay{
     }
 
     @Override
+	
+	/**
+	* Description plz~
+	* @param AbstractBoard, AbstractCounter
+	* @return null
+	*/
     public void render(AbstractBoard c4Board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
 
