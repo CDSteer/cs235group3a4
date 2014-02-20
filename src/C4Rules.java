@@ -1,10 +1,10 @@
 
-/*
+/**
  * C4Rules Class
- * Thomas Werner
- * Draft 1
- * Last Edit 11th Feb 2014
- *
+ * @author Thomas Werner
+ * @since 11/2/2014
+ * @version *1.0.1*
+ * 			-update 20/2/2014
  * WORK IN PROGRESS!!
  * Provides the win condition for a game of C4,
  * to be evaluated after every player move.
@@ -33,7 +33,8 @@ public class C4Rules extends GameRules {
 	private C4Square testSquare;
 	private boolean testing = false;
 	
-	/* Constructor
+	/** 
+	 * Constructor
 	 * Could put something about setting the integers for players here
 	 */
 	public C4Rules() {}
@@ -44,6 +45,12 @@ public class C4Rules extends GameRules {
 	 * 1 : Player Two
 	 * 2 : No Winner
 	 */
+	 
+	/**
+	* Description plz~
+	* @param C4Board
+	* @return int
+	*/
 	public int winCondition(C4Board board) {
 	
 		currentBoard = board.getBoard();
@@ -76,8 +83,10 @@ public class C4Rules extends GameRules {
 		
 	}
 	
-	/*
+	/**
 	 * Checks the Board Columns (vertical) for 4 counters in a row
+	 * @param null
+	 * @return null
 	 */
 	private void checkColumns() {
 		
@@ -114,8 +123,10 @@ public class C4Rules extends GameRules {
 		}
 	}
 	
-	/*
+	/**
 	 * Checks the Board Rows (horizontal) for 4 counters in a row
+	 * @param null
+	 * @return null
 	 */
 	private void checkRows() {
 		
@@ -151,8 +162,10 @@ public class C4Rules extends GameRules {
 		}
 	}
 	
-	/*
+	/**
 	 * Checks the Board DownwardDiagonal (TopLeft -> BottomRight) for 4 counters in a row
+	 * @param null
+	 * @return null
 	 */
 	private void checkDownDiag() {
 	
@@ -176,7 +189,11 @@ public class C4Rules extends GameRules {
 			}
 		}
 	}
-	
+	/**
+	* Description plz~
+	* @param C4Square
+	* @return null
+	*/
 	private void downDiagSquares(C4Square square) {
 		// Checks if a win condition was reached by a previous loop
 		if (DownDiagLineOne >= WIN_LENGTH) {
@@ -201,8 +218,10 @@ public class C4Rules extends GameRules {
 		}
 	}
 		
-	/*
+	/**
 	 * Checks the Board UpwardsDiagonal (BottomLeft -> TopRight) for 4 counters in a row
+	 * @param null
+	 * @return null
 	 */
 	private void checkUpDiag() {
 	
@@ -229,6 +248,11 @@ public class C4Rules extends GameRules {
 		}
 	}
 	
+	/**
+	* Description plz~
+	* @param C4Square
+	* @return null
+	*/
 	private void upDiagSquares(C4Square square) {
 		
 		// Checks if a win condition was reached by a previous loop
