@@ -5,21 +5,19 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer, Martin
- *         - created 01/02/2014
- *		   - updated 06/02/2014
- * @version *1.1*
+ * @since 01/02/2014
+ *		   - updated 20/02/2014
+ * @version *1.2*
  */
 public class C4Game extends AbstractGame{
 
-    private C4Counter currentCounter;
-    private HumPlayer player1;
-    private HumPlayer player2;
-
-    private List<AbstractCounter> onScreenCounters;
+    private C4Counter currentCounter;							//Store counter information
+    private HumPlayer player1;									//Player1 information
+    private HumPlayer player2;									//Player2 information
+    private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     
     // TW Test Code
     private C4Rules c4rules;
-
     private C4Board c4Board;
 
     public C4Game() {
@@ -33,30 +31,58 @@ public class C4Game extends AbstractGame{
         c4rules = new C4Rules();
         
     }
-
+	/**
+	 * Recieve Board information from C4Board Class
+	 * @param  null
+	 * @return C4Board
+	 */
     public C4Board getC4Board() {
         return c4Board;
     }
 
+	/**
+	 * Set C4Board
+	 * @param  C4Board
+	 * @return null
+	 */
     public void setC4Board(C4Board c4Board) {
         this.c4Board = c4Board;
     }
 
+	/**
+	 * Recieve Current Counter information from Counter Class
+	 * @param  null
+	 * @return AbstractCounter
+	 */
     public AbstractCounter getCurrentCounter() {
         return currentCounter;
     }
 
-
+	/**
+	 * Recieve on screen Counter information from AbstractCounter Class
+	 * @param  null
+	 * @return List<AbstractCounter>
+	 */
     public List<AbstractCounter> getOnScreenCounters() {
         return onScreenCounters;
     }
 
+	/**
+	 * Game begin, create Counter and Board
+	 * @param  null
+	 * @return null
+	 */
     @Override
     public void playGame() {
         currentCounter = new C4Counter();
         c4Board = new C4Board();
     }
 
+	/**
+	 * Checking which player is on next turn
+	 * @param  null
+	 * @return null
+	 */
     @Override
     public void nextTurn() {
         if (currentCounter.getPlayer() == 1){
@@ -101,11 +127,21 @@ public class C4Game extends AbstractGame{
 //		//This method is not on abstract class
 //	}
 	
+	/**
+	 * Game End
+	 * @param  null
+	 * @return null
+	 */
     @Override
     public void gameOver() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
+	/**
+	 * *****CAMERON, I have no idea what's this doing...*******
+	 * @param  AbstractGame, int
+	 * @return null
+	 */
     @Override
     public void gameLoop(AbstractGame game, int delta) {
         currentCounter.dropCounter(delta);

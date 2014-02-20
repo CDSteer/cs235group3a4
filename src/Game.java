@@ -2,8 +2,8 @@
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 01/02/2014
- * @version *.*
+ * @since 01/02/2014
+ * @version *1.0*
  */
 public interface Game {
 
