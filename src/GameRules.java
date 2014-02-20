@@ -10,7 +10,7 @@ Last Edit 1st Feb 2014
 
 public abstract class GameRules {
 	
-	abstract int winCondition(C4Board board);
+	abstract int winCondition(AbstractBoard board);
 	
 }
 	

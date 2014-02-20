@@ -3,13 +3,13 @@
  * C4Rules Class
  * @author Thomas Werner
  * @since 11/2/2014
- * @version *1.0.1*
+ * @version *1.0.2*
  * 			-update 20/2/2014
  * WORK IN PROGRESS!!
  * Provides the win condition for a game of C4,
  * to be evaluated after every player move.
  */
-public class C4Rules extends GameRules {
+public class C4Rules { // extends GameRules (temporarily taken out)
 	
 	private final int PLAYER_ONE = 1;
 	private final int PLAYER_TWO = 2;
@@ -30,7 +30,6 @@ public class C4Rules extends GameRules {
 	private final int COLUMN_LENGTH = 7;
 	private C4Square[][] currentBoard;
 	private C4Square currentSquare;
-	private C4Square testSquare;
 	private boolean testing = false;
 	
 	/** 
@@ -47,10 +46,11 @@ public class C4Rules extends GameRules {
 	 */
 	 
 	/**
-	* Description plz~
-	* @param C4Board
-	* @return int
-	*/
+	 *  Takes a C4Board object as input and reviews if a player has won
+	 * according to the rules of Connect4
+	 * @param C4Board
+	 * @return int
+	 */
 	public int winCondition(C4Board board) {
 	
 		currentBoard = board.getBoard();
