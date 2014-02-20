@@ -1,11 +1,12 @@
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 01/02/2014
- * @version *.*
+ * @file 	C4Board.java
+ * @author 	Cameron Steer
+ * @date	February 1, 2014
+ * @see
+ * @brief	This class extends AbstractBoard with connect 4 details
+ * @details This class allows us to create an instant of the connect 4 board and draw it on screen.
  */
 public class C4Board extends AbstractBoard{
 
@@ -31,6 +32,7 @@ public class C4Board extends AbstractBoard{
         }
     }
 
+    @Override
     public void fillBoard() {
         int xPos = 100, yPos = 50;
         for (int i=0; i< ROW; i++) {

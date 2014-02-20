@@ -1,9 +1,9 @@
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 19/02/2014
- * @version *.*
+ * @file 	Counter.java
+ * @author 	Cameron Steer
+ * @date	January 28, 2014
+ * @brief	Counter holds data and methods for the othello counters
+ * @details
  */
 public class OthCounter extends AbstractCounter {
 

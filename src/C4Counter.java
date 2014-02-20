@@ -2,10 +2,8 @@
  * @file 	Counter.java
  * @author 	Cameron Steer
  * @date	January 28, 2014
- * @see     http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
- * @brief	Counter holds data and methods fo the game counters
+ * @brief	Counter holds data and methods for the connect 4 counters
  * @details
- *
  */
 public class C4Counter extends AbstractCounter {
 

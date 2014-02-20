@@ -1,11 +1,12 @@
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 04/02/2014
- * @version *.*
+ * @file 	OthBoard.java
+ * @author 	Cameron Steer
+ * @date	February 1, 2014
+ * @see
+ * @brief	This class extends AbstractBoard with othello details
+ * @details This class allows us to create an instant of the othello board and draw it on screen.
  */
 public class OthBoard extends AbstractBoard{
 

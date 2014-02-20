@@ -1,11 +1,12 @@
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 01/02/2014
- * @version *.*
+ * @file 	AbstractBoard.java
+ * @author 	Cameron Steer
+ * @date	February 1, 2014
+ * @see
+ * @brief	Class had common data and methods for both boards
+ * @details This class allows us to create an instant of board before its instantiated as a specific game board
  */
 public abstract class AbstractBoard {
 
