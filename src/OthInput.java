@@ -12,7 +12,7 @@ public class OthInput extends AbstractInput{
     public void inputLoop(AbstractCounter currentCounter) {
         while(Mouse.next()) {
             if(Mouse.isButtonDown(0)) {
-                System.out.println("Click!!");
+                System.out.println("Clicked!!");
             }
         }
     }
