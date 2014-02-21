@@ -29,7 +29,7 @@ public class OthGame extends AbstractGame {
         this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.othBoard = new OthBoard();
         // TW Test Code
-       // othrules = new OthRules();							//Waiting for othrules to implement
+        //othrules = new OthRules();							//Waiting for othrules to implement
     }
 
     /**

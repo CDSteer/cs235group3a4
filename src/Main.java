@@ -99,7 +99,7 @@ public class Main extends JFrame {
         
         /** kill game on close */
         Display.destroy();
-        System.exit(0);
+        //System.exit(0);
 	}
 
 	/** initOthello method for calling Othello game board */
@@ -111,12 +111,13 @@ public class Main extends JFrame {
         /** display the othello game board */
         OthDisplay display = new OthDisplay();
         OthGame game = new OthGame();
-        //OthInput gameInput = new OthInput();
+        OthInput gameInput = new OthInput();
 
         display.setUpDisplay();
         display.setUpOpenGL();
 
         while (game.isRunning()) {
+            gameInput.inputLoop(game.getCurrentCounter());
             game.gameLoop(game, time.getDelta());
             display.render(game.getOthBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
@@ -125,9 +126,8 @@ public class Main extends JFrame {
                 game.setRunning(false);
             }
         }
-
-        System.out.println("No Othello game yet, exiting...");
-        System.exit(0);
+        Display.destroy();
+        //System.exit(0);
 	}
 
     public static void main(String args[]) throws InterruptedException, IOException {

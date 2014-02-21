@@ -1,3 +1,5 @@
+import org.lwjgl.input.Mouse;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -8,6 +10,10 @@
 public class OthInput extends AbstractInput{
     @Override
     public void inputLoop(AbstractCounter currentCounter) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        while(Mouse.next()) {
+            if(Mouse.isButtonDown(0)) {
+                System.out.println("Click!!");
+            }
+        }
     }
 }
