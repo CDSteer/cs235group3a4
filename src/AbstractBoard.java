@@ -20,6 +20,22 @@ public abstract class AbstractBoard {
         this.m_board = new AbstractSquare[row][column];
     }
 
+    public int getM_Column() {
+        return m_Column;
+    }
+
+    public void setM_Column(int m_Column) {
+        this.m_Column = m_Column;
+    }
+
+    public int getM_Row() {
+        return m_Row;
+    }
+
+    public void setM_Row(int m_Row) {
+        this.m_Row = m_Row;
+    }
+
     public abstract void draw();
 
     public abstract AbstractSquare[][] getBoard();
