@@ -15,6 +15,7 @@ public class OthGame extends AbstractGame {
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
+    private int m_Turn;
     
     // TW Test Code
     //private OthRules othRules;                                //Waiting for othrules to implement
@@ -29,13 +30,22 @@ public class OthGame extends AbstractGame {
         this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.othBoard = new OthBoard();
         othBoard.startingCounters(onScreenCounters);
+        this.m_Turn = 1;
         // TW Test Code
         //othrules = new OthRules();							//Waiting for othrules to implement
     }
 
+    public int getTurn() {
+        return m_Turn;
+    }
+
+    public void setTurn(int turn) {
+        this.m_Turn = turn;
+    }
+
     /**
      * Recieve Board information from OthBoard Class
-     * @param  null
+     * @param  /null
      * @return OthBoard
      */
     public OthBoard getOthBoard() {
@@ -44,7 +54,7 @@ public class OthGame extends AbstractGame {
 
     /**
      * Set OthBoard
-     * @param  OthBoard
+     * @param  c4Board
      * @return null
      */
     public void setOthBoard(C4Board c4Board) {
@@ -53,7 +63,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Recieve Counter information from Counter Class
-	 * @param  null
+	 * @param
 	 * @return AbstractCounter
 	 */
     @Override
@@ -63,7 +73,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Recieve on screen Counter information from AbstractCounter Class
-	 * @param  null
+	 * @param
 	 * @return List<AbstractCounter>
 	 */
     @Override
@@ -73,7 +83,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @param  AbstractGame, int
+	 * @param  game, deta
 	 * @return null
 	 */
     @Override
@@ -83,7 +93,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Game begin, Create Counter and Board
-	 * @param  null
+	 * @param
 	 * @return null
 	 */
     @Override
@@ -94,17 +104,15 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Checking which player is on next turn
-	 * @param  null
+	 * @param
 	 * @return null
 	 */
     @Override
     public void nextTurn() {
-        if (currentCounter.getPlayer() == 1){
-            currentCounter = new OthCounter(1);
-            currentCounter.setPlayer(2);
+        if (this.m_Turn == 1){
+            this.m_Turn = 2;
         } else {
-            currentCounter = new OthCounter(1);
-            currentCounter.setPlayer(1);
+            this.m_Turn = 1;
         }
 		/*
         // TW Test Code
@@ -141,7 +149,7 @@ public class OthGame extends AbstractGame {
 	
 	/**
 	 * Game end
-	 * @param  AbstractGame, int
+	 * @param
 	 * @return null
 	 */
     @Override

@@ -71,7 +71,7 @@ public class OthBoard extends AbstractBoard{
         for (int i=0; i< ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
 
-                m_board[i][j] = new OthSquare(xPos, yPos, 30, 30, true);
+                m_board[i][j] = new OthSquare(xPos, yPos, 30, 30, false);
 
                 xPos += 31;
                 if (xPos > 317) {
@@ -82,15 +82,17 @@ public class OthBoard extends AbstractBoard{
         }
     }
 
-    @Override
-    public boolean placeCounter(AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
+
+    public boolean placeCounter(OthGame game) {
 
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
                 if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())&& !m_board[i][j].isUsed()){
-                    OthCounter othCounter = new OthCounter(1);
+                    OthCounter othCounter = new OthCounter(game.getTurn());
                     othCounter.center(m_board[i][j]);
-                    onScreenCounters.add(othCounter);
+                    m_board[i][j].setUsed(true);
+                    game.getOnScreenCounters().add(othCounter);
+                    game.nextTurn();
                 }
             }
         }
