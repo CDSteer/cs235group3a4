@@ -12,7 +12,7 @@ import static org.lwjgl.opengl.GL11.*;
  * @brief	Class had common data and methods for both games counters
  * @details This class allows us to create an instant of board before its instantiated as a specific game counter
  */
-public class AbstractCounter extends AbstractMovableEntity {
+public abstract class AbstractCounter extends AbstractMovableEntity {
 
     private int m_Player;
     private float m_Radius;
@@ -79,12 +79,8 @@ public class AbstractCounter extends AbstractMovableEntity {
         float x2,y2;
         float angle;
 
+        this.setColor();
 
-        if (m_Player == 1) {
-            glColor3d(1, 0, 0);
-        } else if (m_Player == 2) {
-            glColor3d(0, 1.5, 0);
-        }
 
         glBegin(GL_TRIANGLE_FAN);
         glVertex2f(x1,y1);
@@ -100,6 +96,8 @@ public class AbstractCounter extends AbstractMovableEntity {
         }
         glEnd();
     }
+
+    public abstract void setColor();
 
     /**
      * Center the counter to the square

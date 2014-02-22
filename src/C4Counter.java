@@ -1,3 +1,5 @@
+import static org.lwjgl.opengl.GL11.glColor3d;
+
 /**
  * @file 	Counter.java
  * @author 	Cameron Steer
@@ -9,6 +11,15 @@ public class C4Counter extends AbstractCounter {
 
     public C4Counter() {
         super(X, Y, WIDTH, HIGHT, RADIUS, PLAYER);
+    }
+
+    @Override
+    public void setColor() {
+        if (getPlayer() == 1) {
+            glColor3d(1, 0, 0);
+        } else if (getPlayer() == 2) {
+            glColor3d(0, 1.5, 0);
+        }
     }
 
     private static final int PLAYER = 1;
