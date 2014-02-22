@@ -25,6 +25,9 @@ public class OthDisplay extends AbstractDisplay{
     public void render(AbstractBoard othBoard, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
         othBoard.draw();
+        for (AbstractCounter counters : onScreenCounters) {
+            counters.draw();
+        }
     }
 
     public static final int WIDTH = 640;

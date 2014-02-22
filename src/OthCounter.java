@@ -11,12 +11,6 @@ public class OthCounter extends AbstractCounter {
         super(X, Y, WIDTH, HIGHT, RADIUS, PLAYER);
     }
 
-    public static void placeCounter(OthSquare square){
-        OthCounter othCounter = new OthCounter();
-        othCounter.center(square);
-        othCounter.draw();
-    }
-
     private static final int PLAYER = 1;
     private static final float RADIUS = 10;
     private static final double X = 115;

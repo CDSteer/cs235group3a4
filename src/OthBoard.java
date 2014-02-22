@@ -1,3 +1,5 @@
+import org.lwjgl.input.Mouse;
+
 import java.util.List;
 
 /**
@@ -51,7 +53,17 @@ public class OthBoard extends AbstractBoard{
 
     @Override
     public boolean placeCounter(AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
-        return false;
+
+        for (int i=0; i<ROW; i++) {
+            for (int j=0; j<COLUMN; j++) {
+                if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())){
+                    OthCounter othCounter = new OthCounter();
+                    othCounter.center(m_board[i][j]);
+                    onScreenCounters.add(othCounter);
+                }
+            }
+        }
+        return true;
     }
 
     private static final int ROW = 8;

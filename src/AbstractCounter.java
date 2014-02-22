@@ -8,7 +8,7 @@ import static org.lwjgl.opengl.GL11.*;
  * @file 	AbstractCounter.java
  * @author 	Cameron Steer
  * @date	February 1, 2014
- * @see     http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
+ * @see     \http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
  * @brief	Class had common data and methods for both games counters
  * @details This class allows us to create an instant of board before its instantiated as a specific game counter
  */
@@ -110,6 +110,7 @@ public class AbstractCounter extends AbstractMovableEntity {
     public void center(AbstractSquare square){
         x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
         y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
+        System.out.println(x+","+y);
     }
 
     /**
