@@ -1,3 +1,4 @@
+
 import org.lwjgl.input.Mouse;
 
 /**
@@ -8,11 +9,19 @@ import org.lwjgl.input.Mouse;
  * @version 
  */
 public class OthInput extends AbstractInput{
-    @Override
-    public void inputLoop(AbstractCounter currentCounter) {
+
+    public void inputLoop(OthGame game) {
         while(Mouse.next()) {
-            if(Mouse.isButtonDown(0)) {
-                System.out.println("Clicked!!");
+            if (Mouse.getEventButtonState()) {
+                if (Mouse.getEventButton() == 0) {
+                    for (int i=0; i< game.getOthBoard().getM_Row(); i++) {
+                        for (int j=0; j<game.getOthBoard().getM_Column(); j++) {
+                            if (game.getOthBoard().getBoard()[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())){
+                                OthCounter.placeCounter(game.getOthBoard().getBoard()[i][j]);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -7,5 +7,5 @@
  */
 public abstract class AbstractInput {
 
-    public abstract void inputLoop(AbstractCounter currentCounter);
+    //public abstract void inputLoop(AbstractCounter currentCounter, AbstractBoard board);
 }

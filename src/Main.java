@@ -87,7 +87,7 @@ public class Main extends JFrame {
         C4Square.setTexture();
 
         while (game.isRunning()) {
-            gameInput.inputLoop(game.getCurrentCounter());
+            gameInput.inputLoop(game.getCurrentCounter(), game.getC4Board());
             game.gameLoop(game, time.getDelta());
             display.render(game.getC4Board(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();
@@ -117,7 +117,7 @@ public class Main extends JFrame {
         display.setUpOpenGL();
 
         while (game.isRunning()) {
-            gameInput.inputLoop(game.getCurrentCounter());
+            gameInput.inputLoop(game);
             game.gameLoop(game, time.getDelta());
             display.render(game.getOthBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();

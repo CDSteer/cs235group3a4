@@ -70,4 +70,8 @@ public abstract class AbstractEntity implements Entity {
         hitbox.setBounds((int) x, (int) y, (int) width, (int) height);
         return hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
     }
+
+    public boolean inBounds(int mouseX, int mouseY) {
+        return mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height;
+    }
 }
