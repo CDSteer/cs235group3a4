@@ -9,8 +9,9 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class OthCounter extends AbstractCounter {
 
-    public OthCounter() {
-        super(X, Y, WIDTH, HIGHT, RADIUS, PLAYER);
+
+    public OthCounter(int player) {
+        super(X, Y, WIDTH, HEIGHT, RADIUS, player);
     }
 
     @Override
@@ -22,12 +23,12 @@ public class OthCounter extends AbstractCounter {
         }
     }
 
-    private static final int PLAYER = 1;
+
     private static final float RADIUS = 10;
     private static final double X = 115;
     private static final double Y = 20;
     private static final double WIDTH = 10;
-    private static final double HIGHT = 10;
+    private static final double HEIGHT = 10;
 
 
 }

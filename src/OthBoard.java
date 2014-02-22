@@ -18,12 +18,43 @@ public class OthBoard extends AbstractBoard{
         super(COLUMN, ROW);
         this.m_board = new OthSquare[ROW][COLUMN];
         this.fillBoard();
+
     }
 
     @Override
     public OthSquare[][] getBoard() {
         return m_board;
     }
+
+    public void startingCounters(List<AbstractCounter> onScreenCounters){
+
+        m_board[3][3].setPlayer(2);
+        m_board[4][4].setPlayer(2);
+        m_board[3][4].setPlayer(1);
+        m_board[4][3].setPlayer(1);
+
+        m_board[3][3].isUsed();
+        m_board[4][4].isUsed();
+        m_board[3][4].isUsed();
+        m_board[4][3].isUsed();
+
+        OthCounter othCounter = new OthCounter(2);
+        othCounter.center(m_board[3][3]);
+        onScreenCounters.add(othCounter);
+        othCounter = new OthCounter(2);
+        othCounter.center(m_board[4][4]);
+        onScreenCounters.add(othCounter);
+        othCounter = new OthCounter(1);
+        othCounter.center(m_board[3][4]);
+        onScreenCounters.add(othCounter);
+        othCounter = new OthCounter(1);
+        othCounter.center(m_board[4][3]);
+        onScreenCounters.add(othCounter);
+
+
+    }
+
+
 
     @Override
     public void draw(){
@@ -56,8 +87,8 @@ public class OthBoard extends AbstractBoard{
 
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
-                if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())){
-                    OthCounter othCounter = new OthCounter();
+                if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())&& !m_board[i][j].isUsed()){
+                    OthCounter othCounter = new OthCounter(1);
                     othCounter.center(m_board[i][j]);
                     onScreenCounters.add(othCounter);
                 }

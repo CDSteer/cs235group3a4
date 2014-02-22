@@ -10,7 +10,7 @@ import static org.lwjgl.opengl.GL11.glColor3d;
 public class C4Counter extends AbstractCounter {
 
     public C4Counter() {
-        super(X, Y, WIDTH, HIGHT, RADIUS, PLAYER);
+        super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
     }
 
     @Override
@@ -27,5 +27,5 @@ public class C4Counter extends AbstractCounter {
     private static final double X = 115;
     private static final double Y = 20;
     private static final double WIDTH = 10;
-    private static final double HIGHT = 10;
+    private static final double HEIGHT = 10;
 }

@@ -23,11 +23,12 @@ public class OthGame extends AbstractGame {
 
     public OthGame() {
         super(true);
-		this.currentCounter = new OthCounter();
+		this.currentCounter = new OthCounter(1);
         this.player1 = new HumPlayer(1);
         this.player2 = new HumPlayer(2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.othBoard = new OthBoard();
+        othBoard.startingCounters(onScreenCounters);
         // TW Test Code
         //othrules = new OthRules();							//Waiting for othrules to implement
     }
@@ -87,7 +88,7 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void playGame() {
-        currentCounter = new OthCounter();
+        currentCounter = new OthCounter(1);
         othBoard = new OthBoard();
     }
 
@@ -99,10 +100,10 @@ public class OthGame extends AbstractGame {
     @Override
     public void nextTurn() {
         if (currentCounter.getPlayer() == 1){
-            currentCounter = new OthCounter();
+            currentCounter = new OthCounter(1);
             currentCounter.setPlayer(2);
         } else {
-            currentCounter = new OthCounter();
+            currentCounter = new OthCounter(1);
             currentCounter.setPlayer(1);
         }
 		/*
