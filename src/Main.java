@@ -64,8 +64,6 @@ public class Main extends JFrame {
 	       /** add buttons to the JPanel */
 	       panel.add(c4Button);
 	       panel.add(othButton);
-	       //bobglasses
-	       panel.add(new JLabel(new ImageIcon("bob.gif")));
 	       
 		/** initialise JFrame */
 	    setTitle("A4 Partial Implementation : Group 3 ");

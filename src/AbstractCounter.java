@@ -16,13 +16,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     private int m_Player;
     private float m_Radius;
-    private final float ANGLE_LOOP_START = 1.0f;
-    private final float ANGLE_LOOP_MAX = 10.61E02f;
-    private final float ANGLE_LOOP_PLUS_AND_ASSIGN = 2.0E-01f;
-    private final int Y_RESET = 20;
-    private final int DIVIDE_BY_TWO = 2;
-    private final double SUBTRACT_2_AND_A_HALF = 2.5;
-
 
     /**
      * Constructor for a new counter
@@ -141,4 +134,11 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     public abstract void playSound();
 
     public abstract void playNegSound();
+
+    private final float ANGLE_LOOP_START = 1.0f;
+    private final float ANGLE_LOOP_MAX = 10.61E02f;
+    private final float ANGLE_LOOP_PLUS_AND_ASSIGN = 2.0E-01f;
+    private final int Y_RESET = 20;
+    private final int DIVIDE_BY_TWO = 2;
+    private final double SUBTRACT_2_AND_A_HALF = 2.5;
 }
