@@ -21,7 +21,7 @@ public class OthSquare extends AbstractSquare{
 
     @Override
     public void draw() {
-        glColor3d(0.0, 1.0, 0.0);
+        glColor3d(0.0, 0.5, 0.0);
         glRectd(x, y, x + width, y + height);
     }
 }
