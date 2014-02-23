@@ -7,8 +7,10 @@ import static org.lwjgl.opengl.GL11.glClear;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
+ *
  * @since 04/02/2014
  * 		 	-update 20/02/2014
+ * 		    -Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @version *.*
  */
 public class OthDisplay extends AbstractDisplay{

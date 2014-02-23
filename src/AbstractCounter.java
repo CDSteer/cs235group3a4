@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * @file 	AbstractCounter.java
  * @author 	Cameron Steer
- * @date	February 1, 2014
+ * @date	February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @see     \http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
  * @brief	Class had common data and methods for both games counters
  * @details This class allows us to create an instant of board before its instantiated as a specific game counter
@@ -16,6 +16,13 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     private int m_Player;
     private float m_Radius;
+    private final float ANGLE_LOOP_START = 1.0f;
+    private final float ANGLE_LOOP_MAX = 10.61E02f;
+    private final float ANGLE_LOOP_PLUS_AND_ASSIGN = 2.0E-01f;
+    private final int Y_RESET = 20;
+    private final int DIVIDE_BY_TWO = 2;
+    private final double SUBTRACT_2_AND_A_HALF = 2.5;
+
 
     /**
      * Constructor for a new counter
@@ -85,7 +92,7 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
         glBegin(GL_TRIANGLE_FAN);
         glVertex2f(x1,y1);
 
-        for (angle=1.0f; angle < 10.61E02f; angle+= 2.0E-01f) {
+        for (angle = ANGLE_LOOP_START; angle < ANGLE_LOOP_MAX; angle+= ANGLE_LOOP_PLUS_AND_ASSIGN) {
 
             double foo = x1+sin(angle)*m_Radius;
             double bar = y1+cos(angle)*m_Radius;
@@ -106,8 +113,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      * @return void
      */
     public void center(AbstractSquare square){
-        x = square.getX() + square.getWidth() / 2 - 2.5 / 2;
-        y = square.getY() + square.getHeight() / 2 - 2.5 / 2;
+        x = square.getX() + square.getWidth() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
+        y = square.getY() + square.getHeight() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
         System.out.println(x+","+y);
     }
 
@@ -128,8 +135,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      * @return void
      */
     public void reset(AbstractSquare square) {
-        x = square.getX() + square.getWidth() / 2;
-        y = 20;
+        x = square.getX() + square.getWidth() / DIVIDE_BY_TWO;
+        y = Y_RESET;
         this.setDY(0);
     }
     /**
