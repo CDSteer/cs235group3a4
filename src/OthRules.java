@@ -22,12 +22,14 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private final int PLAYER_ONE = 1;
 	private final int PLAYER_TWO = 2;
 	private final int BOTH_PLAYERS = 3;
-	private int player1Counters = 0;
-	private int player2Counters = 0;
+	private int player1Counters;
+	private int player2Counters;
 	private final int OTH_ROWS = 8;
 	private final int OTH_COLUMNS = 8;
+	private OthCounter[][] boardCounters;
 	private OthSquare[][] currentBoard;
 	private OthSquare currentSquare;
+	private OthCounter currentCounter;
 	private int[][] newBoard;
 	private OthSquare[][] oldBoard;
 	private int[][] validMoves;
@@ -48,25 +50,30 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	/**
 	 * Takes an OthBoard object as input and reviews if a player has won
 	 * according to the rules of Othello
-	 * @param C4Board
+	 * @param OthCounter[][]
 	 * @return int
 	 */
-	public int winCondition(OthBoard board) {
+	// NOTE: Old methods with different parameters removed
+	public int winCondition(OthCounter[][] board) {
 
-		currentBoard = board.getBoard();
+		player1Counters = 0;
+		player2Counters = 0;
+		System.out.println("Win Condition Start");
 
 		for(int i = 0; i < OTH_COLUMNS; i++) {
 			for (int j = 0; j < OTH_ROWS; j++) {
-				currentSquare = currentBoard[i][j];
-				if(currentSquare.getPlayer() == PLAYER_ONE) { // not sure if getPlayer() method currently exists
+				
+				currentCounter = board[i][j];
+				if(currentCounter.getPlayer() == PLAYER_ONE) {
 					player1Counters++;
-				} else if(currentSquare.getPlayer() == PLAYER_TWO) {
+				} else if(currentCounter.getPlayer() == PLAYER_TWO) {
 					player2Counters++;
 				}
 			}
 		}
 
-
+		System.out.println("Player 1 counters: " + player1Counters);
+		System.out.println("Player 2 counters: " + player2Counters);
 		if (player1Counters > player2Counters) {
 			return PLAYER_ONE;
 		} else if (player2Counters > player1Counters) {
