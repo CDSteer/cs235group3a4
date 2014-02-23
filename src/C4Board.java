@@ -3,7 +3,7 @@ import java.util.List;
 /**
  * @file 	C4Board.java
  * @author 	Chris, Cameron
- * @date	February 1, 2014
+ * @date	February 1, 2014 , Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @see
  * @brief	This class extends AbstractBoard with connect 4 details
  * @details This class allows us to create an instant of the connect 4 board and draw it on screen.
@@ -34,19 +34,19 @@ public class C4Board extends AbstractBoard{
 
     @Override
     public void fillBoard() {
-        int xPos = 100, yPos = 50;
+
         for (int i=0; i< ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
-                if (i != 6){
-                    m_board[i][j] = new C4Square(xPos, yPos, 30, 30, true);
+                if (i != ROW_MAX){
+                    m_board[i][j] = new C4Square(X_POS, Y_POS, WIDTH, HEIGHT, true);
                 } else {
-                    m_board[i][j] = new C4Square(xPos, yPos, 30, 30, false);
+                    m_board[i][j] = new C4Square(X_POS, Y_POS, WIDTH, HEIGHT, false);
                 }
 
-                xPos += 31;
-                if (xPos > 409) {
-                    xPos = 100;
-                    yPos += 31;
+                X_POS += FILL_BOARD_ASSIGNMENT;
+                if (X_POS > X_POS_ASSIGNMENT_CHANGE) {
+                    X_POS = X_POS_ASSIGNMENT;
+                    Y_POS += FILL_BOARD_ASSIGNMENT;
                 }
             }
         }
@@ -92,4 +92,12 @@ public class C4Board extends AbstractBoard{
     }
     private static final int ROW = 7;
     private static final int COLUMN = 10;
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 30;
+    private static final int ROW_MAX = 6;
+    private static final int X_POS_ASSIGNMENT = 100;
+    private static final int FILL_BOARD_ASSIGNMENT = 31;
+    private static final int X_POS_ASSIGNMENT_CHANGE = 409;
+    private int X_POS = 100;
+    private int Y_POS = 50;
 }
