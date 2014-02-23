@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @file 	OthBoard.java
- * @author 	Cameron Steer
+ * @author 	Chris, Cameron
  * @date	February 1, 2014
  * @see
  * @brief	This class extends AbstractBoard with othello details
@@ -26,7 +26,7 @@ public class OthBoard extends AbstractBoard{
         return m_board;
     }
 
-    public void startingCounters(List<AbstractCounter> onScreenCounters){
+    public void startingCounters(List<AbstractCounter> onScreenCounters, OthCounter inPlayCounters[][]){
 
         m_board[3][3].setPlayer(2);
         m_board[4][4].setPlayer(2);
@@ -41,15 +41,22 @@ public class OthBoard extends AbstractBoard{
         OthCounter othCounter = new OthCounter(2);
         othCounter.center(m_board[3][3]);
         onScreenCounters.add(othCounter);
+        inPlayCounters[3][3] = othCounter;
+
         othCounter = new OthCounter(2);
         othCounter.center(m_board[4][4]);
         onScreenCounters.add(othCounter);
+        inPlayCounters[4][4] = othCounter;
+
         othCounter = new OthCounter(1);
         othCounter.center(m_board[3][4]);
         onScreenCounters.add(othCounter);
+        inPlayCounters[3][4] = othCounter;
+
         othCounter = new OthCounter(1);
         othCounter.center(m_board[4][3]);
         onScreenCounters.add(othCounter);
+        inPlayCounters[4][3] = othCounter;
 
 
     }
@@ -91,6 +98,7 @@ public class OthBoard extends AbstractBoard{
                     OthCounter othCounter = new OthCounter(game.getTurn());
                     othCounter.center(m_board[i][j]);
                     m_board[i][j].setUsed(true);
+                    game.getInPlayCounters()[i][j] = othCounter;
                     game.getOnScreenCounters().add(othCounter);
                     game.nextTurn();
                 }

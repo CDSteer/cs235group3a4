@@ -2,7 +2,7 @@ import java.util.List;
 
 /**
  * @file 	C4Board.java
- * @author 	Cameron Steer
+ * @author 	Chris, Cameron
  * @date	February 1, 2014
  * @see
  * @brief	This class extends AbstractBoard with connect 4 details

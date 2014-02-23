@@ -2,7 +2,7 @@ import java.util.List;
 
 /**
  * @file 	AbstractBoard.java
- * @author 	Cameron Steer
+ * @author 	Chris, Cameron
  * @date	February 1, 2014
  * @see
  * @brief	Class had common data and methods for both boards
