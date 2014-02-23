@@ -3,11 +3,16 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
+ * @file OthGame.java
  *
- * @author cdsteer, Martin
- * @since 04/02/2014
- *         - updated 20/02/2014
+ * @brief This file is the main panel, allocating information and data into
+ *        every inherit classes, maintaining game process.
+ *
+ * @author Cameron Steer
+ * @author Martin Hui
+ * @date February 1, 2014
  * @version *1.2*
+ * @since February 20, 2014
  */
 public class OthGame extends AbstractGame {
 
@@ -21,7 +26,14 @@ public class OthGame extends AbstractGame {
     //private OthRules othRules;                                //Waiting for othrules to implement
     private OthBoard othBoard;
 
-
+	/**
+	* @brief Collecting and storing every data from graphic, rules, player.
+	* @see OthBoard
+	* @see HumPlayer
+	* @see OthCounter
+	* @param null
+	* @return null
+	*/
     public OthGame() {
         super(true);
 		this.currentCounter = new OthCounter(1);
@@ -35,16 +47,27 @@ public class OthGame extends AbstractGame {
         //othrules = new OthRules();							//Waiting for othrules to implement
     }
 
+	/**
+	* @brief Get current player turn
+	* @param null
+	* @return null
+	*/
     public int getTurn() {
         return m_Turn;
     }
 
+	/**
+	* @brief Set player turn
+	* @param int
+	* @return null
+	*/
     public void setTurn(int turn) {
         this.m_Turn = turn;
     }
 
     /**
      * Recieve Board information from OthBoard Class
+	 * @see OthBoard
      * @param  /null
      * @return OthBoard
      */
@@ -54,6 +77,7 @@ public class OthGame extends AbstractGame {
 
     /**
      * Set OthBoard
+	 * @see OthBoard
      * @param  c4Board
      * @return null
      */
@@ -63,7 +87,8 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Recieve Counter information from Counter Class
-	 * @param
+	 * @see OthCounter
+	 * @param null
 	 * @return AbstractCounter
 	 */
     @Override
@@ -73,6 +98,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Recieve on screen Counter information from AbstractCounter Class
+	 * @see OthCounter
 	 * @param
 	 * @return List<AbstractCounter>
 	 */
@@ -83,6 +109,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
+	 * @see AbstractGame
 	 * @param  game, deta
 	 * @return null
 	 */
@@ -93,6 +120,8 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Game begin, Create Counter and Board
+	 * @see OthBoard
+	 * @see OthCounter
 	 * @param
 	 * @return null
 	 */
@@ -104,7 +133,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Checking which player is on next turn
-	 * @param
+	 * @param null
 	 * @return null
 	 */
     @Override
@@ -149,7 +178,7 @@ public class OthGame extends AbstractGame {
 	
 	/**
 	 * Game end
-	 * @param
+	 * @param null
 	 * @return null
 	 */
     @Override

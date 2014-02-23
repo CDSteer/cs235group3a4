@@ -1,8 +1,13 @@
 /**
  * Created with IntelliJ IDEA.
+ * @file Game.java
  *
- * @author cdsteer
- * @since 01/02/2014
+ * @brief Interface class of AbstractGame, implementin method from AbstractGame
+ * @see AbstractGame
+ *
+ * @author Cameron Steer
+ * @author Martin Hui
+ * @date February 1, 2014
  * @version *1.0*
  */
 public interface Game {
