@@ -14,10 +14,7 @@ public class OthGame extends AbstractGame {
     private OthCounter currentCounter;							//Store counter information
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
-    //Arraylist used here for fast rendering
-    private List<AbstractCounter> m_OnScreenCounters;				//Abstract Counter information
-    //Array used here for accuracy when othello rule rule checking
-    private OthCounter m_InPlayCounters[][];
+    private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     private int m_Turn;
     
     // TW Test Code
@@ -30,21 +27,12 @@ public class OthGame extends AbstractGame {
 		this.currentCounter = new OthCounter(1);
         this.player1 = new HumPlayer(1);
         this.player2 = new HumPlayer(2);
-        this.m_OnScreenCounters = new ArrayList<AbstractCounter>(10);
+        this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.othBoard = new OthBoard();
+        othBoard.startingCounters(onScreenCounters);
         this.m_Turn = 1;
-        this.m_InPlayCounters = new OthCounter[8][8];
-        othBoard.startingCounters(m_OnScreenCounters, m_InPlayCounters);
         // TW Test Code
         //othrules = new OthRules();							//Waiting for othrules to implement
-    }
-
-    public OthCounter[][] getInPlayCounters() {
-        return m_InPlayCounters;
-    }
-
-    public void setInPlayCounters(OthCounter[][] inPlayCounters) {
-        this.m_InPlayCounters = inPlayCounters;
     }
 
     public int getTurn() {
@@ -90,7 +78,7 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public List<AbstractCounter> getOnScreenCounters() {
-        return m_OnScreenCounters;  //Is this ready yet?
+        return onScreenCounters;  //Is this ready yet?
     }
 
 	/**

@@ -3,11 +3,16 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
+ * @file C4Game.java
  *
- * @author cdsteer, Martin
- * @since 01/02/2014
- *		   - updated 20/02/2014
+ * @brief This file is the main panel, allocating information and data into
+ *        every inherit classes, maintaining game process.
+ *
+ * @author Cameron Steer
+ * @author Martin Hui
+ * @date February 1, 2014
  * @version *1.2*
+ * @since February 20, 2014
  */
 public class C4Game extends AbstractGame{
 
@@ -20,6 +25,14 @@ public class C4Game extends AbstractGame{
     private C4Rules c4rules;
     private C4Board c4Board;
 
+	/**
+	* @brief Collecting and storing every data from graphic, rules, player.
+	* @see C4Board
+	* @see HumPlayer
+	* @see C4Counter
+	* @param null
+	* @return null
+	*/
     public C4Game() {
         super(true);
         this.currentCounter = new C4Counter();
@@ -32,7 +45,8 @@ public class C4Game extends AbstractGame{
         
     }
 	/**
-	 * Recieve Board information from C4Board Class
+	 * @brief Recieve Board information from C4Board Class
+	 * @see C4Board
 	 * @param  null
 	 * @return C4Board
 	 */
@@ -41,7 +55,8 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * Set C4Board
+	 * @brief Set C4Board
+	 * @see C4Board
 	 * @param  C4Board
 	 * @return null
 	 */
@@ -50,7 +65,8 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * Recieve Current Counter information from Counter Class
+	 * @brief Recieve Current Counter information from Counter Class
+	 * @see C4Counter
 	 * @param  null
 	 * @return AbstractCounter
 	 */
@@ -59,7 +75,8 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * Recieve on screen Counter information from AbstractCounter Class
+	 * @brief Recieve on screen Counter information from AbstractCounter Class
+	 * @see C4Counter
 	 * @param  null
 	 * @return List<AbstractCounter>
 	 */
@@ -68,7 +85,9 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * Game begin, create Counter and Board
+	 * @brief Game begin, create Counter and Board
+	 * @see C4Board
+	 * @see C4Counter
 	 * @param  null
 	 * @return null
 	 */
@@ -79,7 +98,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * Checking which player is on next turn
+	 * @brief Checking which player is on next turn
 	 * @param  null
 	 * @return null
 	 */
@@ -128,7 +147,7 @@ public class C4Game extends AbstractGame{
 //	}
 	
 	/**
-	 * Game End
+	 * @brief Game End
 	 * @param  null
 	 * @return null
 	 */
@@ -138,7 +157,8 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * *****CAMERON, I have no idea what's this doing...*******
+	 * @brief *****CAMERON, I have no idea what's this doing...*******
+	 * @see AbstractGame
 	 * @param  AbstractGame, int
 	 * @return null
 	 */
