@@ -37,7 +37,7 @@ public class C4Game extends AbstractGame{
         super(true);
         this.currentCounter = new C4Counter();
         this.player1 = new HumPlayer(1);
-        this.player2 = new HumPlayer(2);
+        this.player2 = new HumPlayer(PLAYER2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.c4Board = new C4Board();
         // TW Test Code
@@ -106,7 +106,7 @@ public class C4Game extends AbstractGame{
     public void nextTurn() {
         if (currentCounter.getPlayer() == 1){
             currentCounter = new C4Counter();
-            currentCounter.setPlayer(2);
+            currentCounter.setPlayer(PLAYER2);
         } else {
             currentCounter = new C4Counter();
             currentCounter.setPlayer(1);
@@ -116,7 +116,7 @@ public class C4Game extends AbstractGame{
         	System.out.println("Evaluated: No Winner");
         } else if (c4rules.winCondition(c4Board) == 1) {
         	System.out.println("Evaluated: Player 1 Wins");
-        } else if (c4rules.winCondition(c4Board) == 2) {
+        } else if (c4rules.winCondition(c4Board) == PLAYER2) {
         	System.out.println("Evaluated: Player 2 Wins");
         } else {
         	System.out.println("Error: No Evaluation");
@@ -171,4 +171,5 @@ public class C4Game extends AbstractGame{
 
     }
 
+    private static final int PLAYER2 = 2;
 }

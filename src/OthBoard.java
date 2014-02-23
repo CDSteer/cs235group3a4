@@ -74,16 +74,16 @@ public class OthBoard extends AbstractBoard{
 
     @Override
     public void fillBoard() {
-        int xPos = 100, yPos = 50;
+
         for (int i=0; i< ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
 
-                m_board[i][j] = new OthSquare(xPos, yPos, 30, 30, false);
+                m_board[i][j] = new OthSquare(X_POS, Y_POS, WIDTH, HEIGHT, false);
 
-                xPos += 31;
-                if (xPos > 317) {
-                    xPos = 100;
-                    yPos += 31;
+                 X_POS += FILL_BOARD_ASSIGNMENT;
+                if (X_POS > X_POS_ASSIGNMENT_CHANGE) {
+                    X_POS = X_POS_ASSIGNMENT;
+                    Y_POS += FILL_BOARD_ASSIGNMENT;
                 }
             }
         }
@@ -109,4 +109,11 @@ public class OthBoard extends AbstractBoard{
 
     private static final int ROW = 8;
     private static final int COLUMN = 8;
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 30;
+    private static final int X_POS_ASSIGNMENT = 100;
+    private static final int FILL_BOARD_ASSIGNMENT = 31;
+    private static final int X_POS_ASSIGNMENT_CHANGE= 317;
+    private int X_POS = 100;
+    private int Y_POS = 50;
 }
