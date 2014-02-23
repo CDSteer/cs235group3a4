@@ -28,6 +28,13 @@ public class OthBoard extends AbstractBoard{
 
     public void startingCounters(List<AbstractCounter> onScreenCounters, OthCounter inPlayCounters[][]){
 
+        for (int i=0; i< ROW; i++) {
+            for (int j=0; j< COLUMN; j++) {
+                OthCounter othCounter = new OthCounter(0);
+                inPlayCounters[i][j] = othCounter;
+            }
+        }
+
         m_board[ROW_THREE][COLUMN_THREE].setPlayer(PLAYER_2);
         m_board[ROW_FOUR][COLUMN_FOUR].setPlayer(PLAYER_2);
         m_board[ROW_THREE][COLUMN_FOUR].setPlayer(PLAYER_1);
@@ -58,6 +65,7 @@ public class OthBoard extends AbstractBoard{
         othCounter.center(m_board[ROW_FOUR][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
         inPlayCounters[ROW_FOUR][COLUMN_FOUR] = othCounter;
+
 
 
     }

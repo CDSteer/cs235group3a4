@@ -72,29 +72,32 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      */
     @Override
     public void draw() {
-        float x1 = (float)x;
-        float y1 = (float)y;
+        if (this.getPlayer() > 0){
 
-        //filled circle
-        float x2,y2;
-        float angle;
+            float x1 = (float)x;
+            float y1 = (float)y;
 
-        this.setColor();
+            //filled circle
+            float x2,y2;
+            float angle;
+
+            this.setColor();
 
 
-        glBegin(GL_TRIANGLE_FAN);
-        glVertex2f(x1,y1);
+            glBegin(GL_TRIANGLE_FAN);
+            glVertex2f(x1,y1);
 
-        for (angle = ANGLE_LOOP_START; angle < ANGLE_LOOP_MAX; angle+= ANGLE_LOOP_PLUS_AND_ASSIGN) {
+            for (angle = ANGLE_LOOP_START; angle < ANGLE_LOOP_MAX; angle+= ANGLE_LOOP_PLUS_AND_ASSIGN) {
 
-            double foo = x1+sin(angle)*m_Radius;
-            double bar = y1+cos(angle)*m_Radius;
+                double foo = x1+sin(angle)*m_Radius;
+                double bar = y1+cos(angle)*m_Radius;
 
-            x2 = (float)foo;
-            y2 = (float)bar;
-            glVertex2f(x2,y2);
+                x2 = (float)foo;
+                y2 = (float)bar;
+                glVertex2f(x2,y2);
+            }
+            glEnd();
         }
-        glEnd();
     }
 
     public abstract void setColor();
