@@ -16,6 +16,7 @@ public class OthGame extends AbstractGame {
     private HumPlayer player2;									//Player2 information
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     private int m_Turn;
+    private OthCounter m_InPlayCounters[][];
     
     // TW Test Code
     //private OthRules othRules;                                //Waiting for othrules to implement
@@ -29,10 +30,19 @@ public class OthGame extends AbstractGame {
         this.player2 = new HumPlayer(2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(10);
         this.othBoard = new OthBoard();
-        othBoard.startingCounters(onScreenCounters);
+        this.m_InPlayCounters = new OthCounter[8][8];
+        othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
         this.m_Turn = 1;
         // TW Test Code
         //othrules = new OthRules();							//Waiting for othrules to implement
+    }
+
+    public OthCounter[][] getInPlayCounters() {
+        return m_InPlayCounters;
+    }
+
+    public void setInPlayCounters(OthCounter[][] m_InPlayCounters) {
+        this.m_InPlayCounters = m_InPlayCounters;
     }
 
     public int getTurn() {
