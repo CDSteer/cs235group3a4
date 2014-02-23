@@ -12,7 +12,8 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer
- *         - created 01/02/2014
+ *
+ * @date	February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @version *.*
  */
 public abstract class AbstractDisplay implements GameDisplay{
@@ -20,6 +21,13 @@ public abstract class AbstractDisplay implements GameDisplay{
     private int m_Width;
     private int m_Height;
     private String m_title;
+    private final int LEFT_COORDINATES = 0;
+    private final int RIGHT_COORDINATES = 640;
+    private final int BOTTOM_COORDINATES = 480;
+    private final int TOP_COORDINATES = 0;
+    private final int ZNEAR_COORDINATES = 1;
+    private final int ZFAR_COORDINATES = -1;
+
 
     public AbstractDisplay(int height, int width, String title){
         this.m_Height = height;
@@ -52,7 +60,7 @@ public abstract class AbstractDisplay implements GameDisplay{
 
        glMatrixMode(GL_PROJECTION);
        glLoadIdentity();
-       glOrtho(0, 640, 480, 0, 1, -1);
+       glOrtho(LEFT_COORDINATES, RIGHT_COORDINATES, BOTTOM_COORDINATES, TOP_COORDINATES, ZNEAR_COORDINATES, ZFAR_COORDINATES);
        glMatrixMode(GL_MODELVIEW);
 
 

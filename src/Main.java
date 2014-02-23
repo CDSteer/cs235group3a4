@@ -23,6 +23,10 @@ import java.io.IOException;
 
 public class Main extends JFrame {
 
+    private static final int ARIAL_FONT_SIZE = 34;
+    private static final int JFRAME_WIDTH = 1024;
+    private static final int JFRAME_HEIGHT = 300;
+
 	public Main() {
 		/** call GUI method */
 		initGUI();
@@ -36,10 +40,10 @@ public class Main extends JFrame {
 	       /** initialise buttons, set fonts and tooltips */
 	       JButton c4Button = new JButton("Play Connect 4!");
 	       JButton othButton = new JButton("Play Othello!");
-	       c4Button.setFont(new Font("Arial", Font.BOLD, 34));
-	       othButton.setFont(new Font("Arial", Font.BOLD, 34));
+	       c4Button.setFont(new Font("Arial", Font.BOLD, ARIAL_FONT_SIZE));
+	       othButton.setFont(new Font("Arial", Font.BOLD, ARIAL_FONT_SIZE));
 	       c4Button.setToolTipText("Click Me to Play Connect 4!");
-	       othButton.setToolTipText("Click Me to Play Othello! (Although we haven't done it yet..)");
+	       othButton.setToolTipText("Click Me to Play Othello!");
 
 	       /** c4 button action listener */
 	       c4Button.addActionListener(new ActionListener() {
@@ -65,7 +69,7 @@ public class Main extends JFrame {
 	       
 		/** initialise JFrame */
 	    setTitle("A4 Partial Implementation : Group 3 ");
-        setSize(1024, 300);
+        setSize(JFRAME_WIDTH, JFRAME_HEIGHT);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);       
 	}	
