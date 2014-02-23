@@ -64,6 +64,7 @@ public class C4Board extends AbstractBoard{
                 }
 
                 if (counter.intersects(getBoard()[i][j]) && !getBoard()[i][j].isUsed()) {
+                    counter.playSound();
                     counter.setDY(0);
                     counter.center(getBoard()[i][j]);
                     getBoard()[i][j].setUsed(true);

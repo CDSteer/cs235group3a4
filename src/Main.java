@@ -11,6 +11,7 @@
  * 
  */
 
+import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
 
 import java.awt.event.ActionEvent;
@@ -27,7 +28,7 @@ public class Main extends JFrame {
 		initGUI();
 	}
 
-	public void initGUI() {		      
+	public void initGUI() {
         /** 2 cols 1 row JPanel */
 		JPanel panel = new JPanel(new GridLayout(1,2));
 	       getContentPane().add(panel);
@@ -93,10 +94,11 @@ public class Main extends JFrame {
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
+                AL.destroy();
                 game.setRunning(false);
             }
         }
-        
+
         /** kill game on close */
         Display.destroy();
         //System.exit(0);

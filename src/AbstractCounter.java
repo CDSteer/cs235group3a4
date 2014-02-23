@@ -112,16 +112,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
 
     /**
-     * Up date the counters delta to move it on the screen.
-     *
-     * @param delta
-     * @return void
-     */
-    public void dropCounter(int delta){
-        update(delta);
-    }
-
-    /**
      * This resets the counter to a the start of a full column
      *
      * @param square
@@ -140,4 +130,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     public void toSting(){
         System.out.println("x: " + x + "y: " + y);
     }
+
+    public abstract void playSound();
 }

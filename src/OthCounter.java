@@ -1,3 +1,12 @@
+import org.lwjgl.opengl.Display;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.openal.SoundStore;
+import org.newdawn.slick.util.ResourceLoader;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import static org.lwjgl.opengl.GL11.glColor3d;
 
 /**
@@ -9,9 +18,27 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class OthCounter extends AbstractCounter {
 
+    private static Audio wavEffect;
 
     public OthCounter(int player) {
         super(X, Y, WIDTH, HEIGHT, RADIUS, player);
+        setSoundFiles();
+    }
+
+    private void setSoundFiles(){
+        try {
+            wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/placeOthCounter.wav"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("File not found");
+            Display.destroy();
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IOException");
+            Display.destroy();
+            System.exit(1);
+        }
     }
 
     @Override
@@ -21,6 +48,12 @@ public class OthCounter extends AbstractCounter {
         } else if (getPlayer() == 2) {
             glColor3d(1, 1, 1);
         }
+    }
+
+    @Override
+    public void playSound() {
+        wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
+        SoundStore.get().poll(0);
     }
 
 

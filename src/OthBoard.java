@@ -33,10 +33,10 @@ public class OthBoard extends AbstractBoard{
         m_board[3][4].setPlayer(1);
         m_board[4][3].setPlayer(1);
 
-        m_board[3][3].isUsed();
-        m_board[4][4].isUsed();
-        m_board[3][4].isUsed();
-        m_board[4][3].isUsed();
+        m_board[3][3].setUsed(true);
+        m_board[4][4].setUsed(true);
+        m_board[3][4].setUsed(true);
+        m_board[4][3].setUsed(true);
 
         OthCounter othCounter = new OthCounter(2);
         othCounter.center(m_board[3][3]);
@@ -100,6 +100,7 @@ public class OthBoard extends AbstractBoard{
                     m_board[i][j].setUsed(true);
                     game.getInPlayCounters()[i][j] = othCounter;
                     game.getOnScreenCounters().add(othCounter);
+                    othCounter.playSound();
                     game.nextTurn();
                 }
             }
