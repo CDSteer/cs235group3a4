@@ -98,7 +98,6 @@ public class Main extends JFrame {
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
-                AL.destroy();
                 game.setRunning(false);
             }
         }
