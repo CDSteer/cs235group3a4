@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class OthCounter extends AbstractCounter {
 
-    private static Audio wavEffect;
+    private Audio wavEffect;
 
     public OthCounter(int player) {
         super(X, Y, WIDTH, HEIGHT, RADIUS, player);

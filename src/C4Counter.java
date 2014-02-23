@@ -18,7 +18,7 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class C4Counter extends AbstractCounter {
 
-    private static Audio wavEffect;
+    private Audio wavEffect;
 
     public C4Counter() {
         super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
