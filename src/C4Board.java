@@ -57,7 +57,7 @@ public class C4Board extends AbstractBoard{
             for (int j=0; j<COLUMN; j++) {
                 //if the colunm full reset
                 if (counter.intersects(getBoard()[i][j]) && getBoard()[i][j].getPlayer() > 0){
-                    counter.toSting();
+                    counter.playNegSound();
                     counter.reset(getBoard()[i][j]);
                     counter.toSting();
 

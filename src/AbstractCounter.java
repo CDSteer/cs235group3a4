@@ -139,4 +139,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
 
     public abstract void playSound();
+
+    public abstract void playNegSound();
 }

@@ -19,6 +19,7 @@ import static org.lwjgl.opengl.GL11.glColor3d;
 public class C4Counter extends AbstractCounter {
 
     private Audio wavEffect;
+    private Audio m_NegSound;
 
     public C4Counter() {
         super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
@@ -28,6 +29,7 @@ public class C4Counter extends AbstractCounter {
     private void setSoundFiles(){
         try {
             wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
+            m_NegSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/negative.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("File not found");
@@ -39,6 +41,11 @@ public class C4Counter extends AbstractCounter {
             Display.destroy();
             System.exit(1);
         }
+    }
+
+    public void playNegSound(){
+        m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
+        SoundStore.get().poll(0);
     }
 
     @Override

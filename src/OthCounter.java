@@ -19,6 +19,7 @@ import static org.lwjgl.opengl.GL11.glColor3d;
 public class OthCounter extends AbstractCounter {
 
     private Audio wavEffect;
+    private Audio m_NegSound;
 
     public OthCounter(int player) {
         super(X, Y, WIDTH, HEIGHT, RADIUS, player);
@@ -28,6 +29,7 @@ public class OthCounter extends AbstractCounter {
     private void setSoundFiles(){
         try {
             wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/placeOthCounter.wav"));
+            m_NegSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/negative.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("File not found");
@@ -53,6 +55,12 @@ public class OthCounter extends AbstractCounter {
     @Override
     public void playSound() {
         wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
+        SoundStore.get().poll(0);
+    }
+
+    @Override
+    public void playNegSound() {
+        m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
 

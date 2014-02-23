@@ -103,6 +103,8 @@ public class OthBoard extends AbstractBoard{
                     game.getOnScreenCounters().add(othCounter);
                     othCounter.playSound();
                     game.nextTurn();
+                }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
+                    game.getCurrentCounter().playNegSound();
                 }
             }
         }
