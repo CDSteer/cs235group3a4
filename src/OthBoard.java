@@ -13,11 +13,15 @@ import java.util.List;
 public class OthBoard extends AbstractBoard{
 
     private OthSquare[][] m_board;
-
+	// TW Code
+    private OthRules othrules;
+	
     public OthBoard(){
         super(COLUMN, ROW);
         this.m_board = new OthSquare[ROW][COLUMN];
         this.fillBoard();
+		// TW Code
+        othrules = new OthRules();
 
     }
 
@@ -110,6 +114,11 @@ public class OthBoard extends AbstractBoard{
                     game.getInPlayCounters()[i][j] = othCounter;
                     game.getOnScreenCounters().add(othCounter);
                     othCounter.playSound();
+					
+					// TW Test Code
+                    game.incrementOthCounters();
+                    int[][] test = othrules.flipCounters(game.getInPlayCounters(), i,  j,  game.getTurn());
+					
                     game.nextTurn();
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
                     game.getCurrentCounter().playNegSound();

@@ -24,8 +24,10 @@ public class OthGame extends AbstractGame {
     private static final int ROW_EIGHT = 8;
     private static final int COLUMN_EIGHT = 8;
     
-    // TW Test Code
-    //private OthRules othRules;                                //Waiting for othrules to implement
+    //TW Test Code
+    private OthRules othRules;
+    private int currentCounters = 0;
+	
     private OthBoard othBoard;
 
 
@@ -40,7 +42,7 @@ public class OthGame extends AbstractGame {
         othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
-        //othrules = new OthRules();							//Waiting for othrules to implement
+        othRules = new OthRules();
     }
 
     public OthCounter[][] getInPlayCounters() {
@@ -130,18 +132,17 @@ public class OthGame extends AbstractGame {
         } else {
             this.m_Turn = PLAYER_1;
         }
-		/*
-        // TW Test Code
-        if(Othrules.winCondition(OthBoard) == 0) {
-        	System.out.println("Evaluated: No Winner");
-        } else if (Othrules.winCondition(OthBoard) == 1) {
-        	System.out.println("Evaluated: Player 1 Wins");
-        } else if (Othrules.winCondition(OthBoard) == 2) {
-        	System.out.println("Evaluated: Player 2 Wins");
-        } else {
-        	System.out.println("Error: No Evaluation");
-        }
-        */
+		
+		// TW Test Code
+    	if (getOthCounters() > 1) {
+    		if(othRules.winCondition(m_InPlayCounters) == 0) {
+    			System.out.println("Evaluated: Draw!");
+    		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
+    			System.out.println("Evaluated: Player 1 win!");
+    		} else if (othRules.winCondition(m_InPlayCounters) == 2) {
+    			System.out.println("Evaluated: Player 2 win!");
+    		}
+    	}
     
     }
 	
@@ -171,6 +172,16 @@ public class OthGame extends AbstractGame {
     @Override
     public void gameOver() {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+	
+	// TW Test Method
+    public void incrementOthCounters() {
+    	currentCounters++;
+    }
+    
+    // TW Test Method
+    public int getOthCounters() {
+    	return currentCounters;
     }
 
 }
