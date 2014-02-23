@@ -64,7 +64,7 @@ public class OthBoard extends AbstractBoard{
         othCounter = new OthCounter(PLAYER_1);
         othCounter.center(m_board[ROW_FOUR][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
-        inPlayCounters[ROW_FOUR][COLUMN_FOUR] = othCounter;
+        inPlayCounters[ROW_FOUR][COLUMN_THREE] = othCounter;
 
 
 
