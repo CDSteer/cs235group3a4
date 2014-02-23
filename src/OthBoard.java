@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @file 	OthBoard.java
  * @author 	Chris, Cameron
- * @date	February 1, 2014
+ * @date	February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @see
  * @brief	This class extends AbstractBoard with othello details
  * @details This class allows us to create an instant of the othello board and draw it on screen.
@@ -28,35 +28,35 @@ public class OthBoard extends AbstractBoard{
 
     public void startingCounters(List<AbstractCounter> onScreenCounters, OthCounter inPlayCounters[][]){
 
-        m_board[3][3].setPlayer(2);
-        m_board[4][4].setPlayer(2);
-        m_board[3][4].setPlayer(1);
-        m_board[4][3].setPlayer(1);
+        m_board[ROW_THREE][COLUMN_THREE].setPlayer(PLAYER_2);
+        m_board[ROW_FOUR][COLUMN_FOUR].setPlayer(PLAYER_2);
+        m_board[ROW_THREE][COLUMN_FOUR].setPlayer(PLAYER_1);
+        m_board[ROW_FOUR][COLUMN_THREE].setPlayer(PLAYER_1);
 
-        m_board[3][3].isUsed();
-        m_board[4][4].isUsed();
-        m_board[3][4].isUsed();
-        m_board[4][3].isUsed();
+        m_board[ROW_THREE][COLUMN_THREE].isUsed();
+        m_board[ROW_FOUR][COLUMN_FOUR].isUsed();
+        m_board[ROW_THREE][COLUMN_FOUR].isUsed();
+        m_board[ROW_FOUR][COLUMN_THREE].isUsed();
 
-        OthCounter othCounter = new OthCounter(2);
-        othCounter.center(m_board[3][3]);
+        OthCounter othCounter = new OthCounter(PLAYER_2);
+        othCounter.center(m_board[ROW_THREE][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
-        inPlayCounters[3][3] = othCounter;
+        inPlayCounters[ROW_THREE][COLUMN_THREE] = othCounter;
 
-        othCounter = new OthCounter(2);
-        othCounter.center(m_board[4][4]);
+        othCounter = new OthCounter(PLAYER_2);
+        othCounter.center(m_board[ROW_FOUR][COLUMN_FOUR]);
         onScreenCounters.add(othCounter);
-        inPlayCounters[4][4] = othCounter;
+        inPlayCounters[ROW_FOUR][COLUMN_FOUR] = othCounter;
 
-        othCounter = new OthCounter(1);
-        othCounter.center(m_board[3][4]);
+        othCounter = new OthCounter(PLAYER_1);
+        othCounter.center(m_board[ROW_THREE][COLUMN_FOUR]);
         onScreenCounters.add(othCounter);
-        inPlayCounters[3][4] = othCounter;
+        inPlayCounters[ROW_THREE][COLUMN_FOUR] = othCounter;
 
-        othCounter = new OthCounter(1);
-        othCounter.center(m_board[4][3]);
+        othCounter = new OthCounter(PLAYER_1);
+        othCounter.center(m_board[ROW_FOUR][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
-        inPlayCounters[4][3] = othCounter;
+        inPlayCounters[ROW_FOUR][COLUMN_FOUR] = othCounter;
 
 
     }
@@ -109,11 +109,17 @@ public class OthBoard extends AbstractBoard{
 
     private static final int ROW = 8;
     private static final int COLUMN = 8;
+    private static final int ROW_THREE = 3;
+    private static final int ROW_FOUR = 4;
+    private static final int COLUMN_THREE = 3;
+    private static final int COLUMN_FOUR = 4;
     private static final int WIDTH = 30;
     private static final int HEIGHT = 30;
     private static final int X_POS_ASSIGNMENT = 100;
     private static final int FILL_BOARD_ASSIGNMENT = 31;
     private static final int X_POS_ASSIGNMENT_CHANGE= 317;
+    private static final int PLAYER_1 = 1;
+    private static final int PLAYER_2= 2;
     private int X_POS = 100;
     private int Y_POS = 50;
 }
