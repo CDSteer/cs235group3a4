@@ -33,17 +33,11 @@ public class OthBoard extends AbstractBoard{
         m_board[ROW_THREE][COLUMN_FOUR].setPlayer(PLAYER_1);
         m_board[ROW_FOUR][COLUMN_THREE].setPlayer(PLAYER_1);
 
-<<<<<<< HEAD
-        m_board[3][3].setUsed(true);
-        m_board[4][4].setUsed(true);
-        m_board[3][4].setUsed(true);
-        m_board[4][3].setUsed(true);
-=======
-        m_board[ROW_THREE][COLUMN_THREE].isUsed();
-        m_board[ROW_FOUR][COLUMN_FOUR].isUsed();
-        m_board[ROW_THREE][COLUMN_FOUR].isUsed();
-        m_board[ROW_FOUR][COLUMN_THREE].isUsed();
->>>>>>> 88ffc3d451165046292c8f8ec9177035d0ccb552
+        m_board[ROW_THREE][COLUMN_THREE].setUsed(true);
+        m_board[ROW_FOUR][COLUMN_FOUR].setUsed(true);
+        m_board[ROW_THREE][COLUMN_FOUR].setUsed(true);
+        m_board[ROW_FOUR][COLUMN_THREE].setUsed(true);
+
 
         OthCounter othCounter = new OthCounter(PLAYER_2);
         othCounter.center(m_board[ROW_THREE][COLUMN_THREE]);

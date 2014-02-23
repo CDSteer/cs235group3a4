@@ -21,7 +21,6 @@ public class C4Counter extends AbstractCounter {
     private Audio wavEffect;
 
     public C4Counter() {
-<<<<<<< HEAD
         super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
         setSoundFiles();
     }
@@ -40,9 +39,6 @@ public class C4Counter extends AbstractCounter {
             Display.destroy();
             System.exit(1);
         }
-=======
-        super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER_1);
->>>>>>> 88ffc3d451165046292c8f8ec9177035d0ccb552
     }
 
     @Override
@@ -54,7 +50,6 @@ public class C4Counter extends AbstractCounter {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Up date the counters delta to move it on the screen.
      *
@@ -71,10 +66,8 @@ public class C4Counter extends AbstractCounter {
     }
 
     private static final int PLAYER = 1;
-=======
     private static final int PLAYER_1 = 1;
     private static final int PLAYER_2 = 2;
->>>>>>> 88ffc3d451165046292c8f8ec9177035d0ccb552
     private static final float RADIUS = 10;
     private static final double X = 115;
     private static final double PLAYER2_COLOR = 1.5;
