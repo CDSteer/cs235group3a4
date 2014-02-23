@@ -27,7 +27,7 @@ public class C4Counter extends AbstractCounter {
 
     private void setSoundFiles(){
         try {
-            wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/thump.wav"));
+            wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("File not found");

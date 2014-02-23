@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Cameron Steer
  * @author Martin Hui
- * @date February 1, 2014
+ * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @version *1.2*
  * @since February 20, 2014
  */
@@ -36,9 +36,9 @@ public class C4Game extends AbstractGame{
     public C4Game() {
         super(true);
         this.currentCounter = new C4Counter();
-        this.player1 = new HumPlayer(1);
+        this.player1 = new HumPlayer(PLAYER1);
         this.player2 = new HumPlayer(PLAYER2);
-        this.onScreenCounters = new ArrayList<AbstractCounter>(10);
+        this.onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
         this.c4Board = new C4Board();
         // TW Test Code
         c4rules = new C4Rules();
@@ -104,17 +104,17 @@ public class C4Game extends AbstractGame{
 	 */
     @Override
     public void nextTurn() {
-        if (currentCounter.getPlayer() == 1){
+        if (currentCounter.getPlayer() == PLAYER1){
             currentCounter = new C4Counter();
             currentCounter.setPlayer(PLAYER2);
         } else {
             currentCounter = new C4Counter();
-            currentCounter.setPlayer(1);
+            currentCounter.setPlayer(PLAYER1);
         }
         // TW Test Code
         if(c4rules.winCondition(c4Board) == 0) {
         	System.out.println("Evaluated: No Winner");
-        } else if (c4rules.winCondition(c4Board) == 1) {
+        } else if (c4rules.winCondition(c4Board) == PLAYER1) {
         	System.out.println("Evaluated: Player 1 Wins");
         } else if (c4rules.winCondition(c4Board) == PLAYER2) {
         	System.out.println("Evaluated: Player 2 Wins");
@@ -172,4 +172,6 @@ public class C4Game extends AbstractGame{
     }
 
     private static final int PLAYER2 = 2;
+    private static final int PLAYER1 = 1;
+    private static final int ON_SCREEN_COUNTERS_ELEMENTS = 10;
 }
