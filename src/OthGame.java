@@ -5,6 +5,7 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  *
  * @author cdsteer, Martin
+ * @date   Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @since 04/02/2014
  *         - updated 20/02/2014
  * @version *1.2*
@@ -17,6 +18,11 @@ public class OthGame extends AbstractGame {
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     private int m_Turn;
     private OthCounter m_InPlayCounters[][];
+    private static final int PLAYER_1 = 1;
+    private static final int PLAYER_2 = 2;
+    private static final int LIST_ELEMENTS = 10;
+    private static final int ROW_EIGHT = 8;
+    private static final int COLUMN_EIGHT = 8;
     
     // TW Test Code
     //private OthRules othRules;                                //Waiting for othrules to implement
@@ -25,14 +31,14 @@ public class OthGame extends AbstractGame {
 
     public OthGame() {
         super(true);
-		this.currentCounter = new OthCounter(1);
-        this.player1 = new HumPlayer(1);
-        this.player2 = new HumPlayer(2);
-        this.onScreenCounters = new ArrayList<AbstractCounter>(10);
+		this.currentCounter = new OthCounter(PLAYER_1);
+        this.player1 = new HumPlayer(PLAYER_1);
+        this.player2 = new HumPlayer(PLAYER_2);
+        this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
         this.othBoard = new OthBoard();
-        this.m_InPlayCounters = new OthCounter[8][8];
+        this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
         othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
-        this.m_Turn = 1;
+        this.m_Turn = PLAYER_1;
         // TW Test Code
         //othrules = new OthRules();							//Waiting for othrules to implement
     }
@@ -108,7 +114,7 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void playGame() {
-        currentCounter = new OthCounter(1);
+        currentCounter = new OthCounter(PLAYER_1);
         othBoard = new OthBoard();
     }
 
@@ -119,10 +125,10 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void nextTurn() {
-        if (this.m_Turn == 1){
-            this.m_Turn = 2;
+        if (this.m_Turn == PLAYER_1){
+            this.m_Turn = PLAYER_2;
         } else {
-            this.m_Turn = 1;
+            this.m_Turn = PLAYER_1;
         }
 		/*
         // TW Test Code
