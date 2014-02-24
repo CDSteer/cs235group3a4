@@ -53,7 +53,7 @@ public class C4Counter extends AbstractCounter {
         if (getPlayer() == PLAYER_1) {
             glColor3d(1, 0, 0);
         } else if (getPlayer() == PLAYER_2) {
-            glColor3d(0, PLAYER2_COLOR, 0);
+            glColor3d(1, PLAYER2_COLOR, 0);
         }
     }
 
