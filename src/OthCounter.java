@@ -64,6 +64,11 @@ public class OthCounter extends AbstractCounter {
         SoundStore.get().poll(0);
     }
 
+    @Override
+    public void dropSound() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 
     private static final float RADIUS = 10;
     private static final double X = 115;

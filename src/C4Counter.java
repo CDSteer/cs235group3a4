@@ -20,6 +20,7 @@ public class C4Counter extends AbstractCounter {
 
     private Audio wavEffect;
     private Audio m_NegSound;
+    private Audio drop;
 
     public C4Counter() {
         super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
@@ -30,6 +31,7 @@ public class C4Counter extends AbstractCounter {
         try {
             wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
             m_NegSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/negative.wav"));
+            drop = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/drop.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("File not found");
@@ -43,8 +45,16 @@ public class C4Counter extends AbstractCounter {
         }
     }
 
+    public void playSound(){
+        wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
+        SoundStore.get().poll(0);
+    }
     public void playNegSound(){
         m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
+        SoundStore.get().poll(0);
+    }
+    public void dropSound(){
+        drop.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
 
@@ -65,11 +75,6 @@ public class C4Counter extends AbstractCounter {
      */
     public void dropCounter(int delta){
         update(delta);
-    }
-
-    public void playSound(){
-        wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
-        SoundStore.get().poll(0);
     }
 
     private static final int PLAYER = 1;

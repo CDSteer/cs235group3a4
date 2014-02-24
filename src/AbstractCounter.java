@@ -144,4 +144,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     private final int Y_RESET = 20;
     private final int DIVIDE_BY_TWO = 2;
     private final double SUBTRACT_2_AND_A_HALF = 2.5;
+
+    public abstract void dropSound();
 }
