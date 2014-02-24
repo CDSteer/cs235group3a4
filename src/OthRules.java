@@ -7,9 +7,6 @@
  * @version 1.0.0
  * 			-update 20/2/2014
  * WORK IN PROGRESS!!
- * For the sake of your sanity, don't try and understand this code yet
- * unless you enjoy pain
- *
  *
  * Provides the win condition for a game of Othello,
  * to be evaluated after every player move.
@@ -91,18 +88,27 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 * array[a][b] = 1 for player 1
 	 * array[a][b] = 2 for player 2
 	 */
-	public int[][] flipCounters(OthCounter[][] initialBoard, int row, int col, int player) {
+	public void flipCounters(OthCounter[][] initialBoard, int col, int row, int player) {
+		System.out.println("col: " + col);
+		System.out.println("row " + row);
 		
-		oldBoard = initialBoard;
+		
 		newBoard = new int[OTH_COLUMNS][OTH_ROWS];
 		
+		/*
+		 * NOTE!!!!!!!!:::::::
+		 * ARRAY PLACES ARE IN THE FORM [COLUMN][ROW], IGNORE EVERYTHING ELSE, THIS IS THE WAY
+		 */
+		
+		/*
 		// Set newBoard with the player numbers from before the move
-		for(int a = 0; a < OTH_COLUMNS; a++) {
-			for (int b = 0; b < OTH_ROWS; b++) {
+		for(int a = 0; a < OTH_ROWS; a++) {
+			for (int b = 0; b < OTH_COLUMNS; b++) {
 				currentCounter = initialBoard[a][b];
 				newBoard[a][b] = currentCounter.getPlayer();
 			}
 		}
+		*/
 		
 		// Ridiculous explanation:
 		// Attempts to go in one direction until it hits a square where
@@ -111,125 +117,118 @@ public class OthRules { // extends GameRules (temporarily taken out)
 		// to that of the input player
 		// IN THEORY!
 		// The for loop parameters are always exact opposites for the first/second parts
-		
-		int i = col;
-		int j = row;
-		
-		// Vertical down first
-		VD: for(i = col + 1; i < OTH_COLUMNS; i++) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(i = i - 1; i > col && i != 0; i --) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);				
-					}
-					break VD;
+	
+
+
+		// Vertical Down first
+		VD: for (int j = col + 1; j < OTH_COLUMNS; j++) {			
+			checkCounter = initialBoard[j][row];		
+			if(checkCounter.getPlayer() == player) {
+				for(int y = j; y > col; y--) {
+					newBoard[y][row] = player;
+					initialBoard[y][row].setPlayer(player);						
 				}
+				break VD;
 			}
+			
 		}
 		
-		// Vertical up
-		VU: for(i = col - 1; i >= 0; i --) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(i = i + 1; i < col; i ++) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break VU;
+		
+		// Vertical Up
+		VD: for (int j = col - 1; j >= 0; j--) {		
+			checkCounter = initialBoard[j][row];
+			if(checkCounter.getPlayer() == player) {
+				for(int y = j; y < col; y++) {
+					newBoard[y][row] = player;
+					initialBoard[y][row].setPlayer(player);						
 				}
+				break VD;
 			}
+			
 		}
+
+		
+		
 		
 		// Rows right
-		RR: for(j = row + 1; j < OTH_ROWS; j ++) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {				
-					for(j = j - 1; j > row && j!= 0; j--) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break RR;
-					
+		RR: for(int i = row + 1; i < OTH_ROWS; i++) {		
+			checkCounter = initialBoard[col][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i; x > row; x--) {
+					newBoard[col][x] = player;
+					initialBoard[col][x].setPlayer(player);
 				}
+				break RR;
 			}
+			
 		}
+
+		// Rows left 
+		RL: for(int i = row - 1; i >= 0; i--) {
+			
+			checkCounter = initialBoard[col][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i; x < row; x++) {
+					newBoard[col][x] = player;
+					initialBoard[col][x].setPlayer(player);
+				}
+				break RL;
+			}
+			
+		}
+
 		
-		// Rows left
-		RL: for(j = row - 1 ; j >= 0; j --) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(j = j + 1; j < row; j++) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break RL;
-				}
-			}
-		}
 		
 		// Diagonal up-right
-		DUR: for(j = row + 1, i = col - 1; j < OTH_ROWS && i >= 0 ; j ++, i--) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(j = j - 1, i = i + 1; j > row && i < col; j--, i++) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break DUR;
+		DUR: for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
+			checkCounter = initialBoard[j][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i - 1, y = j + 1; x > row && y < col; x--, y++) {
+					newBoard[y][x] = player;
+					initialBoard[y][x].setPlayer(player);
 				}
+				break DUR;
 			}
 		}
 		
 		// Diagonal up-left
-		DUL: for(j = row - 1 , i = col - 1; j >= 0 && i >= 0 ; j --, i--) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(j = j + 1, i = i + 1; j < row && i < col; j++, i++) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break DUL;
+		DUL: for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+			checkCounter = initialBoard[j][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i + 1, y = j + 1; x < row && y < col; x++, y++) {
+					newBoard[y][x] = player;
+					initialBoard[y][x].setPlayer(player);
 				}
+				break DUL;
 			}
 		}
-				
+	
 		// Diagonal down-right
-		DDR: for(j = row + 1 , i = col + 1; j < OTH_ROWS && i < OTH_COLUMNS ; j ++, i++) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(j = j - 1, i = i - 1; j > row && i > col; j--, i--) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break DDR;
+		DDR: for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
+			checkCounter = initialBoard[j][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i - 1, y = j - 1; x > row && y > col; x--, y--) {
+					newBoard[y][x] = player;
+					initialBoard[y][x].setPlayer(player);
 				}
+				break DDR;
 			}
 		}
 		
 		// Diagonal down-left
-		DDL: for(j = row - 1, i = col + 1; j >= 0 && i < OTH_COLUMNS ; j --, i++) {
-			if(i >= 0 && j >= 0) {
-				checkCounter = oldBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
-					for(j = j + 1, i = i - 1; j < row && i > col; j++, i--) {
-						newBoard[j][i] = player;
-						initialBoard[j][i].setPlayer(player);
-					}
-					break DDL;
+		DDL: for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
+			checkCounter = initialBoard[j][i];
+			if(checkCounter.getPlayer() == player) {
+				for(int x = i + 1, y = j - 1; x < row && y > col; x++, y--) {
+					newBoard[y][x] = player;
+					initialBoard[y][x].setPlayer(player);
 				}
+				break DDL;
 			}
 		}
-	
 		
-		return newBoard;
+		
+	
 	}
 		
 		
@@ -247,6 +246,8 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 *
 	 * IN THEORY!
 	 */
+	
+	// PROBABLY NOT WORKING YET, STILL ON [ROW][COLUMN], needs to be [COLUMN][ROW]
 	public int[][] checkValidSet(OthCounter[][] board) {
 		
 		for(int i = 0; i < OTH_COLUMNS; i++) {
@@ -340,7 +341,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			}
 		}
 	}
-		
+	
 				
 		
 				

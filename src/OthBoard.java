@@ -117,7 +117,7 @@ public class OthBoard extends AbstractBoard{
 					
 					// TW Test Code
                     game.incrementOthCounters();
-                    int[][] test = othrules.flipCounters(game.getInPlayCounters(), i,  j,  game.getTurn());
+                    othrules.flipCounters(game.getInPlayCounters(), i,  j,  game.getTurn());
 					
                     game.nextTurn();
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
