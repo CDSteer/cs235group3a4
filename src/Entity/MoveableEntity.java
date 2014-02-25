@@ -29,7 +29,7 @@ public interface MoveableEntity extends Entity{
      */
     public void setDX(double dx);
     /**
-     * return entity delta x value.
+     * set entity delta x value.
      *
      * @return void
      */
