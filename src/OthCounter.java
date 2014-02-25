@@ -18,21 +18,31 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class OthCounter extends AbstractCounter {
 
-    private Audio wavEffect;
+    private Audio m_wavEffect;
     private Audio m_NegSound;
 
+    /**
+     * constructor for a othello counter, this calls the super constructor
+     * with the coordinates, size and details of the counter. It also calls the method
+     * to set up the sounds.
+     */
     public OthCounter(int player) {
         super(X, Y, WIDTH, HEIGHT, RADIUS, player);
         setSoundFiles();
     }
 
+    /**
+     * This loads the sound files for counters
+     *
+     * @return void
+     */
     private void setSoundFiles(){
         try {
-            wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/placeOthCounter.wav"));
+            m_wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/placeOthCounter.wav"));
             m_NegSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/negative.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            System.out.println("File not found");
+            System.out.println("Sound files not found, Exiting......");
             Display.destroy();
             System.exit(1);
         } catch (IOException e) {
@@ -42,7 +52,11 @@ public class OthCounter extends AbstractCounter {
             System.exit(1);
         }
     }
-
+    /**
+     * sets colour buffer corresponding objects player to draw the correct colour
+     *
+     * @return void
+     */
     @Override
     public void setColor() {
         if (getPlayer() == PLAYER_1) {
@@ -51,19 +65,31 @@ public class OthCounter extends AbstractCounter {
             glColor3d(1, 1, 1);
         }
     }
-
+    /**
+     * plays sound of counter for being able to placing counter
+     *
+     * @return void
+     */
     @Override
     public void playSound() {
-        wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
+        m_wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
-
+    /**
+     * plays sound of counter for being able to drop counter
+     *
+     * @return void
+     */
     @Override
     public void playNegSound() {
         m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
-
+    /**
+     * not sure if needed yet
+     *
+     * @return void
+     */
     @Override
     public void dropSound() {
         //To change body of implemented methods use File | Settings | File Templates.

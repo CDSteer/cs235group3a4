@@ -20,7 +20,12 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     /**
      * Constructor for a new counter
      *
-     * @param x, y, width, height, radius, player
+     * @param x
+     * @param  y
+     * @param width
+     * @param height
+     * @param radius
+     * @param player
      */
     public AbstractCounter(double x, double y, double width, double height, float radius, int player) {
         super(x, y, width, height);
@@ -72,8 +77,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      */
     @Override
     public void draw() {
+        //counters with player 0 are not rendered
         if (this.getPlayer() > 0){
-
             float x1 = (float)x;
             float y1 = (float)y;
 
@@ -82,8 +87,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
             float angle;
 
             this.setColor();
-
-
             glBegin(GL_TRIANGLE_FAN);
             glVertex2f(x1,y1);
 
@@ -99,8 +102,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
             glEnd();
         }
     }
-
-    public abstract void setColor();
 
     /**
      * Center the counter to the square
@@ -134,9 +135,10 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
         System.out.println("x: " + x + "y: " + y);
     }
 
+    public abstract void setColor();
     public abstract void playSound();
-
     public abstract void playNegSound();
+    public abstract void dropSound();
 
     private final float ANGLE_LOOP_START = 1.0f;
     private final float ANGLE_LOOP_MAX = 10.61E02f;
@@ -145,5 +147,5 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     private final int DIVIDE_BY_TWO = 2;
     private final double SUBTRACT_2_AND_A_HALF = 2.5;
 
-    public abstract void dropSound();
+
 }

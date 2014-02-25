@@ -11,6 +11,7 @@
  * 
  */
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
 
@@ -75,7 +76,6 @@ public class Main extends JFrame {
 	/** initC4 method for calling C4 game board */
 	public void initC4() {
 
-        
         /** set up timer for C4 game */
         Time time = new Time();
         time.setUpTimer();
@@ -96,6 +96,7 @@ public class Main extends JFrame {
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
+                //AL.destroy();
                 game.setRunning(false);
             }
         }
@@ -126,6 +127,7 @@ public class Main extends JFrame {
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
+                //AL.destroy();
                 game.setRunning(false);
             }
         }

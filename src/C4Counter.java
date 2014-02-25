@@ -21,12 +21,22 @@ public class C4Counter extends AbstractCounter {
     private Audio wavEffect;
     private Audio m_NegSound;
     private Audio drop;
+    private boolean m_Test = true;
 
+    /**
+     * constructor for a connect four counter, this uses this calls the super constructor
+     * with the coordinates, size and details of the counter. It also calls the method
+     * to set up the sounds.
+     */
     public C4Counter() {
         super(X, Y, WIDTH, HEIGHT, RADIUS, PLAYER);
         setSoundFiles();
     }
-
+    /**
+     * This loads the sound files for counters
+     *
+     * @return void
+     */
     private void setSoundFiles(){
         try {
             wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
@@ -34,7 +44,7 @@ public class C4Counter extends AbstractCounter {
             drop = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/drop.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            System.out.println("File not found");
+            System.out.println("Sound files not found, Exiting......");
             Display.destroy();
             System.exit(1);
         } catch (IOException e) {
@@ -44,20 +54,39 @@ public class C4Counter extends AbstractCounter {
             System.exit(1);
         }
     }
-
+    /**
+     * plays sound of counter dropping into grid
+     *
+     * @return void
+     */
     public void playSound(){
         wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
+    /**
+     * plays sound of counter for being able to drop counter
+     *
+     * @return void
+     */
     public void playNegSound(){
         m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
+    /**
+     * plays sound of counter falling through grid
+     *
+     * @return void
+     */
     public void dropSound(){
         drop.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
 
+    /**
+     * sets colour buffer corresponding objects player to draw the correct colour
+     *
+     * @return void
+     */
     @Override
     public void setColor() {
         if (getPlayer() == PLAYER_1) {
