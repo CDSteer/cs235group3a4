@@ -1,11 +1,9 @@
 
-
-
 /**
  * @file OthRules.java
  * @author Thomas Werner
  * @date 25/2/2014
- * @version 1.0.0
+ * @version 1.0.1
  *
  * @details Provides the win condition for a game of Othello,
  * 			to be evaluated after every player move.
@@ -38,12 +36,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 */
 	public OthRules() {}
 
+	
 	/**
 	 * Takes a 2D array of OthCounter objects as input and reviews if a player has won
 	 * according to the rules of Othello
 	 * 
-	 * @param OthCounter[][] an array holding the current board state
-	 * @return int a value representing winners
+	 * @param board An array holding the current board state
+	 * @return An integer representing the winning player; 0: No winner, 1: Player One, 2: Player Two.
 	 */
 	public int winCondition(OthCounter[][] board) {
 
@@ -218,8 +217,8 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 * validMoves[col][row] = 2; Player 2 has a valid move here
 	 * validMoves[col][row] = 3; Both players have a valid move here
 	 *
-	 * @param board an array holding the current board state
-	 * @return the validMoves[][] array of integer values representing players
+	 * @param board An array holding the current board state
+	 * @return The validMoves[][] array of integer values representing players
 	 */
 	public int[][] checkValidSet(OthCounter[][] board) {
 		
@@ -381,7 +380,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 * This method updates whether there is a valid move at [current_y][current_x]
 	 * based on the analysis of the current counter stored in checkCounter .
 	 * 
-	 * @param player an integer value representing which player is being checking
+	 * @param player An integer value representing which player is being checking
 	 */
 	private void checkPlayerMatch(int player) {
 		
@@ -402,3 +401,4 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			
 				
 }
+
