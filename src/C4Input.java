@@ -21,7 +21,7 @@ public class C4Input extends AbstractInput {
     * or rightbound action and is within the bounds specified for movement. The X co-ordinate of the counter
     * (the top of the board) is then updated. If the user presses down on the keyboard, the counter is set to drop
     * and a new counter is generated.
-	* @param AbstractCounter currentCounter
+	* @param currentCounter
 	* @return Nothing is returned from the loop as it is void.
 	*/
     public void inputLoop(AbstractCounter currentCounter){

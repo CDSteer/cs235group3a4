@@ -90,7 +90,7 @@ public class Main extends JFrame {
         C4Square.setTexture();
 
         while (game.isRunning()) {
-            gameInput.inputLoop(game.getCurrentCounter(), game.getC4Board());
+            gameInput.inputLoop(game.getCurrentCounter());
             game.gameLoop(game, time.getDelta());
             display.render(game.getC4Board(), game.getCurrentCounter(), game.getOnScreenCounters());
             Display.update();

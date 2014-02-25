@@ -30,8 +30,7 @@ public class C4Game extends AbstractGame{
 	* @see C4Board
 	* @see HumPlayer
 	* @see C4Counter
-	* @param null
-	* @return null
+	* @return void
 	*/
     public C4Game() {
         super(true);
@@ -47,7 +46,6 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief Recieve Board information from C4Board Class
 	 * @see C4Board
-	 * @param  null
 	 * @return C4Board
 	 */
     public C4Board getC4Board() {
@@ -57,7 +55,7 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief Set C4Board
 	 * @see C4Board
-	 * @param  C4Board
+	 * @param  c4Board
 	 * @return null
 	 */
     public void setC4Board(C4Board c4Board) {
@@ -67,7 +65,6 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief Recieve Current Counter information from Counter Class
 	 * @see C4Counter
-	 * @param  null
 	 * @return AbstractCounter
 	 */
     public AbstractCounter getCurrentCounter() {
@@ -77,7 +74,6 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief Recieve on screen Counter information from AbstractCounter Class
 	 * @see C4Counter
-	 * @param  null
 	 * @return List<AbstractCounter>
 	 */
     public List<AbstractCounter> getOnScreenCounters() {
@@ -88,7 +84,6 @@ public class C4Game extends AbstractGame{
 	 * @brief Game begin, create Counter and Board
 	 * @see C4Board
 	 * @see C4Counter
-	 * @param  null
 	 * @return null
 	 */
     @Override
@@ -99,7 +94,6 @@ public class C4Game extends AbstractGame{
 
 	/**
 	 * @brief Checking which player is on next turn
-	 * @param  null
 	 * @return null
 	 */
     @Override
@@ -148,7 +142,6 @@ public class C4Game extends AbstractGame{
 	
 	/**
 	 * @brief Game End
-	 * @param  null
 	 * @return null
 	 */
     @Override
@@ -159,8 +152,9 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief *****CAMERON, I have no idea what's this doing...*******
 	 * @see AbstractGame
-	 * @param  AbstractGame, int
-	 * @return null
+	 * @param  game
+     * @param delta
+	 * @return void
 	 */
     @Override
     public void gameLoop(AbstractGame game, int delta) {
