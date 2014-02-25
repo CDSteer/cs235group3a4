@@ -24,14 +24,24 @@ import static org.lwjgl.opengl.GL11.glDisable;
 public class C4Square extends AbstractSquare{
 
     private static Texture square;
+    private static boolean m_Test = false;
 
+    /**
+     * Constructor for a new square
+     *
+     * @param x
+     * @param  y
+     * @param width
+     * @param height
+     * @param used
+     */
     public C4Square(double x, double y, double width, double height, boolean used) {
         super(x, y, width, height, used);
     }
 
 	/**
-	* Description plz~
-	* @param null
+	* Draws the squared of the using the texture loaded in the constructor
+	*
 	* @return null
 	*/
     @Override
@@ -53,19 +63,21 @@ public class C4Square extends AbstractSquare{
     }
 
 	/**
-	* Description plz~
-	* @param null
+	* loads in the texture file for the square
+     *
 	* @return null
 	*/
     public static void setTexture(){
         try {
             square = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/square.png")));
-            System.out.println("Texture loaded: " + square);
-            System.out.println(">> Image width: " + square.getImageWidth());
-            System.out.println(">> Image height: " + square.getImageHeight());
-            System.out.println(">> Texture width: " + square.getTextureWidth());
-            System.out.println(">> Texture height: " + square.getTextureHeight());
-            System.out.println(">> Texture ID: " + square.getTextureID());
+            if (m_Test){
+                System.out.println("Texture loaded: " + square);
+                System.out.println(">> Image width: " + square.getImageWidth());
+                System.out.println(">> Image height: " + square.getImageHeight());
+                System.out.println(">> Texture width: " + square.getTextureWidth());
+                System.out.println(">> Texture height: " + square.getTextureHeight());
+                System.out.println(">> Texture ID: " + square.getTextureID());
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("File not found");
@@ -80,8 +92,7 @@ public class C4Square extends AbstractSquare{
     }
 
 	/**
-	* Description plz~
-	* @param null
+	* removes textures when games connect 4 is closed
 	* @return null
 	*/
     public void releaseTexture(){
