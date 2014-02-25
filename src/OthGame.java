@@ -101,7 +101,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @param  game, deta
+	 * @param  game, delta
 	 * @return null
 	 */
     @Override

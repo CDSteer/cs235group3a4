@@ -1,5 +1,8 @@
-import java.util.List;
+import org.newdawn.slick.TrueTypeFont;
 
+import java.awt.*;
+import java.util.List;
+import org.newdawn.slick.Color;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
@@ -14,9 +17,10 @@ import static org.lwjgl.opengl.GL11.glClear;
  * @version *1.0.1*
  */
 public class C4Display extends AbstractDisplay{
-
+    //private c4infodisplay
     public C4Display(){
         super(WIDTH, HEIGHT, "Connect 4");
+        //make a c4infodisplay
     }
 
     @Override
@@ -35,7 +39,9 @@ public class C4Display extends AbstractDisplay{
         }
 
         c4Board.draw();
+        //C4InfoDisplay.draw(C4Game);
 
+        //call C4InfoDisplay here
 
     }
 

@@ -1,4 +1,7 @@
 import java.util.List;
+import java.awt.Font;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
@@ -16,6 +19,7 @@ import static org.lwjgl.opengl.GL11.glClear;
 public class OthDisplay extends AbstractDisplay{
     public OthDisplay() {
         super(WIDTH, HEIGHT, "Othello");
+
     }
 
 	/**
@@ -27,9 +31,11 @@ public class OthDisplay extends AbstractDisplay{
     public void render(AbstractBoard othBoard, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
         glClear(GL_COLOR_BUFFER_BIT);
         othBoard.draw();
+        //OthInfoDisplay.draw(OthGAME);
         for (AbstractCounter counters : onScreenCounters) {
             counters.draw();
         }
+
     }
 
     public static final int WIDTH = 640;
