@@ -101,7 +101,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @param  game, delta
+	 * @param  game, int delta
 	 * @return null
 	 */
     @Override
@@ -111,8 +111,8 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Game begin, Create Counter and Board
-	 * @param
-	 * @return null
+	 *
+	 * @return Nothing is returned from the method.
 	 */
     @Override
     public void playGame() {
@@ -122,8 +122,7 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * Checking which player is on next turn
-	 * @param
-	 * @return null
+	 * @return Nothing is returned from the method
 	 */
     @Override
     public void nextTurn() {
@@ -137,9 +136,9 @@ public class OthGame extends AbstractGame {
     	if (getOthCounters() > 1) {
     		if(othRules.winCondition(m_InPlayCounters) == 0) {
     			System.out.println("Evaluated: Draw!");
-    		} else if (othRules.winCondition(m_InPlayCounters) == PLAYER_1) {
+    		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
     			System.out.println("Evaluated: Player 1 win!");
-    		} else if (othRules.winCondition(m_InPlayCounters) == PLAYER_2) {
+    		} else if (othRules.winCondition(m_InPlayCounters) == 2) {
     			System.out.println("Evaluated: Player 2 win!");
     		}
     	}
@@ -165,9 +164,10 @@ public class OthGame extends AbstractGame {
 //	}
 	
 	/**
-	 * Game end
-	 * @param
-	 * @return null
+	 * This game determines the end of the game for Othello. The game will terminate and a message
+     * is display if there is a winner, Player 1 or Player 2. There is also an option to reset the board
+     * and play again.
+	 * @return Nothing is returned from the method.
 	 */
     @Override
     public void gameOver() {

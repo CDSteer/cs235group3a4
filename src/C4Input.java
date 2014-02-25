@@ -16,13 +16,13 @@ public class C4Input extends AbstractInput {
 
 	
 	/**
-	* In the InputLoop Method, we employ a nested loop that checks that if the state of the counter
+	* In the inputLoop Method, we employ a nested loop that checks that if the state of the counter
     * is not dropped into board then we listen for keyboard input and check that it is either a leftbound
     * or rightbound action and is within the bounds specified for movement. The X co-ordinate of the counter
     * (the top of the board) is then updated. If the user presses down on the keyboard, the counter is set to drop
     * and a new counter is generated.
 	* @param AbstractCounter currentCounter
-	* @return Nothing is returned from the loop.
+	* @return Nothing is returned from the loop as it is void.
 	*/
     public void inputLoop(AbstractCounter currentCounter){
         //if counter not dropped listen for a left and right arrows to move counter each square until end of board
