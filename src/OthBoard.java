@@ -15,6 +15,7 @@ public class OthBoard extends AbstractBoard{
     private OthSquare[][] m_board;
 	// TW Code
     private OthRules othrules;
+    private int[][] validMoves;
 	
     public OthBoard(){
         super(COLUMN, ROW);
@@ -105,21 +106,31 @@ public class OthBoard extends AbstractBoard{
 
     public boolean placeCounter(OthGame game) {
 
+    	// TW Test Code
+    	validMoves = othrules.checkValidSet(game.getInPlayCounters());
+    	
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
                 if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())&& !m_board[i][j].isUsed()){
-                    OthCounter othCounter = new OthCounter(game.getTurn());
-                    othCounter.center(m_board[i][j]);
-                    m_board[i][j].setUsed(true);
-                    game.getInPlayCounters()[i][j] = othCounter;
-                    game.getOnScreenCounters().add(othCounter);
-                    othCounter.playSound();
-					
-					// TW Test Code
-                    game.incrementOthCounters();
-                    othrules.flipCounters(game.getInPlayCounters(), i,  j,  game.getTurn());
-					
-                    game.nextTurn();
+                	
+                	// TW Test Code
+                	if(validMoves[i][j] == game.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                		
+	                    OthCounter othCounter = new OthCounter(game.getTurn());
+	                    othCounter.center(m_board[i][j]);
+	                    m_board[i][j].setUsed(true);
+	                    game.getInPlayCounters()[i][j] = othCounter;
+	                    game.getOnScreenCounters().add(othCounter);
+	                    othCounter.playSound();
+						
+						// TW Test Code
+	                    game.incrementOthCounters();
+	                    othrules.flipCounters(game.getInPlayCounters(), i,  j,  game.getTurn());
+						
+	                    game.nextTurn();
+                	} else {
+                		System.out.println("Error: Invalid move");
+                	}
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
                     game.getCurrentCounter().playNegSound();
                 }
@@ -141,6 +152,9 @@ public class OthBoard extends AbstractBoard{
     private static final int X_POS_ASSIGNMENT_CHANGE= 317;
     private static final int PLAYER_1 = 1;
     private static final int PLAYER_2= 2;
+    // TW Test Code
+    private static final int BOTH_PLAYERS = 3;
+    
     private int X_POS = 100;
     private int Y_POS = 50;
 }
