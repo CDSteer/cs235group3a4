@@ -10,6 +10,8 @@ import static org.lwjgl.opengl.GL11.glRectd;
  */
 public class OthSquare extends AbstractSquare{
 
+    private static final double GREEN = 0.5;
+
     public OthSquare(double x, double y, double width, double height, boolean used) {
         super(x, y, width, height, used);
     }
@@ -21,7 +23,7 @@ public class OthSquare extends AbstractSquare{
 
     @Override
     public void draw() {
-        glColor3d(0.0, 0.5, 0.0);
+        glColor3d(0.0, GREEN, 0.0);
         glRectd(x, y, x + width, y + height);
     }
 }

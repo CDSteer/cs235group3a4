@@ -3,9 +3,12 @@ import org.lwjgl.input.Keyboard;
 /**
  * Created with IntelliJ IDEA.
  *
- * @author cdsteer
- * @since 04/02/2014
- *		-update 20/2/2014
+ * @author Cameron Steer and Curtis Lewis
+ * @since 04/02/2014 -update 20/2/2014
+ * @date  Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @see
+ * @brief	This class extends AbstractInput which contains methods to allow the user to make a move in C4.
+ * @details This class creates a loop which listens for a left or right move from the user's keyboard and allows a move.
  * @version *1.0.1*
  */
 public class C4Input extends AbstractInput {
@@ -13,11 +16,15 @@ public class C4Input extends AbstractInput {
 
 	
 	/**
-	* Description plz~
-	* @param AbstractCounter
-	* @return null
+	* In the InputLoop Method, we employ a nested loop that checks that if the state of the counter
+    * is not dropped into board then we listen for keyboard input and check that it is either a leftbound
+    * or rightbound action and is within the bounds specified for movement. The X co-ordinate of the counter
+    * (the top of the board) is then updated. If the user presses down on the keyboard, the counter is set to drop
+    * and a new counter is generated.
+	* @param AbstractCounter currentCounter
+	* @return Nothing is returned from the loop.
 	*/
-    public void inputLoop(AbstractCounter currentCounter, AbstractBoard board){
+    public void inputLoop(AbstractCounter currentCounter){
         //if counter not dropped listen for a left and right arrows to move counter each square until end of board
         if (currentCounter.getDY() != DROP){
             if (Keyboard.next()){

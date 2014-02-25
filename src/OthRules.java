@@ -12,7 +12,7 @@
  * Provides the win condition for a game of Othello,
  * to be evaluated after every player move.
  * Provides method for flipping counters
- * Provides method for calculating avaiable moves for players
+ * Provides method for calculating available moves for players
  */
 public class OthRules { // extends GameRules (temporarily taken out)
 

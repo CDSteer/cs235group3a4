@@ -137,9 +137,9 @@ public class OthGame extends AbstractGame {
     	if (getOthCounters() > 1) {
     		if(othRules.winCondition(m_InPlayCounters) == 0) {
     			System.out.println("Evaluated: Draw!");
-    		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
+    		} else if (othRules.winCondition(m_InPlayCounters) == PLAYER_1) {
     			System.out.println("Evaluated: Player 1 win!");
-    		} else if (othRules.winCondition(m_InPlayCounters) == 2) {
+    		} else if (othRules.winCondition(m_InPlayCounters) == PLAYER_2) {
     			System.out.println("Evaluated: Player 2 win!");
     		}
     	}
