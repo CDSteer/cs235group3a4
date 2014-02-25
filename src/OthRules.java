@@ -120,118 +120,131 @@ public class OthRules { // extends GameRules (temporarily taken out)
 
 
 		// Vertical Down first
-		VD: for (int j = col + 1; j < OTH_COLUMNS; j++) {			
-			checkCounter = initialBoard[j][row];		
-			if(checkCounter.getPlayer() == player) {
-				for(int y = j; y > col; y--) {
-					newBoard[y][row] = player;
-					initialBoard[y][row].setPlayer(player);						
-				}
-				break VD;
+		if(col + 1 != OTH_COLUMNS && initialBoard[col+1][row].getPlayer() != NO_MATCH) {
+			VD: for (int j = col + 1; j < OTH_COLUMNS; j++) {			
+				checkCounter = initialBoard[j][row];		
+				if(checkCounter.getPlayer() == player) {
+					for(int y = j; y > col; y--) {
+						newBoard[y][row] = player;
+						initialBoard[y][row].setPlayer(player);						
+					}
+					break VD;
+				}				
 			}
-			
 		}
 		
 		
 		// Vertical Up
-		VD: for (int j = col - 1; j >= 0; j--) {		
-			checkCounter = initialBoard[j][row];
-			if(checkCounter.getPlayer() == player) {
-				for(int y = j; y < col; y++) {
-					newBoard[y][row] = player;
-					initialBoard[y][row].setPlayer(player);						
+		if(col != 0 && initialBoard[col-1][row].getPlayer() != NO_MATCH) {
+			VD: for (int j = col - 1; j >= 0; j--) {		
+				checkCounter = initialBoard[j][row];
+				if(checkCounter.getPlayer() == player) {
+					for(int y = j; y < col; y++) {
+						newBoard[y][row] = player;
+						initialBoard[y][row].setPlayer(player);						
+					}
+					break VD;
 				}
-				break VD;
+				
 			}
-			
 		}
 
 		
 		
 		
 		// Rows right
-		RR: for(int i = row + 1; i < OTH_ROWS; i++) {		
-			checkCounter = initialBoard[col][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i; x > row; x--) {
-					newBoard[col][x] = player;
-					initialBoard[col][x].setPlayer(player);
+		if(row + 1 != OTH_ROWS && initialBoard[col][row+1].getPlayer() != NO_MATCH) {
+			RR: for(int i = row + 1; i < OTH_ROWS; i++) {		
+				checkCounter = initialBoard[col][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i; x > row; x--) {
+						newBoard[col][x] = player;
+						initialBoard[col][x].setPlayer(player);
+					}
+					break RR;
 				}
-				break RR;
+				
 			}
-			
 		}
 
-		// Rows left 
-		RL: for(int i = row - 1; i >= 0; i--) {		
-			checkCounter = initialBoard[col][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i; x < row; x++) {
-					newBoard[col][x] = player;
-					initialBoard[col][x].setPlayer(player);
+		// Rows left
+		if(row != 0 && initialBoard[col][row-1].getPlayer() != NO_MATCH) {
+			RL: for(int i = row - 1; i >= 0; i--) {		
+				checkCounter = initialBoard[col][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i; x < row; x++) {
+						newBoard[col][x] = player;
+						initialBoard[col][x].setPlayer(player);
+					}
+					break RL;
 				}
-				break RL;
+				
 			}
-			
 		}
 
 		
 		
 		// Diagonal up-right
-		DUR: for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
-			checkCounter = initialBoard[j][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i - 1, y = j + 1; x > row && y < col; x--, y++) {
-					newBoard[y][x] = player;
-					initialBoard[y][x].setPlayer(player);
+		if(col != 0 && row + 1 != OTH_ROWS && initialBoard[col-1][row+1].getPlayer() != NO_MATCH) {
+			DUR: for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
+				checkCounter = initialBoard[j][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i - 1, y = j + 1; x > row && y < col; x--, y++) {
+						newBoard[y][x] = player;
+						initialBoard[y][x].setPlayer(player);
+					}
+					break DUR;
 				}
-				break DUR;
 			}
 		}
 		
 		// Diagonal up-left
-		DUL: for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-			checkCounter = initialBoard[j][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i + 1, y = j + 1; x < row && y < col; x++, y++) {
-					newBoard[y][x] = player;
-					initialBoard[y][x].setPlayer(player);
+		if(col!= 0 && row != 0 && initialBoard[col-1][row-1].getPlayer() != NO_MATCH) {
+			DUL: for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+				checkCounter = initialBoard[j][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i + 1, y = j + 1; x < row && y < col; x++, y++) {
+						newBoard[y][x] = player;
+						initialBoard[y][x].setPlayer(player);
+					}
+					break DUL;
 				}
-				break DUL;
 			}
 		}
-	
+		
 		// Diagonal down-right
-		DDR: for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
-			checkCounter = initialBoard[j][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i - 1, y = j - 1; x > row && y > col; x--, y--) {
-					newBoard[y][x] = player;
-					initialBoard[y][x].setPlayer(player);
+		if(col + 1 != OTH_COLUMNS && row + 1 != OTH_ROWS && initialBoard[col+1][row+1].getPlayer() != NO_MATCH) {
+			DDR: for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
+				checkCounter = initialBoard[j][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i - 1, y = j - 1; x > row && y > col; x--, y--) {
+						newBoard[y][x] = player;
+						initialBoard[y][x].setPlayer(player);
+					}
+					break DDR;
 				}
-				break DDR;
 			}
 		}
 		
 		// Diagonal down-left
-		DDL: for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
-			checkCounter = initialBoard[j][i];
-			if(checkCounter.getPlayer() == player) {
-				for(int x = i + 1, y = j - 1; x < row && y > col; x++, y--) {
-					newBoard[y][x] = player;
-					initialBoard[y][x].setPlayer(player);
+		if(col + 1 != OTH_COLUMNS && row != 0 && initialBoard[col+1][row-1].getPlayer() != NO_MATCH) {
+			DDL: for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
+				checkCounter = initialBoard[j][i];
+				if(checkCounter.getPlayer() == player) {
+					for(int x = i + 1, y = j - 1; x < row && y > col; x++, y--) {
+						newBoard[y][x] = player;
+						initialBoard[y][x].setPlayer(player);
+					}
+					break DDL;
 				}
-				break DDL;
 			}
 		}
 		
-		
-	
+			
 	}
 		
 		
-	
-	
+		
 	/*
 	 * Takes as input: the board state 
 	 *
