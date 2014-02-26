@@ -177,18 +177,21 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void flipVerticalDown(OthCounter[][] initialBoard, int col, int row, int player) {
 		
 		if(col + 1 != OTH_COLUMNS 
-				&& initialBoard[col+1][row].getPlayer() != NO_MATCH) {
-					VD: 
-					for (int j = col + 1; j < OTH_COLUMNS; j++) {			
-						setCheckCounter(initialBoard[j][row]);		
-						if(getCheckCounter().getPlayer() == player) {
-							for(int y = j; y > col; y--) {
-								initialBoard[y][row].setPlayer(player);						
-							}
-							break VD;
-						}				
+		&& initialBoard[col+1][row].getPlayer() != NO_MATCH) {
+		
+			VD: 
+			for (int j = col + 1; j < OTH_COLUMNS; j++) {			
+				setCheckCounter(initialBoard[j][row]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break VD;
+				} else if(getCheckCounter().getPlayer() == player) {
+					for(int y = j; y > col; y--) {
+					initialBoard[y][row].setPlayer(player);						
 					}
-				}
+					break VD;
+				}				
+			}
+		}
 	}
 	
 	/** Specific direction flipping
@@ -197,16 +200,18 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void flipVerticalUp(OthCounter[][] initialBoard, int col, int row, int player) {
 		
 		if(col != 0 && initialBoard[col-1][row].getPlayer() != NO_MATCH) {
-			VD: 
+		
+			VU: 
 			for (int j = col - 1; j >= 0; j--) {		
 				setCheckCounter(initialBoard[j][row]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break VU;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int y = j; y < col; y++) {
 						initialBoard[y][row].setPlayer(player);						
 					}
-					break VD;
-				}
-				
+					break VU;
+				}				
 			}
 		}
 	}	
@@ -217,10 +222,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void flipRowsRight(OthCounter[][] initialBoard, int col, int row, int player) {
 		
 		if(row + 1 != OTH_ROWS && initialBoard[col][row+1].getPlayer() != NO_MATCH) {
+		
 			RR: 
 			for(int i = row + 1; i < OTH_ROWS; i++) {		
 				setCheckCounter(initialBoard[col][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break RR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i; x > row; x--) {
 						initialBoard[col][x].setPlayer(player);
 					}
@@ -237,10 +245,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void flipRowsLeft(OthCounter[][] initialBoard, int col, int row, int player) {
 		
 		if(row != 0 && initialBoard[col][row-1].getPlayer() != NO_MATCH) {
+		
 			RL: 
 			for(int i = row - 1; i >= 0; i--) {		
 				setCheckCounter(initialBoard[col][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break RL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i; x < row; x++) {
 						initialBoard[col][x].setPlayer(player);
 					}
@@ -258,10 +269,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 		
 		if(col != 0 && row + 1 != OTH_ROWS 
 		&& initialBoard[col-1][row+1].getPlayer() != NO_MATCH) {
+		
 			DUR: 
 			for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
 				setCheckCounter(initialBoard[j][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DUR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i - 1, y = j + 1; x > row && y < col; x--, y++) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -278,10 +292,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 		
 		if(col!= 0 && row != 0 
 		&& initialBoard[col-1][row-1].getPlayer() != NO_MATCH) {
+		
 			DUL: 
 			for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
 				setCheckCounter(initialBoard[j][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DUL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i + 1, y = j + 1; x < row && y < col; x++, y++) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -297,10 +314,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void flipDiagonalDownRight(OthCounter[][] initialBoard, int col, int row, int player) {
 		if(col + 1 != OTH_COLUMNS && row + 1 != OTH_ROWS 
 		&& initialBoard[col+1][row+1].getPlayer() != NO_MATCH) {
+		
 			DDR: 
 			for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
 				setCheckCounter(initialBoard[j][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DDR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i - 1, y = j - 1; x > row && y > col; x--, y--) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -317,10 +337,13 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	
 		if(col + 1 != OTH_COLUMNS && row != 0 
 		&& initialBoard[col+1][row-1].getPlayer() != NO_MATCH) {
+		
 			DDL: 
 			for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
 				setCheckCounter(initialBoard[j][i]);
-				if(getCheckCounter().getPlayer() == player) {
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DDL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i + 1, y = j - 1; x < row && y > col; x++, y--) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -614,5 +637,4 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			
 				
 }
-
 
