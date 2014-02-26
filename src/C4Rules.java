@@ -3,7 +3,7 @@
  * @file C4Rules.java
  * @author Thomas Werner
  * @date 25/2/2014
- * @version 1.0.2
+ * @version 1.0.3
  * 	
  * 
  * @details Provides the win condition for a game of C4,
@@ -11,29 +11,134 @@
  */
 public class C4Rules { // extends GameRules (temporarily taken out)
 	
+	// Constants used by the class
 	private final int ROW_LENGTH = 10;
 	private final int COLUMN_LENGTH = 7;
 	private final int NO_WINNER = 0;
 	private final int PLAYER_ONE = 1;
 	private final int PLAYER_TWO = 2;
 	
-	// integers for holding current line length
-	private int RowLineOne = 0;
-	private int RowLineTwo = 0;
-	private int ColLineOne = 0;
-	private int ColLineTwo = 0;
-	private int DownDiagLineOne = 0;
-	private int DownDiagLineTwo = 0;
-	private int UpDiagLineOne = 0;
-	private int UpDiagLineTwo = 0;
-	
 	private final int EMPTY = 0;
 	private final int WIN_LENGTH = 4;
-	private boolean PlayerOneWin = false;
-	private boolean PlayerTwoWin = false;
 	
-	private C4Square[][] currentBoard;
-	private C4Square currentSquare;
+	// integers for holding current line length
+	private int m_RowLineOne = 0;
+	private int m_RowLineTwo = 0;
+	private int m_ColLineOne = 0;
+	private int m_ColLineTwo = 0;
+	private int m_DownDiagLineOne = 0;
+	private int m_DownDiagLineTwo = 0;
+	private int m_UpDiagLineOne = 0;
+	private int m_UpDiagLineTwo = 0;
+	
+	// boolean variables for if a player has won
+	private boolean m_PlayerOneWin = false;
+	private boolean m_PlayerTwoWin = false;
+	
+	// variables for analysing the board state
+	private C4Square[][] m_currentBoard;
+	private C4Square m_currentSquare;
+	
+	
+	
+	// Accessor methods for class variables
+	private int getRowLineOne() {
+		return m_RowLineOne;
+	}
+	
+	private void setRowLineOne(int value) {
+		m_RowLineOne = value;
+	}
+	
+	private int getRowLineTwo() {
+		return m_RowLineTwo;
+	}
+	
+	private void setRowLineTwo(int value) {
+		m_RowLineTwo = value;
+	}
+	
+	private int getColLineOne() {
+		return m_ColLineOne;
+	}
+	
+	private void setColLineOne(int value) {
+		m_ColLineOne = value;
+	}
+	
+	private int getColLineTwo() {
+		return m_ColLineTwo;
+	}
+	
+	private void setColLineTwo(int value) {
+		m_ColLineTwo = value;
+	}
+	
+	private int getDownDiagLineOne() {
+		return m_DownDiagLineOne;
+	}
+	
+	private void setDownDiagLineOne(int value) {
+		m_DownDiagLineOne = value;
+	}
+	
+	private int getDownDiagLineTwo() {
+		return m_DownDiagLineTwo;
+	}
+	
+	private void setDownDiagLineTwo(int value) {
+		m_DownDiagLineOne = value;
+	}
+	
+	private int getUpDiagLineOne() {
+		return m_UpDiagLineOne;
+	}
+	
+	private void setUpDiagLineOne(int value) {
+		m_UpDiagLineOne = value;
+	}
+	
+	private int getUpDiagLineTwo() {
+		return m_UpDiagLineTwo;
+	}
+	
+	private void setUpDiagLineTwo(int value) {
+		m_UpDiagLineTwo = value;
+	}
+	
+	private boolean getPlayerOneWin() {
+		return m_PlayerOneWin;
+	}
+	
+	private void setPlayerOneWin(boolean value) {
+		m_PlayerOneWin = value;
+	}
+	
+	private boolean getPlayerTwoWin() {
+		return m_PlayerTwoWin;
+	}
+	
+	private void setPlayerTwoWin(boolean value) {
+		m_PlayerTwoWin = value;
+	}
+	
+	private C4Square[][] getCurrentBoard() {
+		return m_currentBoard;
+	}
+	
+	private void setCurrentBoard(C4Square[][] board) {
+		m_currentBoard = board;
+	}
+	
+	private C4Square getCurrentSquare() {
+		return m_currentSquare;
+	}
+	
+	private void setCurrentSquare(C4Square square) {
+		m_currentSquare = square;
+	}
+	
+	// Accessor methods end
 	
 	/** 
 	 * Constructor
@@ -48,16 +153,16 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 	 */
 	public int winCondition(C4Board board) {
 	
-		currentBoard = board.getBoard();
+		setCurrentBoard(board.getBoard());
 		
 		checkColumns();
 		checkRows();
 		checkDownDiag();
 		checkUpDiag();
 		
-		if (PlayerOneWin == true) {
+		if (getPlayerOneWin() == true) {
 			return PLAYER_ONE;
-		} else if (PlayerTwoWin == true) {
+		} else if (getPlayerTwoWin() == true) {
 			return PLAYER_TWO;
 		} else {
 			return NO_WINNER;
@@ -73,32 +178,32 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 		
 		// Loops through Rows
 		for (int x = 0; x < ROW_LENGTH; x++) {
-			ColLineOne = EMPTY;
-			ColLineTwo = EMPTY;
+			setColLineOne(EMPTY);
+			setColLineTwo(EMPTY);
 			
 			// Loops through Columns
 			for (int y = 0; y < COLUMN_LENGTH; y++) {
 				
 				// Analyses the current Square indicated by the index
-				currentSquare = currentBoard[y][x];
-				if (currentSquare.getPlayer() == PLAYER_ONE) {
-					ColLineOne++;
-					ColLineTwo = EMPTY;
-				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-					ColLineTwo++;
-					ColLineOne = EMPTY;
+				setCurrentSquare(getCurrentBoard()[y][x]);
+				if (getCurrentSquare().getPlayer() == PLAYER_ONE) {
+					setColLineOne(getColLineOne() + 1);
+					setColLineTwo(EMPTY);
+				} else if (getCurrentSquare().getPlayer() == PLAYER_TWO) {
+					setColLineTwo(getColLineTwo() + 1);
+					setColLineOne(EMPTY);
 				} else {
-					ColLineOne = EMPTY;
-					ColLineTwo = EMPTY;
+					setColLineOne(EMPTY);
+					setColLineTwo(EMPTY);
 				}
 				
 				// Check if a win condition was reached
-				if (ColLineOne >= WIN_LENGTH) {
-					PlayerOneWin = true;
+				if (getColLineOne() >= WIN_LENGTH) {
+					setPlayerOneWin(true);
 				}
 				
-				if (ColLineTwo >= WIN_LENGTH) {
-					PlayerTwoWin = true;
+				if (getColLineTwo() >= WIN_LENGTH) {
+					setPlayerTwoWin(true);
 				}
 			}
 		}
@@ -112,32 +217,32 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 		
 		// Loops through Columns
 		for (int y = 0; y < COLUMN_LENGTH; y++) {
-			RowLineOne = EMPTY;
-			RowLineTwo = EMPTY;
+			setRowLineOne(EMPTY);
+			setRowLineTwo(EMPTY);
 			
 			// Loops through Rows
 			for (int x = 0; x < ROW_LENGTH; x++) {
 				
 				// Analyses the current Square indicated by the index
-				currentSquare = currentBoard[y][x];
-				if (currentSquare.getPlayer() == PLAYER_ONE) {
-					RowLineOne++;
-					RowLineTwo = EMPTY;
-				} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-					RowLineTwo++;
-					RowLineOne = EMPTY;
+				setCurrentSquare(getCurrentBoard()[y][x]);
+				if (getCurrentSquare().getPlayer() == PLAYER_ONE) {
+					setRowLineOne(getRowLineOne() + 1);
+					setRowLineTwo(EMPTY);
+				} else if (getCurrentSquare().getPlayer() == PLAYER_TWO) {
+					setRowLineTwo(getRowLineTwo() + 1);
+					setRowLineOne(EMPTY);
 				} else {
-					RowLineOne = EMPTY;
-					RowLineTwo = EMPTY;
+					setRowLineOne(EMPTY);
+					setRowLineTwo(EMPTY);
 				}
 				
 				// Check if a win condition was reached
-				if (RowLineOne >= WIN_LENGTH) {
-					PlayerOneWin = true;
+				if (getRowLineOne() >= WIN_LENGTH) {
+					setPlayerOneWin(true);
 				}
 				
-				if (RowLineTwo >= WIN_LENGTH) {
-					PlayerTwoWin = true;
+				if (getRowLineTwo() >= WIN_LENGTH) {
+					setPlayerTwoWin(true);
 				}
 			}
 		}
@@ -156,18 +261,21 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 			// Loops through Columns
 			for (int y = 0; ( y + 3) < COLUMN_LENGTH; y++) {
 				
-				DownDiagLineOne = EMPTY;
-				DownDiagLineTwo = EMPTY;
+				setDownDiagLineOne(EMPTY);
+				setDownDiagLineTwo(EMPTY);
 				
 				// Loops through a diagonal direction (opposite to UpDiag)
-				currentSquare = currentBoard[y][x];
-				downDiagSquares(currentSquare);
-				currentSquare = currentBoard[y+1][x+1];
-				downDiagSquares(currentSquare);
-				currentSquare = currentBoard[y+2][x+2];
-				downDiagSquares(currentSquare);
-				currentSquare = currentBoard[y+3][x+3];
-				downDiagSquares(currentSquare);				
+				setCurrentSquare(getCurrentBoard()[y][x]);
+				downDiagSquares(getCurrentSquare());
+				
+				setCurrentSquare(getCurrentBoard()[y+1][x+1]);
+				downDiagSquares(getCurrentSquare());
+				
+				setCurrentSquare(getCurrentBoard()[y+2][x+2]);
+				downDiagSquares(getCurrentSquare());
+				
+				setCurrentSquare(getCurrentBoard()[y+3][x+3]);
+				downDiagSquares(getCurrentSquare());			
 			}
 		}
 	}
@@ -179,24 +287,24 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 	private void downDiagSquares(C4Square square) {
 			
 		// Analyses the current Square indicated by the index		
-		if (currentSquare.getPlayer() == PLAYER_ONE) {
-			DownDiagLineOne++;
-			DownDiagLineTwo = EMPTY;
-		} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-			DownDiagLineTwo++;
-			DownDiagLineOne = EMPTY;
+		if (getCurrentSquare().getPlayer() == PLAYER_ONE) {
+			setDownDiagLineOne(getDownDiagLineOne() + 1);
+			setDownDiagLineTwo(EMPTY);
+		} else if (getCurrentSquare().getPlayer() == PLAYER_TWO) {
+			setDownDiagLineTwo(getDownDiagLineTwo() + 1);
+			setDownDiagLineOne(EMPTY);
 		} else {
-			DownDiagLineOne = EMPTY;
-			DownDiagLineTwo = EMPTY;
+			setDownDiagLineOne(EMPTY);
+			setDownDiagLineTwo(EMPTY);
 		}
 		
 		// Check if a win condition was reached
-		if (DownDiagLineOne >= WIN_LENGTH) {
-			PlayerOneWin = true;
+		if (getDownDiagLineOne() >= WIN_LENGTH) {
+			setPlayerOneWin(true);
 		}
 				
-		if (DownDiagLineTwo >= WIN_LENGTH) {
-			PlayerTwoWin = true;
+		if (getDownDiagLineTwo() >= WIN_LENGTH) {
+			setPlayerTwoWin(true);
 		}
 		
 	}
@@ -214,20 +322,22 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 			// Loops through columns
 			for (int y = 3; y < COLUMN_LENGTH ; y++) {
 
-				UpDiagLineOne = EMPTY;
-				UpDiagLineTwo = EMPTY;
+				setUpDiagLineOne(EMPTY);
+				setUpDiagLineTwo(EMPTY);
 				
 				// Loops through a diagonal direction (opposite to DownDiag)
-				currentSquare = currentBoard[y][x];
-				upDiagSquares(currentSquare);
-				currentSquare = currentBoard[y-1][x+1];
-				upDiagSquares(currentSquare);
-				currentSquare = currentBoard[y-2][x+2];
-				upDiagSquares(currentSquare);
-				currentSquare = currentBoard[y-3][x+3];
-				upDiagSquares(currentSquare);	
-					
+				setCurrentSquare(getCurrentBoard()[y][x]);
+				upDiagSquares(getCurrentSquare());
 				
+				setCurrentSquare(getCurrentBoard()[y-1][x+1]);
+				upDiagSquares(getCurrentSquare());
+				
+				setCurrentSquare(getCurrentBoard()[y-2][x+2]);
+				upDiagSquares(getCurrentSquare());
+				
+				setCurrentSquare(getCurrentBoard()[y-3][x+3]);
+				upDiagSquares(getCurrentSquare());
+								
 			}
 		}
 	}
@@ -239,29 +349,30 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 	private void upDiagSquares(C4Square square) {
 			
 		// Analyses the current Square indicated by the index		
-		if (currentSquare.getPlayer() == PLAYER_ONE) {
-			UpDiagLineOne++;
-			UpDiagLineTwo = EMPTY;
-		} else if (currentSquare.getPlayer() == PLAYER_TWO) {
-			UpDiagLineTwo++;
-			UpDiagLineOne = EMPTY;
+		if (getCurrentSquare().getPlayer() == PLAYER_ONE) {
+			setUpDiagLineOne(getUpDiagLineOne() + 1);
+			setUpDiagLineTwo(EMPTY);
+		} else if (getCurrentSquare().getPlayer() == PLAYER_TWO) {
+			setUpDiagLineTwo(getUpDiagLineTwo() + 1);
+			setUpDiagLineOne(EMPTY);
 		} else {
-			UpDiagLineOne = EMPTY;
-			UpDiagLineTwo = EMPTY;
+			setUpDiagLineOne(EMPTY);
+			setUpDiagLineTwo(EMPTY);
 		}
 		
 		// Check if a win condition was reached
-		if (UpDiagLineOne >= WIN_LENGTH) {
-			PlayerOneWin = true;
+		if (getUpDiagLineOne() >= WIN_LENGTH) {
+			setPlayerOneWin(true);
 		}
 				
-		if (UpDiagLineTwo >= WIN_LENGTH) {
-			PlayerTwoWin = true;
+		if (getUpDiagLineTwo() >= WIN_LENGTH) {
+			setPlayerTwoWin(true);
 		}
 	}
 	
 	
 }
+	
 	
 	
 	
