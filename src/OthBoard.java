@@ -16,6 +16,8 @@ public class OthBoard extends AbstractBoard{
 	// TW Code
     private OthRules othrules;
     private int[][] validMoves;
+	private boolean anyMovesOne;
+    private boolean anyMovesTwo;
 	
     public OthBoard(){
         super(COLUMN, ROW);
@@ -129,6 +131,68 @@ public class OthBoard extends AbstractBoard{
         }
         return true;
     }
+	
+	private void checkGameOver(OthGame game) {
+    	
+    	// Code for ending game
+        System.out.println(game.getOthCounters());
+        if(game.getOthCounters() == MAX_COUNTERS) {
+        	if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+    			System.out.println("Evaluated: Draw!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+    			System.out.println("Evaluated: Player 1 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+    			System.out.println("Evaluated: Player 2 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		}
+      	}
+        
+        validMoves = othrules.checkValidSet(game.getInPlayCounters());
+        anyMovesOne = false;
+        anyMovesTwo = false;
+        
+        for(int i = 0; i < COLUMN; i++) {
+        	for(int j = 0; j < ROW; j++) {
+        		
+        		if(validMoves[i][j] == PLAYER_1 || validMoves[i][j] == BOTH_PLAYERS) {
+        			if(!m_board[i][j].isUsed()) {
+        				anyMovesOne = true;
+        			}
+        		}
+        		if(validMoves[i][j] == PLAYER_2 || validMoves[i][j] == BOTH_PLAYERS) {
+        			if(!m_board[i][j].isUsed()) {
+        				anyMovesTwo = true;
+        			}
+        		}
+        	}
+        }
+        
+        if(game.getTurn() == PLAYER_1 && anyMovesOne == false) {
+        	if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+    			System.out.println("Evaluated: Draw!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+    			System.out.println("Evaluated: Player 1 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+    			System.out.println("Evaluated: Player 2 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		}
+        }else if(game.getTurn() == PLAYER_2 && anyMovesTwo == false) {
+        	if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+    			System.out.println("Evaluated: Draw!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+    			System.out.println("Evaluated: Player 1 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		} else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+    			System.out.println("Evaluated: Player 2 win!");
+    			System.out.println("PLACEHOLDER: EXIT GAME");
+    		}
+        }      
+    }
 
     private static final int ROW = 8;
     private static final int COLUMN = 8;
@@ -144,7 +208,9 @@ public class OthBoard extends AbstractBoard{
     private static final int PLAYER_1 = 1;
     private static final int PLAYER_2= 2;
     // TW Test Code
+    private static final int NO_WINNER = 0;
     private static final int BOTH_PLAYERS = 3;
+    private static final int MAX_COUNTERS = 60;
     
     private int X_POS = 100;
     private int Y_POS = 50;
