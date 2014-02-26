@@ -28,7 +28,7 @@ public class OthGame extends AbstractGame {
     private OthRules othRules;
     private int currentCounters = 0;
 	
-    private OthBoard othBoard;
+    private OthBoard m_Board;
     private OthGameInfo othGameInfo;
 
 
@@ -38,9 +38,9 @@ public class OthGame extends AbstractGame {
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
-        this.othBoard = new OthBoard();
+        this.m_Board = new OthBoard();
         this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
-        othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
+        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
         othRules = new OthRules();
@@ -69,16 +69,16 @@ public class OthGame extends AbstractGame {
      * @return OthBoard
      */
     public OthBoard getOthBoard() {
-        return othBoard;
+        return m_Board;
     }
 
     /**
      * Set OthBoard
-     * @param  c4Board
+     * @param  othBoard
      * @return null
      */
-    public void setOthBoard(C4Board c4Board) {
-        this.othBoard = othBoard;
+    public void setOthBoard(OthBoard othBoard) {
+        this.m_Board = othBoard;
     }
 
 	/**
@@ -111,7 +111,12 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-	/**
+    @Override
+    public OthBoard getBoard() {
+        return m_Board;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    /**
 	 * Game begin, Create Counter and Board
 	 *
 	 * @return Nothing is returned from the method.
@@ -119,7 +124,7 @@ public class OthGame extends AbstractGame {
     @Override
     public void playGame() {
         currentCounter = new OthCounter(PLAYER_1);
-        othBoard = new OthBoard();
+        m_Board = new OthBoard();
     }
 
 	/**
@@ -141,8 +146,8 @@ public class OthGame extends AbstractGame {
     	if (getOthCounters() > 1) {
     		if(othRules.winCondition(m_InPlayCounters) == 0) {
     			System.out.println("Evaluated: Draw!");
-                scorefont.drawString(100,200, "Player 1: "+ getScore());
-                scorefont.drawString(200,200, "Player 2: "+ getScore());
+                //scorefont.drawString(100,200, "Player 1: "+ getScore());
+                //scorefont.drawString(200,200, "Player 2: "+ getScore());
 
     		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
     			System.out.println("Evaluated: Player 1 win!");

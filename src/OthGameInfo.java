@@ -1,6 +1,9 @@
-import java.awt.Font;
-import java.awt.Color;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
+
+import java.awt.Font;
+
 
 /**
  * Created by Chris on 24/02/14.
@@ -12,15 +15,26 @@ public class OthGameInfo {
     private boolean player1Wins;
     private boolean player2Wins;
 
-    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
-    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
+//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+//    Font awtFont = new Font("Arial", Font.BOLD, 70);
+    private Font font;
+    private TrueTypeFont fontX;
+
+    public OthGameInfo(){
+        font = new Font("Arial", Font.BOLD, 30);
+    }
+
+    public void draw(AbstractGame game){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        Color.white.bind();
+        fontX = new TrueTypeFont(font, false);
+        fontX.drawString(100, 400, "Welcome to Othello");
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+    }
 
 
-    Font awtFont = new Font("Arial", Font.BOLD, 70);
-    TrueTypeFont font = new TrueTypeFont(awtFont, false);
-    font.drawString(100, 400, "Welcome to Othello");
 
-     **/
     /**
      *Sets the Font
      */

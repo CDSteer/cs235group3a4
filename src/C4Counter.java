@@ -18,9 +18,9 @@ import static org.lwjgl.opengl.GL11.glColor3d;
  */
 public class C4Counter extends AbstractCounter {
 
-    private Audio wavEffect;
+    private Audio m_PlaceSound;
     private Audio m_NegSound;
-    private Audio drop;
+    private Audio m_DropSound;
     private boolean m_Test = true;
 
     /**
@@ -39,9 +39,9 @@ public class C4Counter extends AbstractCounter {
      */
     private void setSoundFiles(){
         try {
-            wavEffect = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
+            m_PlaceSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/coin-drop-4.wav"));
             m_NegSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/negative.wav"));
-            drop = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/drop.wav"));
+            m_DropSound = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/sound/drop.wav"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Sound files not found, Exiting......");
@@ -54,13 +54,28 @@ public class C4Counter extends AbstractCounter {
             System.exit(1);
         }
     }
+
+    /**
+     * sets colour buffer corresponding objects player to draw the correct colour
+     *
+     * @return void
+     */
+    @Override
+    public void setColor() {
+        if (getPlayer() == PLAYER_1) {
+            glColor3d(1, 0, 0);
+        } else if (getPlayer() == PLAYER_2) {
+            glColor3d(1, PLAYER2_COLOR, 0);
+        }
+    }
+
     /**
      * plays sound of counter dropping into grid
      *
      * @return void
      */
-    public void playSound(){
-        wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
+    public void playPlaceSound(){
+        m_PlaceSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
     /**
@@ -77,23 +92,9 @@ public class C4Counter extends AbstractCounter {
      *
      * @return void
      */
-    public void dropSound(){
-        drop.playAsSoundEffect(1.0f, 1.0f, false);
+    public void playDropSound(){
+        m_DropSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
-    }
-
-    /**
-     * sets colour buffer corresponding objects player to draw the correct colour
-     *
-     * @return void
-     */
-    @Override
-    public void setColor() {
-        if (getPlayer() == PLAYER_1) {
-            glColor3d(1, 0, 0);
-        } else if (getPlayer() == PLAYER_2) {
-            glColor3d(1, PLAYER2_COLOR, 0);
-        }
     }
 
     /**

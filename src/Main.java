@@ -93,7 +93,7 @@ public class Main extends JFrame {
         while (game.isRunning()) {
             gameInput.inputLoop(game.getCurrentCounter());
             game.gameLoop(game, time.getDelta());
-            display.render(game.getC4Board(), game.getCurrentCounter(), game.getOnScreenCounters());
+            display.render(game);
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {
@@ -125,7 +125,7 @@ public class Main extends JFrame {
         while (game.isRunning()) {
             gameInput.inputLoop(game);
             game.gameLoop(game, time.getDelta());
-            display.render(game.getOthBoard(), game.getCurrentCounter(), game.getOnScreenCounters());
+            display.render(game);
             Display.update();
             Display.sync(time.getFrameRate());
             if (Display.isCloseRequested()) {

@@ -136,9 +136,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
 
     public abstract void setColor();
-    public abstract void playSound();
+    public abstract void playPlaceSound();
     public abstract void playNegSound();
-    public abstract void dropSound();
 
     private final float ANGLE_LOOP_START = 1.0f;
     private final float ANGLE_LOOP_MAX = 10.61E02f;

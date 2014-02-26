@@ -23,28 +23,21 @@ public class C4Display extends AbstractDisplay{
         //make a c4infodisplay
     }
 
+    private static final int WIDTH = 640;
+    private static final int HEIGHT = 480;
+
     @Override
-	
-	/**
-	* Description plz~
-	* @param AbstractBoard, AbstractCounter
-	* @return null
-	*/
-    public void render(AbstractBoard c4Board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
+    public void render(AbstractGame game) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        currentCounter.draw();
-        for (AbstractCounter counters : onScreenCounters) {
+        game.getCurrentCounter().draw();
+        for (AbstractCounter counters : game.getOnScreenCounters()) {
             counters.draw();
         }
 
-        c4Board.draw();
-        //C4InfoDisplay.draw(C4Game);
+        game.getBoard().draw();
+        //C4InfoDisplay.draw(game);
 
         //call C4InfoDisplay here
-
     }
-
-    private static final int WIDTH = 640;
-    private static final int HEIGHT = 480;
 }

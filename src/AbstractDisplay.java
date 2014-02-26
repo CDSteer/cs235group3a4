@@ -51,18 +51,14 @@ public abstract class AbstractDisplay implements GameDisplay{
    @Override
    public void setUpOpenGL(){
        // Initialization code OpenGL
-
-
        // enable alpha blending
        glEnable(GL_BLEND);
        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
        glMatrixMode(GL_PROJECTION);
        glLoadIdentity();
        glOrtho(LEFT_COORDINATES, RIGHT_COORDINATES, BOTTOM_COORDINATES, TOP_COORDINATES, ZNEAR_COORDINATES, ZFAR_COORDINATES);
        glMatrixMode(GL_MODELVIEW);
-
-
     }
+
+    public abstract void render(AbstractGame game);
 }

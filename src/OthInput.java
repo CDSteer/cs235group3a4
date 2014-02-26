@@ -19,7 +19,7 @@ public class OthInput extends AbstractInput{
   * In the inputLoop Method, we employ a while loop which constantly checks for the next action
   * of the mouse, if a left-click from the mouse is detected then we return the state of the board
   * and calls another method, placeCounter which takes the OthGame object and places a counter.
-  * @param OthGame game
+  * @param  game
   * @return Nothing is returned from the method as it is void.
   */
 

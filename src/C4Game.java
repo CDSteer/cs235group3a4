@@ -23,7 +23,7 @@ public class C4Game extends AbstractGame{
     
     // TW Test Code
     private C4Rules c4rules;
-    private C4Board c4Board;
+    private C4Board m_Board;
 
 	/**
 	* @brief Collecting and storing every data from graphic, rules, player.
@@ -38,7 +38,7 @@ public class C4Game extends AbstractGame{
         this.player1 = new HumPlayer(PLAYER1);
         this.player2 = new HumPlayer(PLAYER2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
-        this.c4Board = new C4Board();
+        this.m_Board = new C4Board();
         // TW Test Code
         c4rules = new C4Rules();
         
@@ -48,8 +48,8 @@ public class C4Game extends AbstractGame{
 	 * @see C4Board
 	 * @return C4Board
 	 */
-    public C4Board getC4Board() {
-        return c4Board;
+    public C4Board getBoard() {
+        return m_Board;
     }
 
 	/**
@@ -58,8 +58,8 @@ public class C4Game extends AbstractGame{
 	 * @param  c4Board
 	 * @return null
 	 */
-    public void setC4Board(C4Board c4Board) {
-        this.c4Board = c4Board;
+    public void setBoard(C4Board c4Board) {
+        this.m_Board = c4Board;
     }
 
 	/**
@@ -89,7 +89,7 @@ public class C4Game extends AbstractGame{
     @Override
     public void playGame() {
         currentCounter = new C4Counter();
-        c4Board = new C4Board();
+        m_Board = new C4Board();
     }
 
 	/**
@@ -106,11 +106,11 @@ public class C4Game extends AbstractGame{
             currentCounter.setPlayer(PLAYER1);
         }
         // TW Test Code
-        if(c4rules.winCondition(c4Board) == 0) {
+        if(c4rules.winCondition(m_Board) == 0) {
         	System.out.println("Evaluated: No Winner");
-        } else if (c4rules.winCondition(c4Board) == PLAYER1) {
+        } else if (c4rules.winCondition(m_Board) == PLAYER1) {
         	System.out.println("Evaluated: Player 1 Wins");
-        } else if (c4rules.winCondition(c4Board) == PLAYER2) {
+        } else if (c4rules.winCondition(m_Board) == PLAYER2) {
         	System.out.println("Evaluated: Player 2 Wins");
         } else {
         	System.out.println("Error: No Evaluation");
@@ -159,7 +159,7 @@ public class C4Game extends AbstractGame{
     @Override
     public void gameLoop(AbstractGame game, int delta) {
         currentCounter.dropCounter(delta);
-        if (c4Board.placeCounter(currentCounter, this.onScreenCounters)){
+        if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
             this.nextTurn();
         }
 

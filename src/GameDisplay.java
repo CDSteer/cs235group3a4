@@ -1,5 +1,3 @@
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  *
@@ -10,5 +8,5 @@ import java.util.List;
 public interface GameDisplay {
     public void setUpDisplay();
     public void setUpOpenGL();
-    public void render(AbstractBoard board, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters);
+    public void render(AbstractGame game);
 }

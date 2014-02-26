@@ -1,8 +1,3 @@
-import java.util.List;
-import java.awt.Font;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.TrueTypeFont;
-
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
@@ -17,27 +12,26 @@ import static org.lwjgl.opengl.GL11.glClear;
  * @version *.*
  */
 public class OthDisplay extends AbstractDisplay{
+    private OthGameInfo othGameInfo;
     public OthDisplay() {
         super(WIDTH, HEIGHT, "Othello");
-
-    }
-
-	/**
-	* Description plz~
-	* @param AbstractBoard, AbstractCounter, List<AbstractCounter>
-	* @return null
-	*/
-    @Override
-    public void render(AbstractBoard othBoard, AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters) {
-        glClear(GL_COLOR_BUFFER_BIT);
-        othBoard.draw();
-        //OthInfoDisplay.draw(OthGAME);
-        for (AbstractCounter counters : onScreenCounters) {
-            counters.draw();
-        }
-
+        othGameInfo = new OthGameInfo();
     }
 
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
+
+    @Override
+    public void render(AbstractGame game) {
+
+        glClear(GL_COLOR_BUFFER_BIT);
+        game.getBoard().draw();
+        //OthInfoDisplay.draw(OthGAME);
+        for (AbstractCounter counters : game.getOnScreenCounters()) {
+            counters.draw();
+        }
+
+        othGameInfo.draw(game);
+
+    }
 }

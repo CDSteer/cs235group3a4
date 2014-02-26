@@ -71,7 +71,7 @@ public class OthCounter extends AbstractCounter {
      * @return void
      */
     @Override
-    public void playSound() {
+    public void playPlaceSound() {
         m_wavEffect.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
@@ -85,16 +85,6 @@ public class OthCounter extends AbstractCounter {
         m_NegSound.playAsSoundEffect(1.0f, 1.0f, false);
         SoundStore.get().poll(0);
     }
-    /**
-     * not sure if needed yet
-     *
-     * @return void
-     */
-    @Override
-    public void dropSound() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
 
     private static final float RADIUS = 10;
     private static final double X = 115;
