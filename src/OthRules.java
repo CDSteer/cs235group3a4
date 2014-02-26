@@ -3,7 +3,7 @@
  * @file OthRules.java
  * @author Thomas Werner
  * @date 25/2/2014
- * @version 1.0.1
+ * @version 1.0.2
  *
  * @details Provides the win condition for a game of Othello,
  * 			to be evaluated after every player move.
@@ -12,6 +12,7 @@
  */
 public class OthRules { // extends GameRules (temporarily taken out)
 
+	// Constants used by the class
 	private final int OTH_ROWS = 8;
 	private final int OTH_COLUMNS = 8;
 	private final int NO_WINNER = 0;
@@ -20,22 +21,81 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private final int BOTH_PLAYERS = 3;
 	private final int NO_MATCH = 0;
 	
-	private int player1Counters;
-	private int player2Counters;
+	// variables holding counter numbers
+	private int m_player1Counters;
+	private int m_player2Counters;
 	
-	private OthCounter currentCounter;
-	private OthCounter checkCounter;
-	private int[][] validMoves;	
-	private int current_x;
-	private int current_y;
+	private OthCounter m_currentCounter;
+	private OthCounter m_checkCounter;
+	private int[][] m_validMoves;	
+	private int m_currentX;
+	private int m_currentY;
 	
+	// Accessor methods for class variables
 	
-
+	private int getPlayer1Counters() {
+		return m_player1Counters;
+	}
+	
+	private void setPlayer1Counters(int value) {
+		m_player1Counters = value;
+	}
+	
+	private int getPlayer2Counters() {
+		return m_player2Counters;
+	}
+	
+	private void setPlayer2Counters(int value) {
+		m_player2Counters = value;
+	}
+	
+	private OthCounter getCurrentCounter() {
+		return m_currentCounter;
+	}
+	
+	private void setCurrentCounter(OthCounter counter) {
+		m_currentCounter = counter;
+	}
+	
+	private OthCounter getCheckCounter() {
+		return m_checkCounter;
+	}
+	
+	private void setCheckCounter(OthCounter counter) {
+		m_checkCounter = counter;
+	}
+	
+	private int[][] getValidMoves() {
+		return m_validMoves;
+	}
+	
+	private void setValidMoves(int[][] array) {
+		m_validMoves = array;
+	}
+	
+	private int getCurrentX() {
+		return m_currentX;
+	}
+	
+	private void setCurrentX(int value) {
+		m_currentX = value;
+	}
+	
+	private int getCurrentY() {
+		return m_currentY;
+	}
+	
+	private void setCurrentY(int value) {
+		m_currentY = value;
+	}
+	
+	// Accessor methods end
+	
 	/** 
 	 * Constructor
 	 */
 	public OthRules() {}
-
+	
 	
 	/**
 	 * Takes a 2D array of OthCounter objects as input and reviews if a player has won
@@ -46,24 +106,24 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 */
 	public int winCondition(OthCounter[][] board) {
 
-		player1Counters = 0;
-		player2Counters = 0;
+		setPlayer1Counters(0);
+		setPlayer2Counters(0);
 
 		for(int i = 0; i < OTH_ROWS; i++) {
 			for (int j = 0; j < OTH_COLUMNS; j++) {
 
-				currentCounter = board[j][i];
-				if(currentCounter.getPlayer() == PLAYER_ONE) {
-					player1Counters++;
-				} else if(currentCounter.getPlayer() == PLAYER_TWO) {
-					player2Counters++;
+				setCurrentCounter(board[j][i]);
+				if(getCurrentCounter().getPlayer() == PLAYER_ONE) {
+					setPlayer1Counters(getPlayer1Counters() + 1);
+				} else if(getCurrentCounter().getPlayer() == PLAYER_TWO) {
+					setPlayer2Counters(getPlayer2Counters() + 1);
 				}
 			}
 		}
 
-		if (player1Counters > player2Counters) {
+		if (getPlayer1Counters() > getPlayer2Counters()) {
 			return PLAYER_ONE;
-		} else if (player2Counters > player1Counters) {
+		} else if (getPlayer2Counters() > getPlayer1Counters()) {
 			return PLAYER_TWO;
 		} else {
 			return NO_WINNER;
@@ -84,47 +144,91 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	 * @param player The player value for the requested move
 	 */
 	public void flipCounters(OthCounter[][] initialBoard, int col, int row, int player) {
-		System.out.println("col: " + col);
-		System.out.println("row " + row);
-	
-
 
 		// Vertical Down first
-		if(col + 1 != OTH_COLUMNS && initialBoard[col+1][row].getPlayer() != NO_MATCH) {
-			VD: for (int j = col + 1; j < OTH_COLUMNS; j++) {			
-				checkCounter = initialBoard[j][row];		
-				if(checkCounter.getPlayer() == player) {
+		flipVerticalDown(initialBoard, col, row, player);
+		
+		// Vertical Up
+		flipVerticalUp(initialBoard, col, row, player);
+		
+		// Rows right
+		flipRowsRight(initialBoard, col, row, player);
+
+		// Rows left
+		flipRowsLeft(initialBoard, col, row, player);
+				
+		// Diagonal up-right
+		flipDiagonalUpRight(initialBoard, col, row, player);
+		
+		// Diagonal up-left
+		flipDiagonalUpLeft(initialBoard, col, row, player);
+		
+		// Diagonal down-right
+		flipDiagonalDownRight(initialBoard, col, row, player);
+		
+		// Diagonal down-left
+		flipDiagonalDownLeft(initialBoard, col, row, player);
+					
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipVerticalDown(OthCounter[][] initialBoard, int col, int row, int player) {
+		
+		if(col + 1 != OTH_COLUMNS 
+		&& initialBoard[col+1][row].getPlayer() != NO_MATCH) {
+		
+			VD: 
+			for (int j = col + 1; j < OTH_COLUMNS; j++) {			
+				setCheckCounter(initialBoard[j][row]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break VD;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int y = j; y > col; y--) {
-						initialBoard[y][row].setPlayer(player);						
+					initialBoard[y][row].setPlayer(player);						
 					}
 					break VD;
 				}				
 			}
 		}
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipVerticalUp(OthCounter[][] initialBoard, int col, int row, int player) {
 		
-		
-		// Vertical Up
 		if(col != 0 && initialBoard[col-1][row].getPlayer() != NO_MATCH) {
-			VD: for (int j = col - 1; j >= 0; j--) {		
-				checkCounter = initialBoard[j][row];
-				if(checkCounter.getPlayer() == player) {
+		
+			VU: 
+			for (int j = col - 1; j >= 0; j--) {		
+				setCheckCounter(initialBoard[j][row]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break VU;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int y = j; y < col; y++) {
 						initialBoard[y][row].setPlayer(player);						
 					}
-					break VD;
-				}
-				
+					break VU;
+				}				
 			}
 		}
-
+	}	
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipRowsRight(OthCounter[][] initialBoard, int col, int row, int player) {
 		
-		
-		
-		// Rows right
 		if(row + 1 != OTH_ROWS && initialBoard[col][row+1].getPlayer() != NO_MATCH) {
-			RR: for(int i = row + 1; i < OTH_ROWS; i++) {		
-				checkCounter = initialBoard[col][i];
-				if(checkCounter.getPlayer() == player) {
+		
+			RR: 
+			for(int i = row + 1; i < OTH_ROWS; i++) {		
+				setCheckCounter(initialBoard[col][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break RR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i; x > row; x--) {
 						initialBoard[col][x].setPlayer(player);
 					}
@@ -133,12 +237,21 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				
 			}
 		}
-
-		// Rows left
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipRowsLeft(OthCounter[][] initialBoard, int col, int row, int player) {
+		
 		if(row != 0 && initialBoard[col][row-1].getPlayer() != NO_MATCH) {
-			RL: for(int i = row - 1; i >= 0; i--) {		
-				checkCounter = initialBoard[col][i];
-				if(checkCounter.getPlayer() == player) {
+		
+			RL: 
+			for(int i = row - 1; i >= 0; i--) {		
+				setCheckCounter(initialBoard[col][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break RL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i; x < row; x++) {
 						initialBoard[col][x].setPlayer(player);
 					}
@@ -147,14 +260,22 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				
 			}
 		}
-
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipDiagonalUpRight(OthCounter[][] initialBoard, int col, int row, int player) {	
 		
+		if(col != 0 && row + 1 != OTH_ROWS 
+		&& initialBoard[col-1][row+1].getPlayer() != NO_MATCH) {
 		
-		// Diagonal up-right
-		if(col != 0 && row + 1 != OTH_ROWS && initialBoard[col-1][row+1].getPlayer() != NO_MATCH) {
-			DUR: for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
-				checkCounter = initialBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
+			DUR: 
+			for (int i = row + 1, j = col - 1; i < OTH_ROWS && j >= 0; i++, j--) {
+				setCheckCounter(initialBoard[j][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DUR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i - 1, y = j + 1; x > row && y < col; x--, y++) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -162,12 +283,22 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				}
 			}
 		}
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipDiagonalUpLeft(OthCounter[][] initialBoard, int col, int row, int player) {	
 		
-		// Diagonal up-left
-		if(col!= 0 && row != 0 && initialBoard[col-1][row-1].getPlayer() != NO_MATCH) {
-			DUL: for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-				checkCounter = initialBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
+		if(col!= 0 && row != 0 
+		&& initialBoard[col-1][row-1].getPlayer() != NO_MATCH) {
+		
+			DUL: 
+			for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+				setCheckCounter(initialBoard[j][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DUL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i + 1, y = j + 1; x < row && y < col; x++, y++) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -175,12 +306,21 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				}
 			}
 		}
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipDiagonalDownRight(OthCounter[][] initialBoard, int col, int row, int player) {
+		if(col + 1 != OTH_COLUMNS && row + 1 != OTH_ROWS 
+		&& initialBoard[col+1][row+1].getPlayer() != NO_MATCH) {
 		
-		// Diagonal down-right
-		if(col + 1 != OTH_COLUMNS && row + 1 != OTH_ROWS && initialBoard[col+1][row+1].getPlayer() != NO_MATCH) {
-			DDR: for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
-				checkCounter = initialBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
+			DDR: 
+			for(int i = row + 1, j = col + 1; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
+				setCheckCounter(initialBoard[j][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DDR;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i - 1, y = j - 1; x > row && y > col; x--, y--) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -188,12 +328,22 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				}
 			}
 		}
+	}
+	
+	/** Specific direction flipping
+	 * @brief see flipCounters for parameters
+	 */
+	private void flipDiagonalDownLeft(OthCounter[][] initialBoard, int col, int row, int player) {
+	
+		if(col + 1 != OTH_COLUMNS && row != 0 
+		&& initialBoard[col+1][row-1].getPlayer() != NO_MATCH) {
 		
-		// Diagonal down-left
-		if(col + 1 != OTH_COLUMNS && row != 0 && initialBoard[col+1][row-1].getPlayer() != NO_MATCH) {
-			DDL: for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
-				checkCounter = initialBoard[j][i];
-				if(checkCounter.getPlayer() == player) {
+			DDL: 
+			for(int i = row - 1, j = col + 1; i >= 0 && j < OTH_COLUMNS; i--, j++) {
+				setCheckCounter(initialBoard[j][i]);
+				if(getCheckCounter().getPlayer() == NO_MATCH) {
+					break DDL;
+				} else if(getCheckCounter().getPlayer() == player) {
 					for(int x = i + 1, y = j - 1; x < row && y > col; x++, y--) {
 						initialBoard[y][x].setPlayer(player);
 					}
@@ -201,33 +351,30 @@ public class OthRules { // extends GameRules (temporarily taken out)
 				}
 			}
 		}
-		
-			
 	}
-		
-		
+	
 		
 	/**
 	 * This method creates a 2D array of integers, representing each tile on an Othello board, 
 	 * where each integer value states which players have valid moves on this tile.
 	 * The integer values are:
 	 * 
-	 * validMoves[col][row] = 0; No Player has a valid move here
-	 * validMoves[col][row] = 1; Player 1 has a valid move here
-	 * validMoves[col][row] = 2; Player 2 has a valid move here
-	 * validMoves[col][row] = 3; Both players have a valid move here
+	 * m_validMoves[col][row] = 0; No Player has a valid move here
+	 * m_validMoves[col][row] = 1; Player 1 has a valid move here
+	 * m_validMoves[col][row] = 2; Player 2 has a valid move here
+	 * m_validMoves[col][row] = 3; Both players have a valid move here
 	 *
 	 * @param board An array holding the current board state
-	 * @return The validMoves[][] array of integer values representing players
+	 * @return The m_validMoves[][] array of integer values representing players
 	 */
 	public int[][] checkValidSet(OthCounter[][] board) {
 		
-		validMoves = new int[OTH_COLUMNS][OTH_ROWS];
+		setValidMoves(new int[OTH_COLUMNS][OTH_ROWS]);
 		
 		// Sets all tiles to 0 (no player has a valid move)
 		for(int j = 0; j < OTH_COLUMNS; j++) {
 			for (int i = 0; i < OTH_ROWS; i++) {
-				validMoves[j][i] = NO_MATCH;
+				getValidMoves()[j][i] = NO_MATCH;
 			}
 		}
 		
@@ -235,8 +382,8 @@ public class OthRules { // extends GameRules (temporarily taken out)
 		for(int j = 0; j < OTH_COLUMNS; j++) {
 			for (int i = 0; i < OTH_ROWS; i++) {
 			
-				current_y = j;
-				current_x = i;
+				setCurrentY(j);
+				setCurrentX(i);
 				// Checking for valid moves is done for each player individually
 				checkAvailableMatch(board, j, i, PLAYER_ONE);
 				checkAvailableMatch(board, j, i, PLAYER_TWO);
@@ -246,7 +393,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			}
 		}
 		
-		return validMoves;
+		return getValidMoves();
 	
 	}
 	
@@ -270,129 +417,218 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private void checkAvailableMatch(OthCounter[][] board, int col, int row, int player) {
 				
 		// Vertical down first
+		checkVerticalDown(board, col, row, player);
+			
+		// Vertical up
+		checkVerticalUp(board, col, row, player);
+		
+		// Rows right
+		checkRowsRight(board, col, row, player);
+		
+		// Rows left
+		checkRowsLeft(board, col, row, player);
+		
+		// Diagonal up-right
+		checkDiagonalUpRight(board, col, row, player);
+			
+		// Diagonal up-left
+		checkDiagonalUpLeft(board, col, row, player);
+				
+		// Diagonal down-right
+		checkDiagonalDownRight(board, col, row, player);
+		
+		// Diagonal down-left
+		checkDiagonalDownLeft(board, col, row, player);
+		
+		
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkVerticalDown(OthCounter[][] board, int col, int row, int player) {
+		
 		if((col + 1) != OTH_COLUMNS) {
-			if( (board[col+1][row].getPlayer() != player) && (board[col+1][row].getPlayer() != NO_MATCH) ) {
-				VD: for (int j = col + 2; j < OTH_COLUMNS; j++) {
-					checkCounter = board[j][row];
+			if( (board[col+1][row].getPlayer() != player) 
+			&& (board[col+1][row].getPlayer() != NO_MATCH) ) {
+				
+				VD: 
+				for (int j = col + 2; j < OTH_COLUMNS; j++) {
+					setCheckCounter(board[j][row]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break VD;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkVerticalUp(OthCounter[][] board, int col, int row, int player) {
 		
-		// Vertical up
 		if(col != 0) {
-			if( (board[col-1][row].getPlayer() != player) && (board[col-1][row].getPlayer() != NO_MATCH) ) {
-				VU: for (int j = col - 2; j >= 0; j--) {		
-					checkCounter = board[j][row];
+			if( (board[col-1][row].getPlayer() != player) 
+			&& (board[col-1][row].getPlayer() != NO_MATCH) ) {
+				
+				VU: 
+				for (int j = col - 2; j >= 0; j--) {		
+					setCheckCounter(board[j][row]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break VU;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkRowsRight(OthCounter[][] board, int col, int row, int player) {
 		
-		// Rows right
 		if((row + 1) != OTH_ROWS) {
-			if( (board[col][row+1].getPlayer() != player) && (board[col][row+1].getPlayer() != NO_MATCH) ) {
-				RR: for(int i = row + 2; i < OTH_ROWS; i++) {
-					checkCounter = board[col][i];
+			if( (board[col][row+1].getPlayer() != player) 
+			&& (board[col][row+1].getPlayer() != NO_MATCH) ) {
+				
+				RR: 
+				for(int i = row + 2; i < OTH_ROWS; i++) {
+					setCheckCounter(board[col][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break RR;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkRowsLeft(OthCounter[][] board, int col, int row, int player) {
 		
-		// Rows left
 		if(row != 0) {
-			if( (board[col][row-1].getPlayer() != player) && (board[col][row-1].getPlayer() != NO_MATCH) ) {
-				RL: for(int i = row - 2; i >= 0; i--) {			
-					checkCounter = board[col][i];
+			if( (board[col][row-1].getPlayer() != player) 
+			&& (board[col][row-1].getPlayer() != NO_MATCH) ) {
+				
+				RL: 
+				for(int i = row - 2; i >= 0; i--) {			
+					setCheckCounter(board[col][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break RL;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkDiagonalUpRight(OthCounter[][] board, int col, int row, int player) {
 		
-		// Diagonal up-right
 		if(col != 0 && (row + 1) != OTH_ROWS) {
-			if( (board[col-1][row+1].getPlayer() != player) && (board[col-1][row+1].getPlayer() != NO_MATCH) ) {
-				DUR: for (int i = row + 2, j = col - 2; i < OTH_ROWS && j >= 0; i++, j--) {
-					checkCounter = board[j][i];
+			if( (board[col-1][row+1].getPlayer() != player) 
+			&& (board[col-1][row+1].getPlayer() != NO_MATCH) ) {
+				
+				DUR: 
+				for (int i = row + 2, j = col - 2; i < OTH_ROWS && j >= 0; i++, j--) {
+					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break DUR;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkDiagonalUpLeft(OthCounter[][] board, int col, int row, int player) {
 		
-		// Diagonal up-left
 		if(col != 0 && row != 0) {
-			if( (board[col-1][row-1].getPlayer() != player) && (board[col-1][row-1].getPlayer() != NO_MATCH) ) {
-				DUL: for (int i = row - 2, j = col - 2; i >= 0 && j >= 0; i--, j--) {
-					checkCounter = board[j][i];
+			if( (board[col-1][row-1].getPlayer() != player) 
+			&& (board[col-1][row-1].getPlayer() != NO_MATCH) ) {
+				
+				DUL: 
+				for (int i = row - 2, j = col - 2; i >= 0 && j >= 0; i--, j--) {
+					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break DUL;
 					}
 				}
 			}
 		}
-				
-		// Diagonal down-right
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkDiagonalDownRight(OthCounter[][] board, int col, int row, int player) {
+		
 		if(col + 1 != OTH_COLUMNS && row + 1 != OTH_ROWS) {
-			if( (board[col+1][row+1].getPlayer() != player) && (board[col+1][row+1].getPlayer() != NO_MATCH) ) {
-				DDR: for(int i = row + 2, j = col + 2; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
-					checkCounter = board[j][i];
+			if( (board[col+1][row+1].getPlayer() != player) 
+			&& (board[col+1][row+1].getPlayer() != NO_MATCH) ) {
+				
+				DDR: 
+				for(int i = row + 2, j = col + 2; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
+					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break DDR;
 					}
 				}
 			}
 		}
+	}
+	
+	/** Specific direction checking
+	 * @brief see checkVerticalSet for parameters
+	 */
+	private void checkDiagonalDownLeft(OthCounter[][] board, int col, int row, int player) {
 		
-		// Diagonal down-left
 		if(col + 1 != OTH_COLUMNS && row != 0) {
-			if( (board[col+1][row-1].getPlayer() != player) && (board[col+1][row-1].getPlayer() != NO_MATCH) ) {
-				DDL: for(int i = row - 2, j = col + 2; i >= 0 && j < OTH_COLUMNS; i--, j++) {
-					checkCounter = board[j][i];
+			if( (board[col+1][row-1].getPlayer() != player) 
+			&& (board[col+1][row-1].getPlayer() != NO_MATCH) ) {
+				
+				DDL: 
+				for(int i = row - 2, j = col + 2; i >= 0 && j < OTH_COLUMNS; i--, j++) {
+					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
-					if(checkCounter.getPlayer() == 0) {
+					if(getCheckCounter().getPlayer() == 0) {
 						break DDL;
 					}
 				}
 			}
 		}
-		
-		
 	}
 	
+	
 	/**
-	 * This method updates whether there is a valid move at [current_y][current_x]
-	 * based on the analysis of the current counter stored in checkCounter .
+	 * This method updates whether there is a valid move at [m_currentY][m_currentX]
+	 * based on the analysis of the current counter stored in m_checkCounter .
 	 * 
 	 * @param player An integer value representing which player is being checking
 	 */
 	private void checkPlayerMatch(int player) {
 		
-		if (checkCounter.getPlayer() == NO_MATCH) {
+		if (getCheckCounter().getPlayer() == NO_MATCH) {
 			return;
-		} else if (checkCounter.getPlayer() == player) {
-			if(validMoves[current_y][current_x] == BOTH_PLAYERS) {
+		} else if (getCheckCounter().getPlayer() == player) {
+			if(getValidMoves()[getCurrentY()][getCurrentX()] == BOTH_PLAYERS) {
 				// do nothing
-			} else if(validMoves[current_y][current_x] == NO_MATCH) {
-				validMoves[current_y][current_x] = player;
-			} else if(validMoves[current_y][current_x] != player) {
-				validMoves[current_y][current_x] = BOTH_PLAYERS;
+			} else if(getValidMoves()[getCurrentY()][getCurrentX()] == NO_MATCH) {
+				getValidMoves()[getCurrentY()][getCurrentX()] = player;
+			} else if(getValidMoves()[getCurrentY()][getCurrentX()] != player) {
+				getValidMoves()[getCurrentY()][getCurrentX()] = BOTH_PLAYERS;
 			}
 		} 
 	
