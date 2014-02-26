@@ -8,8 +8,7 @@ import java.awt.Font;
 /**
  * Created by Chris on 24/02/14.
  */
-public class OthGameInfo {
-
+public class OthGameInfo extends AbstractGameInfo{
 
     //private Font scoreFont;
     private boolean player1Wins;
@@ -30,9 +29,15 @@ public class OthGameInfo {
         Color.white.bind();
         fontX = new TrueTypeFont(font, false);
         fontX.drawString(100, 400, "Welcome to Othello");
-        String turnText = "Turn: " + game.getTurn();
+        String turnText = "Player " + game.getTurn() + "'s turn";
         fontX.drawString(400, 200, turnText);
+
+        //still need to get the players scores and stick them
+        //in these strings
+        fontX.drawString(400, 100, "Player 1: ");
+        fontX.drawString(400, 150, "Player 2: ");
         GL11.glDisable(GL11.GL_TEXTURE_2D);
+
     }
 
 

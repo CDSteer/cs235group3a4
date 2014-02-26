@@ -7,7 +7,7 @@ import org.newdawn.slick.TrueTypeFont;
  * used to render the win text in game
  * Created by Chris on 24/02/14.
  */
-public class C4GameInfo {
+public class C4GameInfo extends AbstractGameInfo{
 
     private Font fontArial;
     private boolean player1Wins;
