@@ -29,7 +29,7 @@ public class OthGame extends AbstractGame {
     private int currentCounters1 = 0;
     private int currentCounters2 = 0;
 	
-    private OthBoard othBoard;
+    private OthBoard m_Board;
 
 
     public OthGame() {
@@ -38,9 +38,9 @@ public class OthGame extends AbstractGame {
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
-        this.othBoard = new OthBoard();
+        this.m_Board = new OthBoard();
         this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
-        othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
+        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
         othRules = new OthRules();
@@ -67,8 +67,9 @@ public class OthGame extends AbstractGame {
      * @param  /null
      * @return OthBoard
      */
-    public OthBoard getOthBoard() {
-        return othBoard;
+    @Override
+    public OthBoard getBoard(){
+        return m_Board;
     }
 
     /**
@@ -77,7 +78,7 @@ public class OthGame extends AbstractGame {
      * @return null
      */
     public void setOthBoard(C4Board c4Board) {
-        this.othBoard = othBoard;
+        this.m_Board = m_Board;
     }
 
 	/**
@@ -113,7 +114,6 @@ public class OthGame extends AbstractGame {
     public int getOthCounters2() {
     	return currentCounters2;
     }
-        
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
@@ -126,11 +126,6 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public AbstractBoard getBoard() {
-        return othBoard;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
     /**
 	 * Game begin, Create Counter and Board
 	 *
@@ -139,7 +134,7 @@ public class OthGame extends AbstractGame {
     @Override
     public void playGame() {
         currentCounter = new OthCounter(PLAYER_1);
-        othBoard = new OthBoard();
+        m_Board = new OthBoard();
     }
 
 	/**
@@ -156,24 +151,6 @@ public class OthGame extends AbstractGame {
 		
     }
 	
-//	public void blackTurn(){
-//		//nextTurn() must return sth.
-//		//or just implement it together.
-//	}
-//
-//	public void whiteTurn(){
-//		//nextTurn() must return sth.
-//		//or just implement it together.
-//	}
-//
-//	public void setBlack(player blackPlayer){
-//		//Waiting for display class
-//	}
-//
-//	public void setWhite(player whitePlayer){
-//		//waiting for display class
-//	}
-	
 	/**
 	 * This game determines the end of the game for Othello. The game will terminate and a message
      * is display if there is a winner, Player 1 or Player 2. There is also an option to reset the board
@@ -184,6 +161,4 @@ public class OthGame extends AbstractGame {
     public void gameOver() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
-	
-	
 }
