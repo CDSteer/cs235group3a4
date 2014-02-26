@@ -30,6 +30,8 @@ public class OthGameInfo {
         Color.white.bind();
         fontX = new TrueTypeFont(font, false);
         fontX.drawString(100, 400, "Welcome to Othello");
+        String turnText = "Turn: " + game.getTurn();
+        fontX.drawString(400, 200, turnText);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 

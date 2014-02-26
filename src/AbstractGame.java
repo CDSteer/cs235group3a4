@@ -31,4 +31,5 @@ public abstract class AbstractGame implements Game{
     public abstract void gameLoop(AbstractGame game, int delta);
 
     public abstract AbstractBoard getBoard();
+    public abstract int getTurn();
 }

@@ -20,7 +20,8 @@ public class C4Game extends AbstractGame{
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
-    
+    private int m_Turn;
+
     // TW Test Code
     private C4Rules c4rules;
     private C4Board m_Board;
@@ -52,7 +53,12 @@ public class C4Game extends AbstractGame{
         return m_Board;
     }
 
-	/**
+    @Override
+    public int getTurn() {
+        return m_Turn;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    /**
 	 * @brief Set C4Board
 	 * @see C4Board
 	 * @param  c4Board
