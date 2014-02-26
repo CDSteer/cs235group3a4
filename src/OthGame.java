@@ -26,10 +26,10 @@ public class OthGame extends AbstractGame {
     
     //TW Test Code
     private OthRules othRules;
-    private int currentCounters = 0;
+    private int currentCounters1 = 0;
+    private int currentCounters2 = 0;
 	
-    private OthBoard m_Board;
-    private OthGameInfo othGameInfo;
+    private OthBoard othBoard;
 
 
     public OthGame() {
@@ -38,13 +38,12 @@ public class OthGame extends AbstractGame {
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
         this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
-        this.m_Board = new OthBoard();
+        this.othBoard = new OthBoard();
         this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
-        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
+        othBoard.startingCounters(onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
         othRules = new OthRules();
-        othGameInfo = new OthGameInfo();
     }
 
     public OthCounter[][] getInPlayCounters() {
@@ -69,16 +68,16 @@ public class OthGame extends AbstractGame {
      * @return OthBoard
      */
     public OthBoard getOthBoard() {
-        return m_Board;
+        return othBoard;
     }
 
     /**
      * Set OthBoard
-     * @param  othBoard
+     * @param  c4Board
      * @return null
      */
-    public void setOthBoard(OthBoard othBoard) {
-        this.m_Board = othBoard;
+    public void setOthBoard(C4Board c4Board) {
+        this.othBoard = othBoard;
     }
 
 	/**
@@ -100,6 +99,21 @@ public class OthGame extends AbstractGame {
     public List<AbstractCounter> getOnScreenCounters() {
         return onScreenCounters;  //Is this ready yet?
     }
+    
+    // TW Test Method
+    public void incrementOthCounters() {
+    	currentCounters1++;
+    }
+    
+    // TW Test Method
+    public int getOthCounters1() {
+    	return currentCounters1;
+    }
+    
+    public int getOthCounters2() {
+    	return currentCounters2;
+    }
+        
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
@@ -111,12 +125,7 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public OthBoard getBoard() {
-        return m_Board;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    /**
+	/**
 	 * Game begin, Create Counter and Board
 	 *
 	 * @return Nothing is returned from the method.
@@ -124,7 +133,7 @@ public class OthGame extends AbstractGame {
     @Override
     public void playGame() {
         currentCounter = new OthCounter(PLAYER_1);
-        m_Board = new OthBoard();
+        othBoard = new OthBoard();
     }
 
 	/**
@@ -135,28 +144,10 @@ public class OthGame extends AbstractGame {
     public void nextTurn() {
         if (this.m_Turn == PLAYER_1){
             this.m_Turn = PLAYER_2;
-            System.out.println("Player 2's turn");
         } else {
             this.m_Turn = PLAYER_1;
-            System.out.println("Player 1's turn");
-
         }
 		
-		// TW Test Code
-    	if (getOthCounters() > 1) {
-    		if(othRules.winCondition(m_InPlayCounters) == 0) {
-    			System.out.println("Evaluated: Draw!");
-                //scorefont.drawString(100,200, "Player 1: "+ getScore());
-                //scorefont.drawString(200,200, "Player 2: "+ getScore());
-
-    		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
-    			System.out.println("Evaluated: Player 1 win!");
-
-    		} else if (othRules.winCondition(m_InPlayCounters) == 2) {
-    			System.out.println("Evaluated: Player 2 win!");
-    		}
-    	}
-    
     }
 	
 //	public void blackTurn(){
@@ -188,14 +179,5 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 	
-	// TW Test Method
-    public void incrementOthCounters() {
-    	currentCounters++;
-    }
-    
-    // TW Test Method
-    public int getOthCounters() {
-    	return currentCounters;
-    }
-
+	
 }

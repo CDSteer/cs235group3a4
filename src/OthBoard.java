@@ -16,8 +16,9 @@ public class OthBoard extends AbstractBoard{
 	// TW Code
     private OthRules othrules;
     private int[][] validMoves;
-	private boolean anyMovesOne;
+    private boolean anyMovesOne;
     private boolean anyMovesTwo;
+    
 	
     public OthBoard(){
         super(COLUMN, ROW);
@@ -34,6 +35,7 @@ public class OthBoard extends AbstractBoard{
     }
 
     public void startingCounters(List<AbstractCounter> onScreenCounters, OthCounter inPlayCounters[][]){
+
         for (int i=0; i< ROW; i++) {
             for (int j=0; j< COLUMN; j++) {
                 OthCounter othCounter = new OthCounter(0);
@@ -50,6 +52,7 @@ public class OthBoard extends AbstractBoard{
         m_board[ROW_FOUR][COLUMN_FOUR].setUsed(true);
         m_board[ROW_THREE][COLUMN_FOUR].setUsed(true);
         m_board[ROW_FOUR][COLUMN_THREE].setUsed(true);
+
 
         OthCounter othCounter = new OthCounter(PLAYER_2);
         othCounter.center(m_board[ROW_THREE][COLUMN_THREE]);
@@ -70,6 +73,9 @@ public class OthBoard extends AbstractBoard{
         othCounter.center(m_board[ROW_FOUR][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
         inPlayCounters[ROW_FOUR][COLUMN_THREE] = othCounter;
+
+
+
     }
 
 
@@ -85,10 +91,13 @@ public class OthBoard extends AbstractBoard{
 
     @Override
     public void fillBoard() {
+
         for (int i=0; i< ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
+
                 m_board[i][j] = new OthSquare(X_POS, Y_POS, WIDTH, HEIGHT, false);
-                X_POS += FILL_BOARD_ASSIGNMENT;
+
+                 X_POS += FILL_BOARD_ASSIGNMENT;
                 if (X_POS > X_POS_ASSIGNMENT_CHANGE) {
                     X_POS = X_POS_ASSIGNMENT;
                     Y_POS += FILL_BOARD_ASSIGNMENT;
@@ -99,8 +108,11 @@ public class OthBoard extends AbstractBoard{
 
 
     public boolean placeCounter(OthGame game) {
+
     	// TW Test Code
     	validMoves = othrules.checkValidSet(game.getInPlayCounters());
+    	 	
+    	
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
                 if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())&& !m_board[i][j].isUsed()){
@@ -113,7 +125,7 @@ public class OthBoard extends AbstractBoard{
 	                    m_board[i][j].setUsed(true);
 	                    game.getInPlayCounters()[i][j] = othCounter;
 	                    game.getOnScreenCounters().add(othCounter);
-	                    othCounter.playPlaceSound();
+	                    othCounter.playSound();
 						
 						// TW Test Code
 	                    game.incrementOthCounters();
@@ -121,7 +133,6 @@ public class OthBoard extends AbstractBoard{
 						
 	                    game.nextTurn();
                 	} else {
-                        game.getCurrentCounter().playNegSound();
                 		System.out.println("Error: Invalid move");
                 	}
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
@@ -129,14 +140,17 @@ public class OthBoard extends AbstractBoard{
                 }
             }
         }
+          
+        checkGameOver(game);
+        
         return true;
     }
-	
-	private void checkGameOver(OthGame game) {
+    
+    private void checkGameOver(OthGame game) {
     	
     	// Code for ending game
-        System.out.println(game.getOthCounters());
-        if(game.getOthCounters() == MAX_COUNTERS) {
+        System.out.println(game.getOthCounters1() + game.getOthCounters2());
+        if((game.getOthCounters1() + game.getOthCounters2()) == MAX_COUNTERS) {
         	if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
     			System.out.println("Evaluated: Draw!");
     			System.out.println("PLACEHOLDER: EXIT GAME");
