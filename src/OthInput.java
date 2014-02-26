@@ -27,7 +27,7 @@ public class OthInput extends AbstractInput{
         while(Mouse.next()) {
             if (Mouse.getEventButtonState()) {
                 if (Mouse.getEventButton() == 0) {
-                    game.getOthBoard().placeCounter(game);
+                    game.getBoard().placeCounter(game);
                 }
             }
         }
