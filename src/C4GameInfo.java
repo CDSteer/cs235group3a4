@@ -16,7 +16,7 @@ public class C4GameInfo {
     /**
      *Sets the Font
      */
-    public static void GameInfo(){
+   /** public static void GameInfo(){
 
         if (player1Wins == true){
 
@@ -24,15 +24,15 @@ public class C4GameInfo {
 
         }
     }
-
+    */
     /**
      *Draws the Font
      */
-    public static void draw(private fontArial){
+   /** public void draw(private fontArial){
 
 
     }
-
+    */
 
 
 }

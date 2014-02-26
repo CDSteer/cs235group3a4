@@ -7,13 +7,24 @@ import org.newdawn.slick.TrueTypeFont;
  */
 public class OthGameInfo {
 
-    private Font fontArial;
+
+    //private Font scoreFont;
     private boolean player1Wins;
     private boolean player2Wins;
 
+    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
+    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+
+
+    Font awtFont = new Font("Arial", Font.BOLD, 70);
+    TrueTypeFont font = new TrueTypeFont(awtFont, false);
+    font.drawString(100, 400, "Welcome to Othello");
+
+     **/
     /**
      *Sets the Font
      */
+    /**
     public static void GameInfo(){
 
         if (player1Wins == true){
@@ -22,11 +33,14 @@ public class OthGameInfo {
 
         }
     }
-
+    **/
     /**
      *Draws the Font
      */
+    /**
     public static void draw(private fontArial){
 
     }
+    **/
+
 }

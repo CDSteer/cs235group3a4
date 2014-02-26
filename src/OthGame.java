@@ -29,6 +29,7 @@ public class OthGame extends AbstractGame {
     private int currentCounters = 0;
 	
     private OthBoard othBoard;
+    private OthGameInfo othGameInfo;
 
 
     public OthGame() {
@@ -43,6 +44,7 @@ public class OthGame extends AbstractGame {
         this.m_Turn = PLAYER_1;
         // TW Test Code
         othRules = new OthRules();
+        othGameInfo = new OthGameInfo();
     }
 
     public OthCounter[][] getInPlayCounters() {
@@ -128,16 +130,23 @@ public class OthGame extends AbstractGame {
     public void nextTurn() {
         if (this.m_Turn == PLAYER_1){
             this.m_Turn = PLAYER_2;
+            System.out.println("Player 2's turn");
         } else {
             this.m_Turn = PLAYER_1;
+            System.out.println("Player 1's turn");
+
         }
 		
 		// TW Test Code
     	if (getOthCounters() > 1) {
     		if(othRules.winCondition(m_InPlayCounters) == 0) {
     			System.out.println("Evaluated: Draw!");
+                scorefont.drawString(100,200, "Player 1: "+ getScore());
+                scorefont.drawString(200,200, "Player 2: "+ getScore());
+
     		} else if (othRules.winCondition(m_InPlayCounters) == 1) {
     			System.out.println("Evaluated: Player 1 win!");
+
     		} else if (othRules.winCondition(m_InPlayCounters) == 2) {
     			System.out.println("Evaluated: Player 2 win!");
     		}

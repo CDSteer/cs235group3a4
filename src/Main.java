@@ -84,6 +84,7 @@ public class Main extends JFrame {
         C4Display display = new C4Display();
         C4Game game = new C4Game();
         C4Input gameInput = new C4Input();
+        C4GameInfo gameInfo = new C4GameInfo();
         
         display.setUpDisplay();
         display.setUpOpenGL();
@@ -116,6 +117,7 @@ public class Main extends JFrame {
         OthDisplay display = new OthDisplay();
         OthGame game = new OthGame();
         OthInput gameInput = new OthInput();
+        OthGameInfo gameInfo = new OthGameInfo();
 
         display.setUpDisplay();
         display.setUpOpenGL();

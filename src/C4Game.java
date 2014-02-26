@@ -44,7 +44,7 @@ public class C4Game extends AbstractGame{
         
     }
 	/**
-	 * @brief Recieve Board information from C4Board Class
+	 * @brief Receive Board information from C4Board Class
 	 * @see C4Board
 	 * @return C4Board
 	 */
@@ -63,7 +63,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Recieve Current Counter information from Counter Class
+	 * @brief Receive Current Counter information from Counter Class
 	 * @see C4Counter
 	 * @return AbstractCounter
 	 */
@@ -72,7 +72,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Recieve on screen Counter information from AbstractCounter Class
+	 * @brief Receive on screen Counter information from AbstractCounter Class
 	 * @see C4Counter
 	 * @return List<AbstractCounter>
 	 */
@@ -120,13 +120,13 @@ public class C4Game extends AbstractGame{
 	
 //	public void redTurn(){
 //		//nextTurn() must return sth. or
-//		//implement this togather with nextTurn()
+//		//implement this together with nextTurn()
 //		//This method is not on abstract class
 //	}
 //
 //	public void yellowTurn(){
 //		//nextTurn() must return sth.
-//		//or implement this togather with nextTurn()
+//		//or implement this together with nextTurn()
 //		//This method is not on abstract class
 //	}
 //
