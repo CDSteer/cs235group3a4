@@ -125,7 +125,7 @@ public class OthBoard extends AbstractBoard{
 	                    m_board[i][j].setUsed(true);
 	                    game.getInPlayCounters()[i][j] = othCounter;
 	                    game.getOnScreenCounters().add(othCounter);
-	                    othCounter.playSound();
+	                    othCounter.playPlaceSound();
 						
 						// TW Test Code
 	                    game.incrementOthCounters();
@@ -133,6 +133,7 @@ public class OthBoard extends AbstractBoard{
 						
 	                    game.nextTurn();
                 	} else {
+                        game.getCurrentCounter().playNegSound();
                 		System.out.println("Error: Invalid move");
                 	}
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {

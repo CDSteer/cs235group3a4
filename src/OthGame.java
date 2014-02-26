@@ -117,7 +117,8 @@ public class OthGame extends AbstractGame {
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @param  game, int delta
+	 * @param  game
+     * @param  delta
 	 * @return null
 	 */
     @Override
@@ -125,7 +126,12 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-	/**
+    @Override
+    public AbstractBoard getBoard() {
+        return othBoard;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    /**
 	 * Game begin, Create Counter and Board
 	 *
 	 * @return Nothing is returned from the method.
