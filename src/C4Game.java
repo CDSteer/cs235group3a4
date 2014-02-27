@@ -1,3 +1,4 @@
+import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 
 import java.util.ArrayList;
@@ -134,9 +135,11 @@ public class C4Game extends AbstractGame{
         if(c4rules.winCondition(m_Board) == 0) {
         	System.out.println("Evaluated: No Winner");
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
-        	System.out.println("Evaluated: Player 1 Wins");
+        	Sys.alert("Alert", "Player 1 Wins!");
+        	//System.out.println("Evaluated: Player 1 Wins");
         } else if (c4rules.winCondition(m_Board) == PLAYER2) {
-        	System.out.println("Evaluated: Player 2 Wins");
+        	Sys.alert("Alert", "Player 2 Wins!");
+        	//System.out.println("Evaluated: Player 2 Wins");
         } else {
         	System.out.println("Error: No Evaluation");
         }
