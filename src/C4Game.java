@@ -153,7 +153,7 @@ public class C4Game extends AbstractGame{
             System.out.println("Evaluated: No Winner");
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Game will now end!", "Play Again",  JOptionPane.YES_NO_OPTION);
+            option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION){
                 setRunning(false);
             } else if (option == JOptionPane.YES_OPTION){
@@ -166,7 +166,7 @@ public class C4Game extends AbstractGame{
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Game will now end!", "Play Again",  JOptionPane.YES_NO_OPTION);
+            option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION){
                 setRunning(false);
             } else if (option == JOptionPane.YES_OPTION){
