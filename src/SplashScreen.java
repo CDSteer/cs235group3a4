@@ -4,17 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created with IntelliJ IDEA.
- *
+ * @file SplashScreen.java
  * @author Jamie
- *         - created 27/02/2014
- * @version *.*
+ * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @see
+ * @brief This class extends AbstractBoard with othello details
+ * @details This class allows us to create an instant of the othello board and draw it on screen.
  */
-public class GUI extends JFrame{
+public class SplashScreen extends JFrame{
 
     private Main splash;
 
-    public GUI(){
+    public SplashScreen(){
         splash = new Main();
         splash.setVisible(true);
     }
@@ -36,8 +37,10 @@ public class GUI extends JFrame{
         c4Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                splash.setVisible(false);
                 C4Game game = new C4Game();
                 game.initC4();
+                splash.setVisible(true);
             }
         });
 
@@ -45,8 +48,10 @@ public class GUI extends JFrame{
         othButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                splash.setVisible(false);
                 OthGame game = new OthGame();
                 game.initOthello();
+                splash.setVisible(true);
             }
         });
 

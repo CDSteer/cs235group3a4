@@ -18,8 +18,8 @@ public class Main extends JFrame {
 
     public static void main(String args[]) throws InterruptedException, IOException {
         /** call GUI method */
-        GUI gui = new GUI();
-        gui.initGUI();
+        SplashScreen splashScreen = new SplashScreen();
+        splashScreen.initGUI();
     }
 
 
