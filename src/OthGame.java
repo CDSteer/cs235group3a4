@@ -1,3 +1,5 @@
+import org.lwjgl.opengl.Display;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,6 +120,36 @@ public class OthGame extends AbstractGame {
     
     public int getOthCounters2() {
     	return currentCounters2;
+    }
+
+    /** initOthello method for calling Othello game board */
+    public void initOthello() {
+        /** set up timer for othello game */
+        Time time = new Time();
+        time.setUpTimer();
+
+        /** display the othello game board */
+        OthDisplay display = new OthDisplay();
+        OthGame game = new OthGame();
+        OthInput gameInput = new OthInput();
+        OthGameInfo gameInfo = new OthGameInfo();
+
+        display.setUpDisplay();
+        display.setUpOpenGL();
+
+        while (game.isRunning()) {
+            gameInput.inputLoop(game);
+            game.gameLoop(game, time.getDelta());
+            display.render(game);
+            Display.update();
+            Display.sync(time.getFrameRate());
+            if (Display.isCloseRequested()) {
+                //AL.destroy();
+                game.setRunning(false);
+            }
+        }
+        Display.destroy();
+        //System.exit(0);
     }
 
 	/**
