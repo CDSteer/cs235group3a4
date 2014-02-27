@@ -1,0 +1,66 @@
+import java.awt.Font;
+import java.awt.Color;
+import java.util.ArrayList;
+
+import org.newdawn.slick.TrueTypeFont;
+
+/**
+ * @file GameInfoDisplay
+ * @brief used to render the win text in game
+ * @author Chris Jenkins, Jamie Davies
+ * @date February 24 2014
+ * @version 1.0
+ */
+public class C4GameInfo {
+
+    private Font fontArial;
+    private boolean player1Wins;
+    private boolean player2Wins;
+    private static C4Rules c4rules;
+    
+    
+    
+
+    /**
+     *Sets the Font
+     * @return 
+     */
+	
+
+
+    public void GameInfo(){
+    	
+        if (player1Wins == true){
+        	
+        } else if (player2Wins == true){
+        	
+        }
+    }
+    
+    public void callGameState() {
+    	
+        c4rules = new C4Rules();
+        c4board = new C4Board();
+    	
+    	if(c4rules.winCondition(c4board) == 0) {
+        	System.out.println("Evaluated: No Winner");
+        } else if (c4rules.winCondition(c4board) == PLAYER1) {
+        	System.out.println("Evaluated: Player 1 Wins");
+        } else if (c4rules.winCondition(c4board) == PLAYER2) {
+        	System.out.println("Evaluated: Player 2 Wins");
+        } else {
+        	System.out.println("Error: No Evaluation");
+        }
+    }
+
+    /**
+     *Draws the Font
+     */
+    public static void draw(private fontArial){
+
+
+    }
+
+
+
+}

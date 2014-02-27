@@ -18,6 +18,7 @@ public class C4GameInfo extends AbstractGameInfo{
 	 */
     private boolean player1Wins;
     private boolean player2Wins;
+    private boolean noPlayerWins;
 
 //    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
 //    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
@@ -30,6 +31,7 @@ public class C4GameInfo extends AbstractGameInfo{
      */
     public C4GameInfo(){
         font = new Font("Arial", Font.BOLD, 30);
+        
     }
     
     /*
@@ -45,14 +47,12 @@ public class C4GameInfo extends AbstractGameInfo{
         String turnText = "Player " + game.getTurn() + "'s turn";
         fontX.drawString(90, 330, turnText);
 
-        //still need to get the players scores and stick them
-        //in these strings
-        fontX.drawString(420, 100, "Player 1: ");
-        fontX.drawString(420, 150, "Player 2: ");
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-    }
-
+    }  
+    
+    
+    
     /**
      *Sets the Font
      */

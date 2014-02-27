@@ -1,0 +1,95 @@
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
+
+import java.awt.Font;
+
+/**
+ * @file C4GameInfo.java
+ * @author Chris Jenkins, Jamie Davies
+ * @brief used to render the win text in game
+ * @date February 24, 2014
+ */
+public class C4GameInfo extends AbstractGameInfo{
+
+	/*
+	 * Booleans for marking which player has won
+	 * Font setup for displaying text strings on the game board
+	 */
+    private boolean player1Wins;
+    private boolean player2Wins;
+    private boolean noPlayerWins;
+ // TW Test Code
+    private C4Rules c4rules;
+    private C4Board m_Board;
+
+//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
+//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+//    Font awtFont = new Font("Arial", Font.BOLD, 70);
+    private Font font;
+    private TrueTypeFont fontX;
+    
+    /*
+     * this method sets the font variable
+     */
+    public C4GameInfo(){
+        font = new Font("Arial", Font.BOLD, 30);
+        
+        m_Board = new C4Board();
+        
+        // TW Test Code
+        if(c4rules.winCondition(m_Board) == 0) {
+        	System.out.println("GameInfo: No Winner");
+        	noPlayerWins = true;
+        } else if (c4rules.winCondition(m_Board) == 1) {
+        	System.out.println("GameInfo: Player 1 Wins");
+        	player1Wins = true;
+        } else if (c4rules.winCondition(m_Board) == 2) {
+        	player2Wins = true;
+        	System.out.println("GameInfo: Player 2 Wins");
+        } else {
+        	noPlayerWins = true;
+        	System.out.println("GameInfo: No Evaluation");
+        }
+    }
+    
+    /*
+     * method to configure the font appearance
+     * set the locations on the board of the strings
+     * calls turn and the scores
+     */
+    public void draw(AbstractGame game){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        Color.white.bind();
+        fontX = new TrueTypeFont(font, false);
+        fontX.drawString(90, 275, "Welcome to Connect 4");
+        String turnText = "Player " + game.getTurn() + "'s turn";
+        fontX.drawString(90, 330, turnText);
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+    }
+
+    /**
+     *Sets the Font
+     */
+   /** public static void GameInfo(){
+
+        if (player1Wins == true){
+
+        } else if (player2Wins == true){
+
+        }
+    }
+    */
+    /**
+     *Draws the Font
+     */
+   /** public void draw(private fontArial){
+
+
+    }
+    */
+
+
+}

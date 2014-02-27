@@ -1,0 +1,48 @@
+import java.awt.Font;
+import java.awt.Color;
+import org.newdawn.slick.TrueTypeFont;
+
+/**
+ * GameInfoDisplay
+ * used to render the win text in game
+ * Created by Chris on 24/02/14.
+ */
+public class C4GameInfo extends AbstractGameInfo{
+
+	//private Font scoreFont;
+    private boolean player1Wins;
+    private boolean player2Wins;
+
+//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
+//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+//    Font awtFont = new Font("Arial", Font.BOLD, 70);
+    private Font font;
+    private TrueTypeFont fontX;
+    
+    public C4GameInfo(){
+        font = new Font("Arial", Font.BOLD, 30);
+    }
+
+    /**
+     *Sets the Font
+     */
+   /** public static void GameInfo(){
+
+        if (player1Wins == true){
+
+        } else if (player2Wins == true){
+
+        }
+    }
+    */
+    /**
+     *Draws the Font
+     */
+   /** public void draw(private fontArial){
+
+
+    }
+    */
+
+
+}

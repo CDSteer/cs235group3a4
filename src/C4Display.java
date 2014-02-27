@@ -39,7 +39,7 @@ public class C4Display extends AbstractDisplay{
         }
 
         game.getBoard().draw();
-        //C4InfoDisplay.draw(game);
+        
         c4GameInfo.draw(game);
 
         //call C4InfoDisplay here
