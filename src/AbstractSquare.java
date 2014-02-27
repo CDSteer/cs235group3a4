@@ -13,11 +13,14 @@ import java.io.IOException;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * Created with IntelliJ IDEA.
  *
- * @author cdsteer
- *         - created 29/01/2014
- * @version *.*
+ * @author Cameron Steer
+ * @since 29/01/2014
+ * @date  Verified and Updated by Design Manager Curtis on 27th Feb 2014
+ * @see
+ * @brief	This class extends AbstractEntity which contains the various coordinates relating to graphics.
+ * @details It sets all various locations and dimensions for the game window. It also stores the player info.
+ * @version *1.0.0*
  */
 
 public abstract class AbstractSquare extends AbstractEntity {
@@ -26,28 +29,56 @@ public abstract class AbstractSquare extends AbstractEntity {
     private int player;
 
 
+    /**
+     * sets the height, width and the x,y coordinates
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param used
+     */
     public AbstractSquare(double x, double y, double width, double height, boolean used) {
         super(x, y, width, height);
         this.used = used;
         this.player = 0;
     }
 
+    /**
+     * method to set the used boolean
+     * @param used
+     */
     public void setUsed(boolean used){
         this.used = used;
     }
 
+    /**
+     * method to get player info
+     * @return player
+     */
     public int getPlayer(){
         return player;
     }
 
+    /**
+     * method sets the player to _player
+     * @param _player
+     */
     public void setPlayer(int _player){
         this.player = _player;
     }
 
+    /**
+     * sets the boolean isUsed
+     * @return used
+     */
     public boolean isUsed(){
         return used;
     }
 
+    /**
+     * 
+     * @param delta
+     */
     @Override
     public void update(int delta) {
          // do nothing.
