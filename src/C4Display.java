@@ -13,13 +13,11 @@ import static org.lwjgl.opengl.GL11.glClear;
  */
 public class C4Display extends AbstractDisplay{
 	private C4GameInfo c4GameInfo;
-    private C4ReplayButton c4ReplayButton;
     public C4Display() {
         super(WIDTH, HEIGHT, "Connect 4");
     }
 
     public void loadTextures(){
-        c4ReplayButton = new C4ReplayButton();
         c4GameInfo = new C4GameInfo();
     }
 
