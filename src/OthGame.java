@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- *
  * @author cdsteer, Martin
- * @date   Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @since 04/02/2014
- *         - updated 20/02/2014
+ * @date  04/02/2014 - Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @since 20/02/2014
  * @version *1.2*
+ * @brief extends AbstractGame class and stores counter and player information to play game
  */
 public class OthGame extends AbstractGame {
 

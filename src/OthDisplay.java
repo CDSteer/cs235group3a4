@@ -2,17 +2,14 @@ import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
 /**
- * Created with IntelliJ IDEA.
- *
  * @author Cameron Steer
- *
- * @since 04/02/2014
- * 		 	-update 20/02/2014
- * 		    -Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @version *.*
+ * @date 04/02/2014
+ * @since 20/02/2014 Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @brief Extends AbstractDisplay class and displays the Othello game
  */
 public class OthDisplay extends AbstractDisplay{
     private OthGameInfo othGameInfo;
+    
     public OthDisplay() {
         super(WIDTH, HEIGHT, "Othello");
         othGameInfo = new OthGameInfo();
@@ -21,6 +18,9 @@ public class OthDisplay extends AbstractDisplay{
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
 
+    /**
+     * renders the game board
+     */
     @Override
     public void render(AbstractGame game) {
 
