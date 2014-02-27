@@ -2,7 +2,9 @@ import org.newdawn.slick.TrueTypeFont;
 
 import java.awt.*;
 import java.util.List;
+
 import org.newdawn.slick.Color;
+
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.glClear;
 
@@ -18,9 +20,10 @@ import static org.lwjgl.opengl.GL11.glClear;
  */
 public class C4Display extends AbstractDisplay{
     //private c4infodisplay
-    public C4Display(){
+	private C4GameInfo c4GameInfo;
+    public C4Display() {
         super(WIDTH, HEIGHT, "Connect 4");
-        //make a c4infodisplay
+        c4GameInfo = new C4GameInfo();
     }
 
     private static final int WIDTH = 640;
@@ -37,6 +40,7 @@ public class C4Display extends AbstractDisplay{
 
         game.getBoard().draw();
         //C4InfoDisplay.draw(game);
+        c4GameInfo.draw(game);
 
         //call C4InfoDisplay here
     }

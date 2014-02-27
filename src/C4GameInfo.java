@@ -1,17 +1,57 @@
-import java.awt.Font;
-import java.awt.Color;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 
+import java.awt.Font;
+
 /**
- * GameInfoDisplay
- * used to render the win text in game
- * Created by Chris on 24/02/14.
+ * @file C4GameInfo.java
+ * @author Chris Jenkins, Jamie Davies
+ * @brief used to render the win text in game
+ * @date February 24, 2014
  */
 public class C4GameInfo extends AbstractGameInfo{
 
-    private Font fontArial;
+	/*
+	 * Booleans for marking which player has won
+	 * Font setup for displaying text strings on the game board
+	 */
     private boolean player1Wins;
     private boolean player2Wins;
+
+//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
+//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
+//    Font awtFont = new Font("Arial", Font.BOLD, 70);
+    private Font font;
+    private TrueTypeFont fontX;
+    
+    /*
+     * this method sets the font variable
+     */
+    public C4GameInfo(){
+        font = new Font("Arial", Font.BOLD, 30);
+    }
+    
+    /*
+     * method to configure the font appearance
+     * set the locations on the board of the strings
+     * calls turn and the scores
+     */
+    public void draw(AbstractGame game){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        Color.white.bind();
+        fontX = new TrueTypeFont(font, false);
+        fontX.drawString(90, 275, "Welcome to Connect 4");
+        String turnText = "Player " + game.getTurn() + "'s turn";
+        fontX.drawString(90, 330, turnText);
+
+        //still need to get the players scores and stick them
+        //in these strings
+        fontX.drawString(420, 100, "Player 1: ");
+        fontX.drawString(420, 150, "Player 2: ");
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+    }
 
     /**
      *Sets the Font
