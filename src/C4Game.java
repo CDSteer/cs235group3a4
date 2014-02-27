@@ -1,5 +1,3 @@
-import org.lwjgl.opengl.Display;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +25,9 @@ public class C4Game extends AbstractGame{
     // TW Test Code
     private C4Rules c4rules;
     private C4Board m_Board;
+    
+    private int currentCounters1 = 0;
+    private int currentCounters2 = 0;
 
 	/**
 	* @brief Collecting and storing every data from graphic, rules, player.
@@ -59,6 +60,18 @@ public class C4Game extends AbstractGame{
     public int getTurn() {
         return m_Turn;  //To change body of implemented methods use File | Settings | File Templates.
     }
+    
+    public void calcCounters() {
+    	// no implementation
+    }
+    
+    public int getCounters1() {
+    	return currentCounters1;
+    }
+    
+    public int getCounters2() {
+    	return currentCounters2;
+    }
 
     /**
 	 * @brief Set C4Board
@@ -86,42 +99,6 @@ public class C4Game extends AbstractGame{
 	 */
     public List<AbstractCounter> getOnScreenCounters() {
         return onScreenCounters;
-    }
-
-
-    /** initC4 method for calling C4 game board */
-    public void initC4() {
-
-        /** set up timer for C4 game */
-        Time time = new Time();
-        time.setUpTimer();
-
-        /** display the C4 game board */
-        C4Display display = new C4Display();
-        C4Game game = new C4Game();
-        C4Input gameInput = new C4Input();
-        C4GameInfo gameInfo = new C4GameInfo();
-
-        display.setUpDisplay();
-        display.setUpOpenGL();
-        display.loadTextures();
-        C4Square.setTexture();
-
-        while (game.isRunning()) {
-            gameInput.inputLoop(game.getCurrentCounter());
-            game.gameLoop(game, time.getDelta());
-            display.render(game);
-            Display.update();
-            Display.sync(time.getFrameRate());
-            if (Display.isCloseRequested()) {
-                //AL.destroy();
-                game.setRunning(false);
-            }
-        }
-
-        /** kill game on close */
-        Display.destroy();
-        //System.exit(0);
     }
 
 	/**
