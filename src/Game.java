@@ -1,12 +1,7 @@
 /**
- * Created with IntelliJ IDEA.
- * @file Game.java
- *
- * @brief Interface class of AbstractGame, implementin method from AbstractGame
+ * @author Cameron Steer, Martin Hui
+ * @brief Interface class of AbstractGame, implementing method from AbstractGame
  * @see AbstractGame
- *
- * @author Cameron Steer
- * @author Martin Hui
  * @date February 1, 2014
  * @version *1.0*
  */

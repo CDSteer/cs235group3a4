@@ -1,11 +1,8 @@
-/* 
-
-GameRules Abstract Class
-Thomas Werner
-Draft 1
-Last Edit 1st Feb 2014
-
-*/
+/**
+ * @author Thomas Werner
+ * @date 1/02/2014
+ * @brief GameRules abstract class
+ */
 
 
 public abstract class GameRules {
