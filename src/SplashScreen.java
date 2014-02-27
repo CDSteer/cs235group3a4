@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 
 /**
  * @file SplashScreen.java
- * @author Jamie
- * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @author Jamie I Davies
+ * @date February 27, 2014, Verified and Updated by Design Manager Curtis on 27rd Feb 2014
  * @see
- * @brief This class extends AbstractBoard with othello details
- * @details This class allows us to create an instant of the othello board and draw it on screen.
+ * @brief This class creates all the swing objects for the Splash Screen of the game
  */
 public class SplashScreen extends JFrame{
 
