@@ -144,11 +144,11 @@ public class C4Game extends AbstractGame{
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
         	//display player wins alert
         	Sys.alert("Alert", "Player 1 Wins! Game will now end!");
-        	Display.destroy();
+            setRunning(false);
         } else if (c4rules.winCondition(m_Board) == PLAYER2) {
         	//display player wins alert
         	Sys.alert("Alert", "Player 2 Wins! Game will now end!");
-        	Display.destroy();
+        	setRunning(false);
         } else {
         	System.out.println("Error: No Evaluation");
         }

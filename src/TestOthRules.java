@@ -68,7 +68,6 @@ public class TestOthRules {
 			System.out.println("winCondition Test Three Evaluated: Incorrect");
 		}
 		
-		
 		int[][] validSet1 = othRules.checkValidSet(m_testBoard1);
 		boolean correct1 = true;
 		for(int i = 0; i < COLUMN; i++) {
@@ -84,21 +83,6 @@ public class TestOthRules {
 		} else {
 			System.out.println("checkValidSet Test One Evaluated: Incorrect");
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
+
 	}
 }
