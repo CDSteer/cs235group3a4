@@ -1,16 +1,14 @@
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+
 /**
+ * @author Tom Werner
  * @brief A test class for C4Input
  * @details
  * 		   
  * C4Input.inputLoop is tested one time(s).
- *         
- * @author Tom Werner
- *
  */
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
 
 public class TestC4Input {
 	

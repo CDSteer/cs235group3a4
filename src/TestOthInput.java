@@ -1,13 +1,13 @@
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+
 /**
+ * @author Tom Werner
  * @brief A test class for OthInput
  * @details
  * 
  * OthInput.inputLoop is tested one time(s).
- * @author Tom Werner
- *
  */
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
 
 public class TestOthInput {
 	

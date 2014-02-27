@@ -7,7 +7,7 @@
  * C4Counter.playNegSound is tested one time(s).
  * C4Counter.playDropSound is tested one time(s).
  * C4Counter.dropCounter is tested one time(s).
- * The constructor C4Game() calls the method C4Game.setSoundFiles.
+ * The constructor C4Game calls the method C4Game.setSoundFiles.
  */
 public class TestC4Counter {
 

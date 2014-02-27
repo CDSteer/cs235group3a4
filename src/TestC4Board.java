@@ -1,13 +1,11 @@
 
 /**
- * @file TestC4Board
- * @detail A test for C4Board.java
+ * @author Tom Werner
+ * @brief A test for C4Board
+ * @details
  *         
- *         C4Board.fillBoard is tested one time(s).
- *         C4Board.placeCounter is tested one time(s).       
- *         
- * @author Tom
- *
+ * C4Board.fillBoard is tested one time(s).
+ * C4Board.placeCounter is tested one time(s). 
  */
 public class TestC4Board {
 	
@@ -22,6 +20,10 @@ public class TestC4Board {
 	private static C4Counter c4Counter;
 	private static C4Board c4Board;
 	
+	/**
+	 * main method to run tests
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		/*
