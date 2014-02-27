@@ -75,12 +75,7 @@ public class OthBoard extends AbstractBoard{
         othCounter.center(m_board[ROW_FOUR][COLUMN_THREE]);
         onScreenCounters.add(othCounter);
         inPlayCounters[ROW_FOUR][COLUMN_THREE] = othCounter;
-
-
-
     }
-
-
 
     @Override
     public void draw(){
@@ -142,11 +137,7 @@ public class OthBoard extends AbstractBoard{
                 }
             }
         }
-
-        
-          
         checkGameOver(game);
-        
         return true;
     }
 
@@ -159,64 +150,62 @@ public class OthBoard extends AbstractBoard{
     }
     
     private void checkGameOver(OthGame game) {
-    
-     // Code for ending game
-        System.out.println(game.getCounters1() + game.getCounters2());
-        if((game.getCounters1() + game.getCounters2()) == MAX_COUNTERS) {
-         if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
-     System.out.println("Evaluated: Draw!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
-     System.out.println("Evaluated: Player 1 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
-     System.out.println("Evaluated: Player 2 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     }
-       }
+         // Code for ending game
+         System.out.println(game.getCounters1() + game.getCounters2());
+         if((game.getCounters1() + game.getCounters2()) == MAX_COUNTERS) {
+            if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+                 System.out.println("Evaluated: Draw!");
+                 System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+                 System.out.println("Evaluated: Player 1 win!");
+                 System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+                 System.out.println("Evaluated: Player 2 win!" );
+                 System.out.println("PLACEHOLDER: EXIT GAME");
+            }
+         }
         
         validMoves = othrules.checkValidSet(game.getInPlayCounters());
         anyMovesOne = false;
         anyMovesTwo = false;
         
         for(int i = 0; i < COLUMN; i++) {
-         for(int j = 0; j < ROW; j++) {
-        
-         if(validMoves[i][j] == PLAYER_1 || validMoves[i][j] == BOTH_PLAYERS) {
-         if(!m_board[i][j].isUsed()) {
-         anyMovesOne = true;
-         }
-         }
-         if(validMoves[i][j] == PLAYER_2 || validMoves[i][j] == BOTH_PLAYERS) {
-         if(!m_board[i][j].isUsed()) {
-         anyMovesTwo = true;
-         }
-         }
-         }
+            for(int j = 0; j < ROW; j++) {
+                 if(validMoves[i][j] == PLAYER_1 || validMoves[i][j] == BOTH_PLAYERS) {
+                    if(!m_board[i][j].isUsed()) {
+                        anyMovesOne = true;
+                    }
+                 }
+                 if(validMoves[i][j] == PLAYER_2 || validMoves[i][j] == BOTH_PLAYERS) {
+                     if(!m_board[i][j].isUsed()) {
+                        anyMovesTwo = true;
+                     }
+                 }
+            }
         }
         
         if(game.getTurn() == PLAYER_1 && anyMovesOne == false) {
-         if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
-     System.out.println("Evaluated: Draw!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
-     System.out.println("Evaluated: Player 1 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
-     System.out.println("Evaluated: Player 2 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     }
-        }else if(game.getTurn() == PLAYER_2 && anyMovesTwo == false) {
-         if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
-     System.out.println("Evaluated: Draw!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
-     System.out.println("Evaluated: Player 1 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
-     System.out.println("Evaluated: Player 2 win!");
-     System.out.println("PLACEHOLDER: EXIT GAME");
-     }
+            if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+                 System.out.println("Evaluated: Draw!");
+                 System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+                System.out.println("Evaluated: Player 1 win!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+                System.out.println("Evaluated: Player 2 win!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+            }
+        } else if(game.getTurn() == PLAYER_2 && anyMovesTwo == false) {
+            if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+                System.out.println("Evaluated: Draw!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+                System.out.println("Evaluated: Player 1 win!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+                System.out.println("Evaluated: Player 2 win!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+            }
         }
     }
 

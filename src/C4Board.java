@@ -68,7 +68,6 @@ public class C4Board extends AbstractBoard{
                     counter.setDY(0);
                     counter.center(getBoard()[i][j]);
                     getBoard()[i][j].setUsed(true);
-
                     if (i != 0){
                         getBoard()[i-1][j].setUsed(false);
                     }

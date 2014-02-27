@@ -210,7 +210,7 @@ public class C4Game extends AbstractGame{
             if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
                 this.nextTurn();
             }
-            winCheck();
+
             m_Display.render(this);
             currentCounter.dropCounter(getTime().getDelta());
             Display.update();
