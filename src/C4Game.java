@@ -1,6 +1,6 @@
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,8 +115,15 @@ public class C4Game extends AbstractGame{
 	 */
     @Override
     public void playGame() {
+        m_Display = new C4Display();
+        m_GameInput = new C4Input();
         currentCounter = new C4Counter();
+        player1 = new HumPlayer(PLAYER1);
+        player2 = new HumPlayer(PLAYER2);
+        onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
         m_Board = new C4Board();
+        // TW Test Code
+        c4rules = new C4Rules();
     }
 
 	/**
@@ -134,26 +141,42 @@ public class C4Game extends AbstractGame{
             currentCounter.setPlayer(PLAYER1);
             m_Turn = 1;
         }
-        
-        /*
-         * if statement to check the win state of the game
-         * this will then display a dialog
-         */
-        if(c4rules.winCondition(m_Board) == 0) {
-        	System.out.println("Evaluated: No Winner");
-        } else if (c4rules.winCondition(m_Board) == PLAYER1) {
-        	//display player wins alert
-        	Sys.alert("Alert", "Player 1 Wins! Game will now end!");
-            setRunning(false);
-        } else if (c4rules.winCondition(m_Board) == PLAYER2) {
-        	//display player wins alert
-        	Sys.alert("Alert", "Player 2 Wins! Game will now end!");
-        	setRunning(false);
-        } else {
-        	System.out.println("Error: No Evaluation");
-        }
-        
+
     }
+    /**
+     * if statement to check the win state of the game
+     * this will then display a dialog
+     * @retun void
+     */
+    public void winCheck() {
+        if(c4rules.winCondition(m_Board) == 0) {
+            System.out.println("Evaluated: No Winner");
+        } else if (c4rules.winCondition(m_Board) == PLAYER1) {
+            //display player wins alert
+            option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Game will now end!", "Play Again",  JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.NO_OPTION){
+                setRunning(false);
+            } else if (option == JOptionPane.YES_OPTION){
+                playGame();
+            }
+        } else if (c4rules.winCondition(m_Board) == PLAYER2) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+            //display player wins alert
+            option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Game will now end!", "Play Again",  JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.NO_OPTION){
+                setRunning(false);
+            } else if (option == JOptionPane.YES_OPTION){
+                playGame();
+            }
+        } else {
+            System.out.println("Error: No Evaluation");
+        }
+    }
+
     /** initC4 method for calling C4 game board */
     public void init() {
         new C4Game();
@@ -187,6 +210,7 @@ public class C4Game extends AbstractGame{
             if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
                 this.nextTurn();
             }
+            winCheck();
             m_Display.render(this);
             currentCounter.dropCounter(getTime().getDelta());
             Display.update();
@@ -197,6 +221,7 @@ public class C4Game extends AbstractGame{
         }
     }
 
+    private int option;
     private static final int PLAYER2 = 2;
     private static final int PLAYER1 = 1;
     private static final int ON_SCREEN_COUNTERS_ELEMENTS = 10;

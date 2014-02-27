@@ -24,13 +24,12 @@ public class SplashScreen extends JFrame{
         JPanel panel = new JPanel(new GridLayout(1,2));
         splash.getContentPane().add(panel);
 
-        /** initialise buttons, set fonts and tooltips */
-        JButton c4Button = new JButton("Play Connect 4!");
-        JButton othButton = new JButton("Play Othello!");
-        c4Button.setFont(new Font("Arial", Font.BOLD, ARIAL_FONT_SIZE));
-        othButton.setFont(new Font("Arial", Font.BOLD, ARIAL_FONT_SIZE));
-        c4Button.setToolTipText("Click Me to Play Connect 4!");
-        othButton.setToolTipText("Click Me to Play Othello!");
+        ImageIcon c4ButtonIMG = new ImageIcon("res/Connect4Button.png");
+        ImageIcon othButtonIMG = new ImageIcon("res/OthelloButton.png");
+
+        JButton c4Button = new JButton("", c4ButtonIMG);
+        JButton othButton = new JButton("", othButtonIMG);
+
 
         /** c4 button action listener */
         c4Button.addActionListener(new ActionListener() {
@@ -66,7 +65,7 @@ public class SplashScreen extends JFrame{
     }
 
     private static final int ARIAL_FONT_SIZE = 34;
-    private static final int JFRAME_WIDTH = 1024;
-    private static final int JFRAME_HEIGHT = 300;
+    private static final int JFRAME_WIDTH = 750;
+    private static final int JFRAME_HEIGHT = 350;
 
 }
