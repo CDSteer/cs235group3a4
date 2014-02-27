@@ -32,4 +32,7 @@ public abstract class AbstractGame implements Game{
 
     public abstract AbstractBoard getBoard();
     public abstract int getTurn();
+    public abstract int getCounters1();
+    public abstract int getCounters2();
+    public abstract void calcCounters();
 }
