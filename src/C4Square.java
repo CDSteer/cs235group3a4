@@ -14,12 +14,11 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glDisable;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- * @since 13/02/2014
- * 			-update 20/02/2014
+ * @author Cameron Steer
+ * @date 13/02/2014
+ * @since 20/02/2014
  * @version *1.0.1*
+ * @brief creates a new C4 square, extends the AbstractSquare class
  */
 public class C4Square extends AbstractSquare{
 
@@ -28,7 +27,6 @@ public class C4Square extends AbstractSquare{
 
     /**
      * Constructor for a new square
-     *
      * @param x
      * @param  y
      * @param width
@@ -41,8 +39,6 @@ public class C4Square extends AbstractSquare{
 
 	/**
 	* Draws the squared of the using the texture loaded in the constructor
-	*
-	* @return null
 	*/
     @Override
     public void draw(){
@@ -64,8 +60,6 @@ public class C4Square extends AbstractSquare{
 
 	/**
 	* loads in the texture file for the square
-     *
-	* @return null
 	*/
     public static void setTexture(){
         try {
@@ -93,7 +87,6 @@ public class C4Square extends AbstractSquare{
 
 	/**
 	* removes textures when games connect 4 is closed
-	* @return null
 	*/
     public void releaseTexture(){
         square.release();

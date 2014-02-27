@@ -5,24 +5,12 @@ import org.newdawn.slick.TrueTypeFont;
 import java.awt.Font;
 
 /**
- * @file C4GameInfo.java
- * @author Chris Jenkins, Jamie Davies
- * @brief used to render the win text in game
- * @date February 24, 2014
+ * @author Jamie I Davies
+ * @brief used to render the text on the game board 
+ * @since February 24, 2014
  */
 public class C4GameInfo extends AbstractGameInfo{
 
-	/*
-	 * Booleans for marking which player has won
-	 * Font setup for displaying text strings on the game board
-	 */
-    private boolean player1Wins;
-    private boolean player2Wins;
-    private boolean noPlayerWins;
-
-//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
-//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
-//    Font awtFont = new Font("Arial", Font.BOLD, 70);
     private Font font;
     private TrueTypeFont fontX;
     
@@ -46,33 +34,7 @@ public class C4GameInfo extends AbstractGameInfo{
         fontX.drawString(90, 275, "Welcome to Connect 4");
         String turnText = "Player " + game.getTurn() + "'s turn";
         fontX.drawString(90, 330, turnText);
-
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
     }  
-    
-    
-    
-    /**
-     *Sets the Font
-     */
-   /** public static void GameInfo(){
-
-        if (player1Wins == true){
-
-        } else if (player2Wins == true){
-
-        }
-    }
-    */
-    /**
-     *Draws the Font
-     */
-   /** public void draw(private fontArial){
-
-
-    }
-    */
-
-
 }

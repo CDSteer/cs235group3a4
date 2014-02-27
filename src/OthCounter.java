@@ -10,10 +10,9 @@ import java.io.IOException;
 import static org.lwjgl.opengl.GL11.glColor3d;
 
 /**
- * @file 	Counter.java
- * @author 	Cameron Steer
- * @date	January 28, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @brief	Counter holds data and methods for the othello counters
+ * @author Cameron Steer
+ * @date January 28, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @brief Counter holds data and methods for the othello counters
  * @details
  */
 public class OthCounter extends AbstractCounter {
@@ -33,7 +32,6 @@ public class OthCounter extends AbstractCounter {
 
     /**
      * This loads the sound files for counters
-     *
      * @return void
      */
     private void setSoundFiles(){
@@ -54,7 +52,6 @@ public class OthCounter extends AbstractCounter {
     }
     /**
      * sets colour buffer corresponding objects player to draw the correct colour
-     *
      * @return void
      */
     @Override
@@ -67,7 +64,6 @@ public class OthCounter extends AbstractCounter {
     }
     /**
      * plays sound of counter for being able to placing counter
-     *
      * @return void
      */
     @Override
@@ -77,7 +73,6 @@ public class OthCounter extends AbstractCounter {
     }
     /**
      * plays sound of counter for being able to drop counter
-     *
      * @return void
      */
     @Override

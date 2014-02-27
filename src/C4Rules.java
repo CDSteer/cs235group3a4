@@ -1,12 +1,9 @@
 
 /**
- * @file C4Rules.java
  * @author Thomas Werner
  * @date 25/2/2014
- * @version 1.0.3
- * 	
- * 
- * @details Provides the win condition for a game of C4,
+ * @version 1.0.3 
+ * @brief Provides the win condition for a game of C4,
  * to be evaluated after every player move.
  */
 public class C4Rules { // extends GameRules (temporarily taken out)
@@ -42,98 +39,194 @@ public class C4Rules { // extends GameRules (temporarily taken out)
 	
 	
 	// Accessor methods for class variables
+	/**
+	 * get row line one
+	 * @return m_RowLineOne
+	 */
 	private int getRowLineOne() {
 		return m_RowLineOne;
 	}
 	
+	/**
+	 * set row line one
+	 * @param value
+	 */
 	private void setRowLineOne(int value) {
 		m_RowLineOne = value;
 	}
 	
+	/**
+	 * get row line two
+	 * @return m_RowLineTwo
+	 */
 	private int getRowLineTwo() {
 		return m_RowLineTwo;
 	}
 	
+	/**
+	 * set row line two
+	 * @param value
+	 */
 	private void setRowLineTwo(int value) {
 		m_RowLineTwo = value;
 	}
 	
+	/**
+	 * get column line one
+	 * @return m_ColLineOne
+	 */
 	private int getColLineOne() {
 		return m_ColLineOne;
 	}
 	
+	/**
+	 * set column line one
+	 * @param value
+	 */
 	private void setColLineOne(int value) {
 		m_ColLineOne = value;
 	}
 	
+	/**
+	 * get column line two
+	 * @return m_ColLineTwo
+	 */
 	private int getColLineTwo() {
 		return m_ColLineTwo;
 	}
 	
+	/**
+	 * set column line two
+	 * @param value
+	 */
 	private void setColLineTwo(int value) {
 		m_ColLineTwo = value;
 	}
 	
+	/**
+	 * get down diag line one
+	 * @return m_DownDiagLineOne
+	 */
 	private int getDownDiagLineOne() {
 		return m_DownDiagLineOne;
 	}
 	
+	/**
+	 * set down diag line one
+	 * @param value
+	 */
 	private void setDownDiagLineOne(int value) {
 		m_DownDiagLineOne = value;
 	}
 	
+	/**
+	 * get down diag line two
+	 * @return m_DownDiagLineTwo
+	 */
 	private int getDownDiagLineTwo() {
 		return m_DownDiagLineTwo;
 	}
 	
+	/**
+	 * set down diag line two
+	 * @param value
+	 */
 	private void setDownDiagLineTwo(int value) {
 		m_DownDiagLineOne = value;
 	}
 	
+	/** 
+	 * get up diag line one
+	 * @return m_UpDiagLineOne
+	 */
 	private int getUpDiagLineOne() {
 		return m_UpDiagLineOne;
 	}
 	
+	/**
+	 * set up diag line one
+	 * @param value
+	 */
 	private void setUpDiagLineOne(int value) {
 		m_UpDiagLineOne = value;
 	}
 	
+	/**
+	 * get up diag line two
+	 * @return m_UpDiagLineTwo
+	 */
 	private int getUpDiagLineTwo() {
 		return m_UpDiagLineTwo;
 	}
 	
+	/**
+	 * set up diag line two
+	 * @param value
+	 */
 	private void setUpDiagLineTwo(int value) {
 		m_UpDiagLineTwo = value;
 	}
 	
+	/**
+	 * get player one win
+	 * @return m_PlayerOneWin
+	 */
 	private boolean getPlayerOneWin() {
 		return m_PlayerOneWin;
 	}
 	
+	/**
+	 * set that player one wins
+	 * @param value
+	 */
 	private void setPlayerOneWin(boolean value) {
 		m_PlayerOneWin = value;
 	}
 	
+	/**
+	 * get player two win state
+	 * @return m_PlayerTwoWin
+	 */
 	private boolean getPlayerTwoWin() {
 		return m_PlayerTwoWin;
 	}
 	
+	/**
+	 * set player two win state
+	 * @param value
+	 */
 	private void setPlayerTwoWin(boolean value) {
 		m_PlayerTwoWin = value;
 	}
 	
+	/**
+	 * get the current board state
+	 * @return m_currentBoard
+	 */
 	private C4Square[][] getCurrentBoard() {
 		return m_currentBoard;
 	}
 	
+	/**
+	 * set current board state
+	 * @param board
+	 */
 	private void setCurrentBoard(C4Square[][] board) {
 		m_currentBoard = board;
 	}
 	
+	/**
+	 * get current c4 square state
+	 * @return m_currentSquare
+	 */
 	private C4Square getCurrentSquare() {
 		return m_currentSquare;
 	}
 	
+	/**
+	 * set current c4 square state
+	 * @param square
+	 */
 	private void setCurrentSquare(C4Square square) {
 		m_currentSquare = square;
 	}

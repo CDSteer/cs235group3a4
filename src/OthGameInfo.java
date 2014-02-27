@@ -6,6 +6,10 @@ import java.awt.Font;
 
 
 /**
+ * @author Chris Jenkins
+ * @date 24/02/2014
+ * @brief extends the AbstractGameInfo class to set fonts and board messages
+ * @details draws the messages on the board which are rendered. including the player state and scoring
  * Created by Chris on 24/02/14.
  */
 public class OthGameInfo extends AbstractGameInfo{

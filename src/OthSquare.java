@@ -2,11 +2,9 @@ import static org.lwjgl.opengl.GL11.glColor3d;
 import static org.lwjgl.opengl.GL11.glRectd;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 13/02/2014
- * @version *.*
+ * @author Cameron Steer
+ * @date 13/02/2014
+ * @brief Creates the square for Othello board and extends AbstractSquare class
  */
 public class OthSquare extends AbstractSquare{
 
