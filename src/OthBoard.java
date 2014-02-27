@@ -129,9 +129,7 @@ public class OthBoard extends AbstractBoard{
 					game.getInPlayCounters()[i][j] = othCounter;
 					game.getOnScreenCounters().add(othCounter);
 					othCounter.playPlaceSound();
-					
-					// TW Test Code
-					game.incrementOthCounters();
+				
 					othrules.flipCounters(game.getInPlayCounters(), i, j, game.getTurn());
                     unHightlight();
 					game.nextTurn();
@@ -163,8 +161,8 @@ public class OthBoard extends AbstractBoard{
     private void checkGameOver(OthGame game) {
     
      // Code for ending game
-        System.out.println(game.getOthCounters1() + game.getOthCounters2());
-        if((game.getOthCounters1() + game.getOthCounters2()) == MAX_COUNTERS) {
+        System.out.println(game.getCounters1() + game.getCounters2());
+        if((game.getCounters1() + game.getCounters2()) == MAX_COUNTERS) {
          if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
      System.out.println("Evaluated: Draw!");
      System.out.println("PLACEHOLDER: EXIT GAME");
