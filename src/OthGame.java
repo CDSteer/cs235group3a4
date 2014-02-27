@@ -23,6 +23,9 @@ public class OthGame extends AbstractGame {
     private static final int LIST_ELEMENTS = 10;
     private static final int ROW_EIGHT = 8;
     private static final int COLUMN_EIGHT = 8;
+    private static final int BOTH_PLAYERS = 3;
+    
+    private int[][] validMoves;
     
     //TW Test Code
     private OthRules othRules;
@@ -71,6 +74,7 @@ public class OthGame extends AbstractGame {
     public OthBoard getBoard(){
         return m_Board;
     }
+    
 
     /**
      * Set OthBoard
@@ -148,6 +152,18 @@ public class OthGame extends AbstractGame {
         } else {
             this.m_Turn = PLAYER_1;
         }
+        
+        validMoves = othRules.checkValidSet(this.getInPlayCounters());
+        
+        for(int i = 0; i < COLUMN_EIGHT; i++) {
+            for(int j = 0; j < ROW_EIGHT; j++) {
+                if(validMoves[i][j] == this.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                    if(!m_Board.getBoard()[i][j].isUsed()) {
+                        m_Board.getBoard()[i][j].setlegal(true);
+                    }
+                }
+            }
+        }
 		
     }
 	
@@ -162,3 +178,4 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }
+
