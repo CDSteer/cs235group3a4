@@ -1,11 +1,9 @@
 /**
- * @file TestOthInput.java
- * @detail A test class for OthInput.java
+ * @brief A test class for OthInput
+ * @details
  * 
- * 		   OthInput.inputLoop is tested one time(s).
- * 		   
- *         
- * @author Tom
+ * OthInput.inputLoop is tested one time(s).
+ * @author Tom Werner
  *
  */
 import org.lwjgl.LWJGLException;
@@ -15,9 +13,13 @@ public class TestOthInput {
 	
 	private static OthInput othInput;
 	
+	/**
+	 * main method containing tests
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
-		/*
+		/**
 		 * OthInput.inputLoop Test One
 		 */
 		othInput = new OthInput();

@@ -1,12 +1,12 @@
 /**
- * @file TestOthCounter.java
- * @detail A test class for OthCounter.java
+ * @brief A test class for OthCounter
+ * @details
  * 
  * 		   OthCounter.playPlaceSound is tested one time(s).
  * 		   OthCounter.playNegSound is tested one time(s).
  * 		   The constructor OthGame() calls the method OthGame.setSoundFiles.
  * 		   
- * @author Tom
+ * @author Tom Werner
  *
  */
 public class TestOthCounter {

@@ -1,10 +1,10 @@
 /**
- * @file TestC4Rules.java
- * @detail A test class for C4Rules.java
+ * @brief A test class for C4Rules
+ * @details
  * 
  * 		   C4Rules.winCondition is tested 3 times.
  * 
- * @author Tom
+ * @author Tom Werner
  *
  */
 public class TestC4Rules {

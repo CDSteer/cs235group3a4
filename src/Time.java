@@ -1,11 +1,10 @@
 import org.lwjgl.Sys;
 
 /**
- * @file 	Time.java
- * @author 	Cameron Steer
- * @date	February 1, 2014
- * @see     http://thecodinguniverse.com/tag/delta/
- * @brief	The class to get time information
+ * @brief The class to get time information
+ * @author Cameron Steer
+ * @date February 1, 2014
+ * @see http://thecodinguniverse.com/tag/delta/
  * @details This class calculates frame information used for rendering and moving objects on the screen
  */
 

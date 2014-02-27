@@ -1,15 +1,13 @@
-
-
 /**
- * @file TestC4Game.java
- * @detail A test class for C4Game.java
+ * @brief A test class for C4Game
+ * @details 
  * 
  * 		   C4Game.playGame is tested one time(s).
  * 		   C4Game.nextTurn is tested one time(s).
  *         C4Game.winCheck is tested one time(s).
  *         C4Game.init / C4Game.gameLoop runs in an infinite loop and can not be tested in isolation.
  *         
- * @author Tom
+ * @author Tom Werner
  *
  */
 public class TestC4Game {

@@ -1,6 +1,6 @@
 /**
- * @file TestOthRules.java
- * @detail A test class for OthRules.java
+ * @brief A test class for OthRules
+ * @details
  * 
  * OthRules.winCondition is tested 3 times.
  * 

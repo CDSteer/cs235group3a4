@@ -1,14 +1,14 @@
 
 /**
- * @file TestOthGame.java
- * @detail A test class for OthGame.java
+ * @brief A test class for OthGame
+ * @details
  * 
  * 		  OthGame.playGame is tested one time(s).
  * 		  OthGame.nextTurn is tested one time(s).
  *        OthGame.calcCounters is tested one time(s).
  *        OthGame.init / OthGame.gameLoop runs in an infinite loop and cannot be tested in isolation.
  *         
- * @author Tom
+ * @author Tom Werner
  *
  */
 public class TestOthGame {
