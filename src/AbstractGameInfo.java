@@ -4,6 +4,15 @@ import org.newdawn.slick.TrueTypeFont;
 /**
  * Created by Chris on 24/02/14.
  */
+
+/**
+* @author Chris Jenkins
+* @since 24/02/2014
+* @date Verified and Updated by Design Manager Curtis on 27th Feb 2014
+* @brief Stores the font for GameInfo classes
+* @details Abstract class that stores the font for both the C4GameInfo and OthGameInfo classes
+*/
+
 public class AbstractGameInfo {
 
     private Font fontArial;
@@ -11,7 +20,7 @@ public class AbstractGameInfo {
     private boolean player2Wins;
 
     /**
-     *Sets the Font
+     * sets the font
      */
     public static void GameInfo(){
 
@@ -19,7 +28,7 @@ public class AbstractGameInfo {
     }
 
     /**
-     *Draws the Font
+     * Draws the Font
      */
     public static void draw(){
 
