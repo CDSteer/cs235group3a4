@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.glClear;
 /**
  * Created with IntelliJ IDEA.
  *
- * @author cdsteer
+ * @author Cameron Steer
  *
  * @since 04/02/2014
  * 		 	-update 20/02/2014
