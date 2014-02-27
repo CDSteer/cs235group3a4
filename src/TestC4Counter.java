@@ -2,11 +2,11 @@
  * @file TestC4Counter.java
  * @detail A test class for C4Counter.java
  * 		   
- *         C4Counter.playTestSound is tested one time(s).
+ *         C4Counter.playPlaceSound is tested one time(s).
  *         C4Counter.playNegSound is tested one time(s).
  *         C4Counter.playDropSound is tested one time(s).
  *         C4Counter.dropCounter is tested one time(s).
- *         The constructor C4Game() calls the methods setSoundFiles.
+ *         The constructor C4Game() calls the method C4Game.setSoundFiles.
  * 
  * @author Tom
  *
@@ -27,9 +27,9 @@ public class TestC4Counter {
 		c4Counter = new C4Counter();
 		try {
 			c4Counter.playPlaceSound();
-			System.out.println("C4Counter.playTestSound Test One Evaluated: Correct");
+			System.out.println("C4Counter.playPlaceSound Test One Evaluated: Correct");
 		} catch (Exception e) {
-			System.out.println("C4Counter.playTestSound Test One Evaluated: Incorrect");
+			System.out.println("C4Counter.playPlaceSound Test One Evaluated: Incorrect");
 		}
 		
 		/*
