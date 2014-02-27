@@ -1,3 +1,5 @@
+import org.lwjgl.opengl.Display;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,6 +141,40 @@ public class C4Game extends AbstractGame{
         	System.out.println("Error: No Evaluation");
         }
         
+    }
+    /** initC4 method for calling C4 game board */
+    public void initC4() {
+
+        /** set up timer for C4 game */
+        Time time = new Time();
+        time.setUpTimer();
+
+        /** display the C4 game board */
+        C4Display display = new C4Display();
+        C4Game game = new C4Game();
+        C4Input gameInput = new C4Input();
+        C4GameInfo gameInfo = new C4GameInfo();
+
+        display.setUpDisplay();
+        display.setUpOpenGL();
+        display.loadTextures();
+        C4Square.setTexture();
+
+        while (game.isRunning()) {
+            gameInput.inputLoop(game.getCurrentCounter());
+            game.gameLoop(game, time.getDelta());
+            display.render(game);
+            Display.update();
+            Display.sync(time.getFrameRate());
+            if (Display.isCloseRequested()) {
+                //AL.destroy();
+                game.setRunning(false);
+            }
+        }
+
+        /** kill game on close */
+        Display.destroy();
+        //System.exit(0);
     }
 	
 //	public void redTurn(){
