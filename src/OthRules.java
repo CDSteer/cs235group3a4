@@ -1,10 +1,9 @@
 
 /**
- * @file OthRules.java
  * @author Thomas Werner
  * @date 25/2/2014
  * @version 1.0.2
- *
+ * @brief provides the win rules for Othello
  * @details Provides the win condition for a game of Othello,
  * 			to be evaluated after every player move.
  * 			Provides method for flipping counters
@@ -33,58 +32,114 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	
 	// Accessor methods for class variables
 	
+	/**
+	 * get player 1 counters
+	 * @return m_Player1Counters
+	 */
 	private int getPlayer1Counters() {
 		return m_player1Counters;
 	}
 	
+	/**
+	 * set player 1 counters
+	 * @param value
+	 */
 	private void setPlayer1Counters(int value) {
 		m_player1Counters = value;
 	}
 	
+	/**
+	 * get player 2 counters
+	 * @return m_player2Counters
+	 */
 	private int getPlayer2Counters() {
 		return m_player2Counters;
 	}
 	
+	/**
+	 * set player 2 counters
+	 * @param value
+	 */
 	private void setPlayer2Counters(int value) {
 		m_player2Counters = value;
 	}
 	
+	/**
+	 * get current counter
+	 * @return m_currentCounter
+	 */
 	private OthCounter getCurrentCounter() {
 		return m_currentCounter;
 	}
 	
+	/**
+	 * set the current counter
+	 * @param counter
+	 */
 	private void setCurrentCounter(OthCounter counter) {
 		m_currentCounter = counter;
 	}
 	
+	/**
+	 * get the check counter
+	 * @return m_checkCounter
+	 */
 	private OthCounter getCheckCounter() {
 		return m_checkCounter;
 	}
 	
+	/**
+	 * set the check counter
+	 * @param counter
+	 */
 	private void setCheckCounter(OthCounter counter) {
 		m_checkCounter = counter;
 	}
 	
+	/**
+	 * get the valid moves for the othello game
+	 * @return m_validMoves
+	 */
 	private int[][] getValidMoves() {
 		return m_validMoves;
 	}
 	
+	/**
+	 * set valid moves for the othello game
+	 * @param array
+	 */
 	private void setValidMoves(int[][] array) {
 		m_validMoves = array;
 	}
 	
+	/**
+	 * get current x location
+	 * @return m_currentX
+	 */
 	private int getCurrentX() {
 		return m_currentX;
 	}
 	
+	/**
+	 * set the current x location
+	 * @param value
+	 */
 	private void setCurrentX(int value) {
 		m_currentX = value;
 	}
 	
+	/**
+	 * get the current y location
+	 * @return m_currentY
+	 */
 	private int getCurrentY() {
 		return m_currentY;
 	}
 	
+	/**
+	 * set current y location
+	 * @param value
+	 */
 	private void setCurrentY(int value) {
 		m_currentY = value;
 	}

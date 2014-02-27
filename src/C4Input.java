@@ -1,12 +1,9 @@
 import org.lwjgl.input.Keyboard;
 
 /**
- * Created with IntelliJ IDEA.
- *
  * @author Cameron Steer and Curtis Lewis
  * @since 04/02/2014 -update 20/2/2014
  * @date  Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @see
  * @brief	This class extends AbstractInput which contains methods to allow the user to make a move in C4.
  * @details This class creates a loop which listens for a left or right move from the user's keyboard and allows a move.
  * @version *1.0.1*
