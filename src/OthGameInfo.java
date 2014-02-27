@@ -16,6 +16,8 @@ public class OthGameInfo extends AbstractGameInfo{
     private TrueTypeFont fontX;
     private TrueTypeFont fontError;
     private Font font;
+    private String p1Counters;
+    private String p2Counters;
 
 
     public OthGameInfo(){
@@ -24,6 +26,9 @@ public class OthGameInfo extends AbstractGameInfo{
     }
 
     public void draw(AbstractGame game){
+    
+    	p1Counters = Integer.toString(game.getCounters1());
+    	p2Counters = Integer.toString(game.getCounters2());
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Color.white.bind();
         fontX = new TrueTypeFont(font, false);
@@ -34,8 +39,8 @@ public class OthGameInfo extends AbstractGameInfo{
 
         //still need to get the players scores and stick them
         //in these strings
-        fontX.drawString(400, 100, "Player 1: ");
-        fontX.drawString(400, 150, "Player 2: ");
+        fontX.drawString(400, 100, "Player 1: " + p1Counters);
+        fontX.drawString(400, 150, "Player 2: " + p2Counters);
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
