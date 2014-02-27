@@ -1,14 +1,12 @@
 
 /**
- * @file TestOthBoard
- * @detail A test for OthBoard.java
+ * @author Tom Werner
+ * @brief A test for OthBoard
+ * @details
  * 
  * 		   OthBoard.startingCounters is tested one time(s).
  * 		   OthBoard.fillBoard is tested one time(s).
- * 		   OthBoard.placeCounter is tested one time(s).       
- * 
- * @author Tom
- *
+ * 		   OthBoard.placeCounter is tested one time(s).
  */
 public class TestOthBoard {
 	
@@ -24,6 +22,10 @@ public class TestOthBoard {
 	private static OthGame othGame;
 	private static OthBoard othBoard;
 	
+	/**
+	 * main method to run tests
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		/*
