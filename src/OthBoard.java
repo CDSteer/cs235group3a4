@@ -111,7 +111,16 @@ public class OthBoard extends AbstractBoard{
 
     	// TW Test Code
     	validMoves = othrules.checkValidSet(game.getInPlayCounters());
-    	 	
+
+        for(int i = 0; i < COLUMN; i++) {
+            for(int j = 0; j < ROW; j++) {
+                if(validMoves[i][j] == game.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                    if(!m_board[i][j].isUsed()) {
+                        m_board[i][j].setlegal(false);
+                    }
+                }
+            }
+        }
     	
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
@@ -119,7 +128,7 @@ public class OthBoard extends AbstractBoard{
                 	
                 	// TW Test Code
                 	if(validMoves[i][j] == game.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
-                		
+
 	                    OthCounter othCounter = new OthCounter(game.getTurn());
 	                    othCounter.center(m_board[i][j]);
 	                    m_board[i][j].setUsed(true);
@@ -138,6 +147,16 @@ public class OthBoard extends AbstractBoard{
                 	}
                 }else if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY()) && m_board[i][j].isUsed()) {
                     game.getCurrentCounter().playNegSound();
+                }
+            }
+        }
+
+        for(int i = 0; i < COLUMN; i++) {
+            for(int j = 0; j < ROW; j++) {
+                if(validMoves[i][j] == game.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                    if(!m_board[i][j].isUsed()) {
+                        m_board[i][j].setlegal(true);
+                    }
                 }
             }
         }
