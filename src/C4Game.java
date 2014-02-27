@@ -150,7 +150,7 @@ public class C4Game extends AbstractGame{
      */
     public void winCheck() {
         if(c4rules.winCondition(m_Board) == 0) {
-            System.out.println("Evaluated: No Winner");
+
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
             //display player wins alert
             option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Please click 'Yes' to play again or 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
