@@ -48,6 +48,7 @@ public class OthGame extends AbstractGame {
         // TW Test Code
         othRules = new OthRules();
         highLightValid();
+        calcCounters();
     }
 
     public OthCounter[][] getInPlayCounters() {
@@ -107,17 +108,39 @@ public class OthGame extends AbstractGame {
     }
     
     // TW Test Method
-    public void incrementOthCounters() {
-    	currentCounters1++;
+    public void calcCounters() {
+    	
+    	int temp_1 = 0;
+    	int temp_2 = 0;
+    	for(int i = 0; i < COLUMN_EIGHT; i++) {
+    		for (int j = 0; j < ROW_EIGHT; j++) {
+    			if(getInPlayCounters()[i][j].getPlayer() == PLAYER_1) {
+    				temp_1++;
+    			} else if (getInPlayCounters()[i][j].getPlayer() == PLAYER_2) {
+    				temp_2++;
+    			}
+    		}
+    	}
+    	
+    	setCounters1(temp_1);
+    	setCounters2(temp_2);
     }
     
     // TW Test Method
-    public int getOthCounters1() {
+    public int getCounters1() {
     	return currentCounters1;
     }
     
-    public int getOthCounters2() {
+    public int getCounters2() {
     	return currentCounters2;
+    }
+    
+    public void setCounters1(int value) {
+    	currentCounters1 = value;
+    }
+    
+    public void setCounters2(int value) {
+    	currentCounters2 = value;
     }
 
 	/**
@@ -148,14 +171,17 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void nextTurn() {
-
+    	
+    	calcCounters();
         if (this.m_Turn == PLAYER_1){
             this.m_Turn = PLAYER_2;
         } else {
             this.m_Turn = PLAYER_1;
         }
         highLightValid();
+        
     }
+    
     private void highLightValid(){
         validMoves = othRules.checkValidSet(this.getInPlayCounters());
         for(int i = 0; i < COLUMN_EIGHT; i++) {
@@ -180,4 +206,3 @@ public class OthGame extends AbstractGame {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }
-
