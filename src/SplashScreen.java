@@ -38,7 +38,7 @@ public class SplashScreen extends JFrame{
             public void actionPerformed(ActionEvent event) {
                 splash.setVisible(false);
                 C4Game game = new C4Game();
-                game.initC4();
+                game.init();
                 splash.setVisible(true);
             }
         });
@@ -49,7 +49,7 @@ public class SplashScreen extends JFrame{
             public void actionPerformed(ActionEvent event) {
                 splash.setVisible(false);
                 OthGame game = new OthGame();
-                game.initOthello();
+                game.init();
                 splash.setVisible(true);
             }
         });

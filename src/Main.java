@@ -11,6 +11,8 @@
  * 
  */
 
+import org.lwjgl.openal.AL;
+
 import javax.swing.*;
 import java.io.IOException;
 
@@ -20,6 +22,9 @@ public class Main extends JFrame {
         /** call GUI method */
         SplashScreen splashScreen = new SplashScreen();
         splashScreen.initGUI();
+        if (AL.isCreated()){
+            AL.destroy();
+        }
     }
 
 

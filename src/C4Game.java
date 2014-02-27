@@ -23,6 +23,8 @@ public class C4Game extends AbstractGame{
     private HumPlayer player2;									//Player2 information
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     private int m_Turn = 1;
+    C4Input m_GameInput;
+    C4Display m_Display;
 
     // TW Test Code
     private C4Rules c4rules;
@@ -40,6 +42,8 @@ public class C4Game extends AbstractGame{
 	*/
     public C4Game() {
         super(true);
+        this.m_Display = new C4Display();
+        this.m_GameInput = new C4Input();
         this.currentCounter = new C4Counter();
         this.player1 = new HumPlayer(PLAYER1);
         this.player2 = new HumPlayer(PLAYER2);
@@ -151,61 +155,16 @@ public class C4Game extends AbstractGame{
         
     }
     /** initC4 method for calling C4 game board */
-    public void initC4() {
-
-        /** set up timer for C4 game */
-        Time time = new Time();
-        time.setUpTimer();
-
-        /** display the C4 game board */
-        C4Display display = new C4Display();
-        C4Game game = new C4Game();
-        C4Input gameInput = new C4Input();
-        C4GameInfo gameInfo = new C4GameInfo();
-
-        display.setUpDisplay();
-        display.setUpOpenGL();
-        display.loadTextures();
+    public void init() {
+        new C4Game();
+        this.getTime().setUpTimer();
+        m_Display.setUpDisplay();
+        m_Display.setUpOpenGL();
+        m_Display.loadTextures();
         C4Square.setTexture();
-
-        while (game.isRunning()) {
-            gameInput.inputLoop(game.getCurrentCounter());
-            game.gameLoop(game, time.getDelta());
-            display.render(game);
-            Display.update();
-            Display.sync(time.getFrameRate());
-            if (Display.isCloseRequested()) {
-                //AL.destroy();
-                game.setRunning(false);
-            }
-        }
-
-        /** kill game on close */
+        gameLoop();
         Display.destroy();
-        //System.exit(0);
     }
-	
-//	public void redTurn(){
-//		//nextTurn() must return sth. or
-//		//implement this together with nextTurn()
-//		//This method is not on abstract class
-//	}
-//
-//	public void yellowTurn(){
-//		//nextTurn() must return sth.
-//		//or implement this together with nextTurn()
-//		//This method is not on abstract class
-//	}
-//
-//	public void setRed(player redPlayer){
-//		//Need display class
-//		//This method is not on abstract class
-//	}
-//
-//	public void setYellow(player yellowPlayer){
-//		//Need display class
-//		//This method is not on abstract class
-//	}
 	
 	/**
 	 * @brief Game End
@@ -219,17 +178,23 @@ public class C4Game extends AbstractGame{
 	/**
 	 * @brief *****CAMERON, I have no idea what's this doing...*******
 	 * @see AbstractGame
-	 * @param  game
-     * @param delta
 	 * @return void
 	 */
-    @Override
-    public void gameLoop(AbstractGame game, int delta) {
-        currentCounter.dropCounter(delta);
-        if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
-            this.nextTurn();
-        }
+    public void gameLoop() {
 
+        while (this.isRunning()) {
+            m_GameInput.inputLoop(currentCounter);
+            if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
+                this.nextTurn();
+            }
+            m_Display.render(this);
+            currentCounter.dropCounter(getTime().getDelta());
+            Display.update();
+            Display.sync(this.getTime().getFrameRate());
+            if (Display.isCloseRequested()) {
+                this.setRunning(false);
+            }
+        }
     }
 
     private static final int PLAYER2 = 2;

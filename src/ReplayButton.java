@@ -43,20 +43,15 @@ public abstract class ReplayButton extends AbstractEntity{
     public void draw(){
         glColor3d(0.0, 0.0, 1.0);
         glBegin(GL11.GL_QUADS);
-        glTexCoord2f(0, 0);
         glVertex2d(x, y);
-        glTexCoord2f(1, 0);
         glVertex2d(x + m_Button.getTextureWidth(), y);
-        glTexCoord2f(1, 1);
         glVertex2d(x + m_Button.getTextureWidth(), y + m_Button.getTextureHeight());
-        glTexCoord2f(0, 1);
         glVertex2d(x, y + m_Button.getTextureHeight());
         glEnd();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Color.black.bind();
         m_FontX = new TrueTypeFont(font, false);
         m_FontX.drawString((int)x + PADDING, (int)y + PADDING, "Replay");
-
         GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 

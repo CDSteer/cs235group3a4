@@ -20,25 +20,20 @@ public class OthGame extends AbstractGame {
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
     private int m_Turn;
     private OthCounter m_InPlayCounters[][];
-    private static final int PLAYER_1 = 1;
-    private static final int PLAYER_2 = 2;
-    private static final int LIST_ELEMENTS = 10;
-    private static final int ROW_EIGHT = 8;
-    private static final int COLUMN_EIGHT = 8;
-    private static final int BOTH_PLAYERS = 3;
-    
     private int[][] validMoves;
-    
     //TW Test Code
     private OthRules othRules;
     private int currentCounters1 = 0;
     private int currentCounters2 = 0;
-	
     private OthBoard m_Board;
+    private OthDisplay m_Display;
+    private OthInput m_GameInput;
 
 
     public OthGame() {
         super(true);
+        m_Display = new OthDisplay();
+        m_GameInput = new OthInput();
 		this.currentCounter = new OthCounter(PLAYER_1);
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
@@ -146,44 +141,35 @@ public class OthGame extends AbstractGame {
     }
 
     /** initOthello method for calling Othello game board */
-    public void initOthello() {
+    public void init() {
+
+        new OthGame();
         /** set up timer for othello game */
-        Time time = new Time();
-        time.setUpTimer();
+        this.getTime().setUpTimer();
 
         /** display the othello game board */
-        OthDisplay display = new OthDisplay();
-        OthGame game = new OthGame();
-        OthInput gameInput = new OthInput();
-        OthGameInfo gameInfo = new OthGameInfo();
+        m_Display.setUpDisplay();
+        m_Display.setUpOpenGL();
+        gameLoop();
 
-        display.setUpDisplay();
-        display.setUpOpenGL();
-
-        while (game.isRunning()) {
-            gameInput.inputLoop(game);
-            game.gameLoop(game, time.getDelta());
-            display.render(game);
-            Display.update();
-            Display.sync(time.getFrameRate());
-            if (Display.isCloseRequested()) {
-                //AL.destroy();
-                game.setRunning(false);
-            }
-        }
         Display.destroy();
-        //System.exit(0);
     }
 
 	/**
 	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @param  game
-     * @param  delta
 	 * @return null
 	 */
     @Override
-    public void gameLoop(AbstractGame game, int delta) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void gameLoop() {
+        while (isRunning()) {
+            m_GameInput.inputLoop(this);
+            m_Display.render(this);
+            Display.update();
+            Display.sync(this.getTime().getFrameRate());
+            if (Display.isCloseRequested()) {
+                setRunning(false);
+            }
+        }
     }
 
     /**
@@ -237,4 +223,11 @@ public class OthGame extends AbstractGame {
     public void gameOver() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    private static final int PLAYER_1 = 1;
+    private static final int PLAYER_2 = 2;
+    private static final int LIST_ELEMENTS = 10;
+    private static final int ROW_EIGHT = 8;
+    private static final int COLUMN_EIGHT = 8;
+    private static final int BOTH_PLAYERS = 3;
 }
