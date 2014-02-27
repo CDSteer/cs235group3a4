@@ -20,7 +20,7 @@ public class C4Game extends AbstractGame{
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
     private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
-    private int m_Turn;
+    private int m_Turn = 1;
 
     // TW Test Code
     private C4Rules c4rules;
@@ -107,9 +107,11 @@ public class C4Game extends AbstractGame{
         if (currentCounter.getPlayer() == PLAYER1){
             currentCounter = new C4Counter();
             currentCounter.setPlayer(PLAYER2);
+            m_Turn = 2;
         } else {
             currentCounter = new C4Counter();
             currentCounter.setPlayer(PLAYER1);
+            m_Turn = 1;
         }
         // TW Test Code
         if(c4rules.winCondition(m_Board) == 0) {
