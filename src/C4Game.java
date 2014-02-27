@@ -141,7 +141,6 @@ public class C4Game extends AbstractGame{
             currentCounter.setPlayer(PLAYER1);
             m_Turn = 1;
         }
-        winCheck();
 
     }
     /**
@@ -154,15 +153,20 @@ public class C4Game extends AbstractGame{
             System.out.println("Evaluated: No Winner");
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Red Wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
+            option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Please click 'Yes' to play again or 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION){
                 setRunning(false);
             } else if (option == JOptionPane.YES_OPTION){
                 playGame();
             }
         } else if (c4rules.winCondition(m_Board) == PLAYER2) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Yellow Wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
+            option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Please click 'Yes' to play again 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION){
                 setRunning(false);
             } else if (option == JOptionPane.YES_OPTION){
@@ -206,7 +210,7 @@ public class C4Game extends AbstractGame{
             if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
                 this.nextTurn();
             }
-
+            winCheck();
             m_Display.render(this);
             currentCounter.dropCounter(getTime().getDelta());
             Display.update();

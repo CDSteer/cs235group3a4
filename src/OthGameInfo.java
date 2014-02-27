@@ -29,18 +29,23 @@ public class OthGameInfo extends AbstractGameInfo{
     
     	p1Counters = Integer.toString(game.getCounters1());
     	p2Counters = Integer.toString(game.getCounters2());
+        String turnText = "";
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Color.white.bind();
         fontX = new TrueTypeFont(font, false);
 
         //fontX.drawString(100, 400, "Welcome to Othello");
-        String turnText = "Player " + game.getTurn() + "'s turn";
+        if(game.getTurn() == 1){
+           turnText = "Black's turn";
+        }else if(game.getTurn() == 2){
+           turnText = "White's turn";
+        }
         fontX.drawString(400, 200, turnText);
 
         //still need to get the players scores and stick them
         //in these strings
-        fontX.drawString(400, 100, "Player 1: " + p1Counters);
-        fontX.drawString(400, 150, "Player 2: " + p2Counters);
+        fontX.drawString(400, 100, "Black: " + p1Counters);
+        fontX.drawString(400, 150, "White: " + p2Counters);
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
@@ -54,14 +59,14 @@ public class OthGameInfo extends AbstractGameInfo{
     public void p1WinsMessage(){
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         fontX = new TrueTypeFont(font, false);
-        fontX.drawString(200, 380, "Player 1 Wins!");
+        fontX.drawString(200, 380, "Black Wins!");
         GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 
     public void p2WinsMessage(){
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         fontX = new TrueTypeFont(font, false);
-        fontX.drawString(200, 380, "Player 2 Wins!");
+        fontX.drawString(200, 380, "White Wins!");
         GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 
