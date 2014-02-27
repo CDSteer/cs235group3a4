@@ -11,8 +11,7 @@ import java.util.List;
  * @brief This file is the main panel, allocating information and data into
  *        every inherit classes, maintaining game process.
  *
- * @author Cameron Steer
- * @author Martin Hui
+ * @author Cameron Steer, Martin Hui, Jamie I Davies
  * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @version *1.2*
  * @since February 20, 2014
@@ -131,15 +130,21 @@ public class C4Game extends AbstractGame{
             currentCounter.setPlayer(PLAYER1);
             m_Turn = 1;
         }
-        // TW Test Code
+        
+        /*
+         * if statement to check the win state of the game
+         * this will then display a dialog
+         */
         if(c4rules.winCondition(m_Board) == 0) {
         	System.out.println("Evaluated: No Winner");
         } else if (c4rules.winCondition(m_Board) == PLAYER1) {
-        	Sys.alert("Alert", "Player 1 Wins!");
-        	//System.out.println("Evaluated: Player 1 Wins");
+        	//display player wins alert
+        	Sys.alert("Alert", "Player 1 Wins! Game will now end!");
+        	Display.destroy();
         } else if (c4rules.winCondition(m_Board) == PLAYER2) {
-        	Sys.alert("Alert", "Player 2 Wins!");
-        	//System.out.println("Evaluated: Player 2 Wins");
+        	//display player wins alert
+        	Sys.alert("Alert", "Player 2 Wins! Game will now end!");
+        	Display.destroy();
         } else {
         	System.out.println("Error: No Evaluation");
         }

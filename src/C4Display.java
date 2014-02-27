@@ -33,8 +33,8 @@ public class C4Display extends AbstractDisplay{
         }
 
         game.getBoard().draw();
-        c4ReplayButton.draw();
-        c4GameInfo.draw(game);
+        //c4ReplayButton.draw();
+        //c4GameInfo.draw(game);
 
         //call C4InfoDisplay here
     }
