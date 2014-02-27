@@ -133,14 +133,7 @@ public class OthBoard extends AbstractBoard{
 					// TW Test Code
 					game.incrementOthCounters();
 					othrules.flipCounters(game.getInPlayCounters(), i, j, game.getTurn());
-					
-					for(int a = 0; a < COLUMN; a++) {
-			            for(int b = 0; b < ROW; b++) {               
-			            	m_board[a][b].setlegal(false);
-			            }
-			    	}
-					
-					
+                    unHightlight();
 					game.nextTurn();
                  } else {
                         game.getCurrentCounter().playNegSound();
@@ -157,6 +150,14 @@ public class OthBoard extends AbstractBoard{
         checkGameOver(game);
         
         return true;
+    }
+
+    private void unHightlight(){
+        for(int i = 0; i < COLUMN; i++) {
+            for(int j = 0; j < ROW; j++) {
+                m_board[i][j].setlegal(false);
+            }
+        }
     }
     
     private void checkGameOver(OthGame game) {

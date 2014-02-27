@@ -47,6 +47,7 @@ public class OthGame extends AbstractGame {
         this.m_Turn = PLAYER_1;
         // TW Test Code
         othRules = new OthRules();
+        highLightValid();
     }
 
     public OthCounter[][] getInPlayCounters() {
@@ -147,14 +148,16 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void nextTurn() {
+
         if (this.m_Turn == PLAYER_1){
             this.m_Turn = PLAYER_2;
         } else {
             this.m_Turn = PLAYER_1;
         }
-        
+        highLightValid();
+    }
+    private void highLightValid(){
         validMoves = othRules.checkValidSet(this.getInPlayCounters());
-        
         for(int i = 0; i < COLUMN_EIGHT; i++) {
             for(int j = 0; j < ROW_EIGHT; j++) {
                 if(validMoves[i][j] == this.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
@@ -164,7 +167,6 @@ public class OthGame extends AbstractGame {
                 }
             }
         }
-		
     }
 	
 	/**
