@@ -12,8 +12,6 @@
  * @author Tom
  *
  */
-
-
 public class TestOthRules {
 	
 	private static final int COLUMN = 8;
@@ -22,9 +20,16 @@ public class TestOthRules {
 	private static final int PLAYER_ONE = 1;
 	private static final int PLAYER_TWO = 2;
 	
+	private static OthRules othRules;
+	
+	
 	public static void main(String args[]) {
 		
-		OthRules othRules = new OthRules();
+		/*
+		 * OthRules.winCondition Test One:
+		 * Filled board of PLAYER_ONE counters
+		 */
+		othRules = new OthRules();
 		
 		OthCounter[][] m_testBoard1 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
@@ -40,6 +45,12 @@ public class TestOthRules {
 			System.out.println("winCondition Test One Evaluated: Incorrect");
 		}
 		
+		/*
+		 * OthRules.winCondition Test Two:
+		 * Filled board of PLAYER_TWO counters
+		 */
+		othRules = new OthRules();
+		
 		OthCounter[][] m_testBoard2 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
 			for(int j = 0; j < ROW; j++) {
@@ -54,6 +65,13 @@ public class TestOthRules {
 			System.out.println("winCondition Test Two Evaluated: Incorrect");
 		}
 		
+		
+		/*
+		 * OthRules.winCondition Test Two:
+		 * Empty board (counters of player 0 are not visible)
+		 */
+		othRules = new OthRules();
+		
 		OthCounter[][] m_testBoard3 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
 			for(int j = 0; j < ROW; j++) {
@@ -67,6 +85,14 @@ public class TestOthRules {
 		} else {
 			System.out.println("winCondition Test Three Evaluated: Incorrect");
 		}
+		
+		
+		/*
+		 * OthRules.checkValidSet Test One:
+		 * Testing the filled board of PLAYER_ONE counters
+		 * All positions filled, so no valid moves should be possible
+		 */
+		othRules = new OthRules();
 		
 		int[][] validSet1 = othRules.checkValidSet(m_testBoard1);
 		boolean correct1 = true;
