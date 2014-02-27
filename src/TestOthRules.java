@@ -2,12 +2,32 @@
  * @file TestOthRules.java
  * @detail A test class for OthRules.java
  * 
- * 		   winCondition is tested 3 times.
+ * OthRules.winCondition is tested 3 times.
  * 
- * 		   checkValidSet is tested 1 time(s). (need to do more of these)
- * 		   during this test, methods X,Y,Z are also called
+ * OthRules.checkValidSet is tested 1 time(s).
+ * during this test, methods:
+ * 		OthRules.checkAvailableMatch
+ * 		OthRules.checkVerticalDown
+ * 		OthRules.checkVerticalUp
+ * 		OthRules.checkRowsRight
+ * 		OthRules.checkRowsLeft
+ * 		OthRules.checkDiagonalUpRight
+ * 		OthRules.checkDiagonalUpLeft
+ * 		OthRules.checkDiagonalDownRight
+ * 		OthRules.checkDiagonalDownLeft
+ * are also called.
  * 
- * 		   flipCounters is tested X times. (need to do these)
+ * OthRules.flipCounters is tested X times. (need to do these)
+ * during this test, methods:
+ * 		OthRules.flipVerticalDown
+ * 		OthRules.flipVerticalUp
+ * 		OthRules.flipRowsRight
+ * 		OthRules.flipRowsLeft
+ * 		OthRules.flipDiagonalUpRight
+ * 		OthRules.flipDiagonalUpLeft
+ * 		OthRules.flipDiagonalDownRight
+ * 		OthRules.flipDiagonalDownLeft
+ * are also called.
  * 
  * @author Tom
  *
@@ -40,9 +60,9 @@ public class TestOthRules {
 		}
 		
 		if(othRules.winCondition(m_testBoard1) == PLAYER_ONE) {
-			System.out.println("winCondition Test One Evaluated: Correct");
+			System.out.println("OthRules.winCondition Test One Evaluated: Correct");
 		} else {
-			System.out.println("winCondition Test One Evaluated: Incorrect");
+			System.out.println("OthRules.winCondition Test One Evaluated: Incorrect");
 		}
 		
 		/*
@@ -60,9 +80,9 @@ public class TestOthRules {
 		}
 		
 		if(othRules.winCondition(m_testBoard2) == PLAYER_TWO) {
-			System.out.println("winCondition Test Two Evaluated: Correct");
+			System.out.println("OthRules.winCondition Test Two Evaluated: Correct");
 		} else {
-			System.out.println("winCondition Test Two Evaluated: Incorrect");
+			System.out.println("OthRules.winCondition Test Two Evaluated: Incorrect");
 		}
 		
 		
@@ -81,9 +101,9 @@ public class TestOthRules {
 		}
 		
 		if(othRules.winCondition(m_testBoard3) == NO_MATCH) {
-			System.out.println("winCondition Test Three Evaluated: Correct");
+			System.out.println("OthRules.winCondition Test Three Evaluated: Correct");
 		} else {
-			System.out.println("winCondition Test Three Evaluated: Incorrect");
+			System.out.println("OthRules.winCondition Test Three Evaluated: Incorrect");
 		}
 		
 		
@@ -105,9 +125,9 @@ public class TestOthRules {
 		}
 		
 		if(correct1 == true) {
-			System.out.println("checkValidSet Test One Evaluated: Correct");
+			System.out.println("OthRules.checkValidSet Test One Evaluated: Correct");
 		} else {
-			System.out.println("checkValidSet Test One Evaluated: Incorrect");
+			System.out.println("OthRules.checkValidSet Test One Evaluated: Incorrect");
 		}
 
 	}

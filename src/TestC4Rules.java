@@ -1,7 +1,8 @@
 /**
- * @detail A test class for OthRules.java
+ * @file TestC4Rules.java
+ * @detail A test class for C4Rules.java
  * 
- * 		   winCondition is tested 3 times.
+ * 		   C4Rules.winCondition is tested 3 times.
  * 
  * @author Tom
  *
