@@ -1,6 +1,7 @@
 
 import org.lwjgl.input.Mouse;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -154,14 +155,32 @@ public class OthBoard extends AbstractBoard{
          System.out.println(game.getCounters1() + game.getCounters2());
          if((game.getCounters1() + game.getCounters2()) == MAX_COUNTERS) {
             if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
-                 System.out.println("Evaluated: Draw!");
-                 System.out.println("PLACEHOLDER: EXIT GAME");
+                System.out.println("Evaluated: Draw!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+                option = JOptionPane.showConfirmDialog(null, "No More Moves, Draw! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.NO_OPTION){
+                    game.setRunning(false);
+                } else if (option == JOptionPane.YES_OPTION){
+                    game.playGame();
+                }
             } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
-                 System.out.println("Evaluated: Player 1 win!");
-                 System.out.println("PLACEHOLDER: EXIT GAME");
+                System.out.println("Evaluated: Player 1 win!");
+                System.out.println("PLACEHOLDER: EXIT GAME");
+                option = JOptionPane.showConfirmDialog(null, "No More Moves, Black wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.NO_OPTION){
+                    game.setRunning(false);
+                } else if (option == JOptionPane.YES_OPTION){
+                    game.playGame();
+                }
             } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
                  System.out.println("Evaluated: Player 2 win!" );
                  System.out.println("PLACEHOLDER: EXIT GAME");
+                option = JOptionPane.showConfirmDialog(null, "No More Moves, White wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.NO_OPTION){
+                    game.setRunning(false);
+                } else if (option == JOptionPane.YES_OPTION){
+                    game.playGame();
+                }
             }
          }
         
@@ -229,4 +248,5 @@ public class OthBoard extends AbstractBoard{
     
     private int X_POS = 100;
     private int Y_POS = 50;
+    private int option;
 }

@@ -179,8 +179,20 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void playGame() {
-        currentCounter = new OthCounter(PLAYER_1);
-        m_Board = new OthBoard();
+        m_Display = new OthDisplay();
+        m_GameInput = new OthInput();
+        this.currentCounter = new OthCounter(PLAYER_1);
+        this.player1 = new HumPlayer(PLAYER_1);
+        this.player2 = new HumPlayer(PLAYER_2);
+        this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
+        this.m_Board = new OthBoard();
+        this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
+        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
+        this.m_Turn = PLAYER_1;
+        // TW Test Code
+        othRules = new OthRules();
+        highLightValid();
+        calcCounters();
     }
 
 	/**
