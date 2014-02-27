@@ -4,17 +4,13 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * @file C4Game.java
- *
- * @brief This file is the main panel, allocating information and data into
- *        every inherit classes, maintaining game process.
- *
+/** *
  * @author Cameron Steer, Martin Hui, Jamie I Davies
  * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @version *1.2*
  * @since February 20, 2014
+ * @brief C4Game method which creates the game
+ * @details allocates information and data into every inherit classes, maintaining game process
  */
 public class C4Game extends AbstractGame{
 
@@ -26,7 +22,6 @@ public class C4Game extends AbstractGame{
     C4Input m_GameInput;
     C4Display m_Display;
 
-    // TW Test Code
     private C4Rules c4rules;
     private C4Board m_Board;
     
@@ -34,7 +29,7 @@ public class C4Game extends AbstractGame{
     private int currentCounters2 = 0;
 
 	/**
-	* @brief Collecting and storing every data from graphic, rules, player.
+	* Collecting and storing every data from graphic, rules, player.
 	* @see C4Board
 	* @see HumPlayer
 	* @see C4Counter
@@ -54,7 +49,7 @@ public class C4Game extends AbstractGame{
         
     }
 	/**
-	 * @brief Receive Board information from C4Board Class
+	 * @Receive Board information from C4Board Class
 	 * @see C4Board
 	 * @return C4Board
 	 */
@@ -62,25 +57,37 @@ public class C4Game extends AbstractGame{
         return m_Board;
     }
 
+    /**
+     * gets the turn
+     * @return m_Turn
+     */
     @Override
     public int getTurn() {
-        return m_Turn;  //To change body of implemented methods use File | Settings | File Templates.
+        return m_Turn;
     }
     
     public void calcCounters() {
     	// no implementation
     }
     
+    /**
+     * 
+     * @return currentCounters1
+     */
     public int getCounters1() {
     	return currentCounters1;
     }
     
+    /**
+     * 
+     * @return currentCounters2
+     */
     public int getCounters2() {
     	return currentCounters2;
     }
 
     /**
-	 * @brief Set C4Board
+	 * Set C4Board
 	 * @see C4Board
 	 * @param  c4Board
 	 * @return null
@@ -90,7 +97,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Receive Current Counter information from Counter Class
+	 * Receive Current Counter information from Counter Class
 	 * @see C4Counter
 	 * @return AbstractCounter
 	 */
@@ -99,7 +106,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Receive on screen Counter information from AbstractCounter Class
+	 * Receive on screen Counter information from AbstractCounter Class
 	 * @see C4Counter
 	 * @return List<AbstractCounter>
 	 */
@@ -108,7 +115,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Game begin, create Counter and Board
+	 * Game begin, create Counter and Board
 	 * @see C4Board
 	 * @see C4Counter
 	 * @return null
@@ -127,7 +134,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief Checking which player is on next turn
+	 * Checking which player is on next turn
 	 * @return null
 	 */
     @Override
@@ -144,9 +151,8 @@ public class C4Game extends AbstractGame{
 
     }
     /**
-     * if statement to check the win state of the game
-     * this will then display a dialog
-     * @retun void
+     * if statement to check the win state of the game this will then display a dialog
+     * @return void
      */
     public void winCheck() {
         if(c4rules.winCondition(m_Board) == 0) {
@@ -176,8 +182,10 @@ public class C4Game extends AbstractGame{
             System.out.println("Error: No Evaluation");
         }
     }
-
-    /** initC4 method for calling C4 game board */
+    
+    /**
+     * calls the C4 game board
+     */
     public void init() {
         new C4Game();
         this.getTime().setUpTimer();
@@ -190,8 +198,7 @@ public class C4Game extends AbstractGame{
     }
 	
 	/**
-	 * @brief Game End
-	 * @return null
+	 * Game End
 	 */
     @Override
     public void gameOver() {
@@ -199,7 +206,7 @@ public class C4Game extends AbstractGame{
     }
 
 	/**
-	 * @brief *****CAMERON, I have no idea what's this doing...*******
+	 * checks status of the turns and render the display. also closes the game safely if window closed
 	 * @see AbstractGame
 	 * @return void
 	 */
