@@ -1,10 +1,10 @@
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- *         - created 01/02/2014
- * @version *.*
- */
+* @author Cameron Steer
+* @since February 1, 2014
+* @date Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+* @brief 
+* @details 
+*/
 public abstract class AbstractInput {
 
     //public abstract void inputLoop(AbstractCounter currentCounter, AbstractBoard board);

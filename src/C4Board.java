@@ -1,10 +1,9 @@
 import java.util.List;
 
 /**
- * @file 	C4Board.java
- * @author 	Chris, Cameron
- * @date	February 1, 2014 , Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @see
+ * @author 	Chris Jenkins, Cameron Steer
+ * @since February 1, 2014
+ * @date Verified and Updated by Design Manager Curtis on 23rd Feb 2014
  * @brief	This class extends AbstractBoard with connect 4 details
  * @details This class allows us to create an instant of the connect 4 board and draw it on screen.
  */
@@ -12,17 +11,27 @@ public class C4Board extends AbstractBoard{
 
     private C4Square[][] m_board;
 
+    /**
+     * set the C4 game board up with row and column sizes
+     */
     public C4Board(){
         super(COLUMN, ROW);
         this.m_board = new C4Square[ROW][COLUMN];
         this.fillBoard();
     }
 
+    /**
+     * get the board
+     * @return m_board
+     */
     @Override
     public C4Square[][] getBoard() {
         return m_board;
     }
 
+    /**
+     * draw the game board
+     */
     @Override
     public void draw(){
         for (int i=0; i< ROW; i++) {
@@ -32,6 +41,9 @@ public class C4Board extends AbstractBoard{
         }
     }
 
+    /**
+     * fill the game board
+     */
     @Override
     public void fillBoard() {
 
@@ -52,6 +64,12 @@ public class C4Board extends AbstractBoard{
         }
     }
 
+    /**
+     * places the counter from the AbstractCounter location
+     * @param counter
+     * @param onScreenCounters
+     * @return false
+     */
     public boolean placeCounter(AbstractCounter counter, List<AbstractCounter> onScreenCounters){
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {
@@ -82,6 +100,9 @@ public class C4Board extends AbstractBoard{
 
     }
 
+    /**
+     * OpenGL unbind
+     */
     public void unBind(){
         for (int i=0; i<ROW; i++) {
             for (int j=0; j<COLUMN; j++) {

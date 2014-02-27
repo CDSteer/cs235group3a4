@@ -5,13 +5,14 @@ import static java.lang.Math.sin;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * @file 	AbstractCounter.java
- * @author 	Cameron Steer
- * @date	February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
- * @see     \http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
- * @brief	Class had common data and methods for both games counters
- * @details This class allows us to create an instant of board before its instantiated as a specific game counter
+ * @author Cameron Steer
+ * @since 1/02/2014
+ * @date Verified and Updated by Design Manager Curtis on 23rd Feb 2014
+ * @see http://www.codeproject.com/Questions/64657/how-to-draw-a-filled-circle-in-opengl
+ * @brief Class has common data and methods for both games counters
+ * @details This class allows us to create an instance of a board before its instantiated as a specific game counter
  */
+
 public abstract class AbstractCounter extends AbstractMovableEntity {
 
     private int m_Player;
@@ -19,7 +20,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * Constructor for a new counter
-     *
      * @param x
      * @param  y
      * @param width
@@ -35,7 +35,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * return counter player.
-     *
      * @return m_Player
      */
     public int getPlayer(){
@@ -43,7 +42,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
     /**
      * set a new player value.
-     *
      * @param m_Player
      * @return void
      */
@@ -53,7 +51,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * return counter radius.
-     *
      * @return m_Raduis
      */
     public float getRadius() {
@@ -62,7 +59,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * set a new radius value.
-     *
      * @param m_Radius
      * @return void
      */
@@ -72,7 +68,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * Draw the counter on the screen.
-     *
      * @return void
      */
     @Override
@@ -105,7 +100,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
 
     /**
      * Center the counter to the square
-     *
      * @param square
      * @return void
      */
@@ -116,8 +110,7 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
 
     /**
-     * This resets the counter to a the start of a full column
-     *
+     * Method to reset the counter to a the start of a full column
      * @param square
      * @return void
      */
@@ -128,7 +121,6 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     }
     /**
      * Print the x and y coordinate of the the counter to the terminal
-     *
      * @return void
      */
     public void toSting(){

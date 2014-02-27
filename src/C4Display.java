@@ -4,12 +4,12 @@ import static org.lwjgl.opengl.GL11.glClear;
 
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author cdsteer
- * @since 01/02/2014
- *			-update 20/2/2014		
+ * @author Cameron Steer
+ * @date 01/02/2014
+ * @since 20/2/2014		
  * @version *1.0.1*
+ * @brief Extends AbstractDisplay which builds the display aspects of the C4 game board
+ * @details draws the game board and all aspects including textures and rendering
  */
 public class C4Display extends AbstractDisplay{
 	private C4GameInfo c4GameInfo;

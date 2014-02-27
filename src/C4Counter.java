@@ -10,12 +10,12 @@ import java.io.IOException;
 import static org.lwjgl.opengl.GL11.glColor3d;
 
 /**
- * @file 	Counter.java
- * @author 	Cameron Steer
- * @date	January 28, 2014
- * @brief	Counter holds data and methods for the connect 4 counters
+ * @author Cameron Steer
+ * @since January 28, 2014
+ * @brief Holds data and methods for the connect 4 counters
  * @details
  */
+
 public class C4Counter extends AbstractCounter {
 
     private Audio m_PlaceSound;
@@ -34,7 +34,6 @@ public class C4Counter extends AbstractCounter {
     }
     /**
      * This loads the sound files for counters
-     *
      * @return void
      */
     private void setSoundFiles(){
@@ -57,7 +56,6 @@ public class C4Counter extends AbstractCounter {
 
     /**
      * sets colour buffer corresponding objects player to draw the correct colour
-     *
      * @return void
      */
     @Override
@@ -71,7 +69,6 @@ public class C4Counter extends AbstractCounter {
 
     /**
      * plays sound of counter dropping into grid
-     *
      * @return void
      */
     public void playPlaceSound(){
@@ -80,7 +77,6 @@ public class C4Counter extends AbstractCounter {
     }
     /**
      * plays sound of counter for being able to drop counter
-     *
      * @return void
      */
     public void playNegSound(){
@@ -89,7 +85,6 @@ public class C4Counter extends AbstractCounter {
     }
     /**
      * plays sound of counter falling through grid
-     *
      * @return void
      */
     public void playDropSound(){
@@ -99,9 +94,7 @@ public class C4Counter extends AbstractCounter {
 
     /**
      * Up date the counters delta to move it on the screen.
-     *
      * @param delta
-     * @return void
      */
     public void dropCounter(int delta){
         update(delta);
