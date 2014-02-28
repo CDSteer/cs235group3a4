@@ -17,8 +17,9 @@ public class TestOthGame {
 	private static final int PLAYER_TWO = 2;
 	private static final int COLUMN = 8;
 	private static final int ROW = 8;
+    private static final int PRESET_COUNTERS = 2;
 	
-	private static OthGame othGame;
+	private static OthGame m_othGame;
 	
 	public static void main(String[] args) {
 		
@@ -26,10 +27,10 @@ public class TestOthGame {
 		 * OthGame.playGame Test One
 		 * Call the method after a constructor
 		 */	
-		othGame = new OthGame();
+		m_othGame = new OthGame();
 		
 		try {
-			othGame.playGame();
+			m_othGame.playGame();
 			System.out.println("OthGame.playgame Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("OthGame.playgame Test One Evaluated: Incorrect");
@@ -40,15 +41,15 @@ public class TestOthGame {
 		 * Call the method for the first time after the game begins
 		 * Method only possible if OthGame.playGame succeeds
 		 */	
-		othGame = new OthGame();
+		m_othGame = new OthGame();
 		try {
-			othGame.playGame();
+			m_othGame.playGame();
 		} catch (Exception e) {
 			System.out.println("OthGame.nextTurn Test One Evaluated: Incorrect");
 		}
 		
-		othGame.nextTurn();
-		if(othGame.getTurn() == PLAYER_TWO) {
+		m_othGame.nextTurn();
+		if(m_othGame.getTurn() == PLAYER_TWO) {
 			System.out.println("OthGame.nextTurn Test One Evaluated: Correct");
 		} else {
 			System.out.println("OthGame.nextTurn Test One Evaluated: Incorrect");
@@ -59,9 +60,9 @@ public class TestOthGame {
 		 * Call the method on a board with no moves made
 		 * Only the default 4 counters should be present
 		 */
-		othGame = new OthGame();
-		othGame.calcCounters();
-		if(othGame.getCounters1() == 2 || othGame.getCounters2() == 2) {
+		m_othGame = new OthGame();
+		m_othGame.calcCounters();
+		if(m_othGame.getCounters1() == PRESET_COUNTERS || m_othGame.getCounters2() == PRESET_COUNTERS) {
 			System.out.println("OthGame.calcCounters Test One Evaluated: Correct");
 		} else {
 			System.out.println("OthGame.calcCounters Test One Evaluated: Incorrect");

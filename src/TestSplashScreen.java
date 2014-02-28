@@ -8,7 +8,7 @@
  */
 public class TestSplashScreen {
 
-	private static SplashScreen screen;
+	private static SplashScreen m_screen;
 	
 	public static void main(String[] args) {
 		
@@ -16,9 +16,9 @@ public class TestSplashScreen {
 		 * SplashScreen.initGUI Test One
 		 */
 		
-		screen = new SplashScreen();
+		m_screen = new SplashScreen();
 		try {
-			screen.initGUI();
+			m_screen.initGUI();
 			System.out.println("SplashScreen.initGUI Test One Evaluated: Correct");
 		} catch(Exception e) {
 			System.out.println("SplashScreen.initGUI Test One Evaluated: Incorrect");			

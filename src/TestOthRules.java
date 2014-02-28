@@ -44,8 +44,8 @@ public class TestOthRules {
 	private static final int CHECK_COL = 4;
 	private static final int CHECK_ROW = 4;
 	
-	private static OthGame othGame;
-	private static OthRules othRules;
+	private static OthGame m_othGame;
+	private static OthRules m_othRules;
 	
 	
 	public static void main(String args[]) {
@@ -54,7 +54,7 @@ public class TestOthRules {
 		 * OthRules.winCondition Test One:
 		 * Filled board of PLAYER_ONE counters
 		 */
-		othRules = new OthRules();
+		m_othRules = new OthRules();
 		
 		OthCounter[][] m_testBoard1 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
@@ -64,7 +64,7 @@ public class TestOthRules {
 			}
 		}
 		
-		if(othRules.winCondition(m_testBoard1) == PLAYER_ONE) {
+		if(m_othRules.winCondition(m_testBoard1) == PLAYER_ONE) {
 			System.out.println("OthRules.winCondition Test One Evaluated: Correct");
 		} else {
 			System.out.println("OthRules.winCondition Test One Evaluated: Incorrect");
@@ -74,7 +74,7 @@ public class TestOthRules {
 		 * OthRules.winCondition Test Two:
 		 * Filled board of PLAYER_TWO counters
 		 */
-		othRules = new OthRules();
+		m_othRules = new OthRules();
 		
 		OthCounter[][] m_testBoard2 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
@@ -84,7 +84,7 @@ public class TestOthRules {
 			}
 		}
 		
-		if(othRules.winCondition(m_testBoard2) == PLAYER_TWO) {
+		if(m_othRules.winCondition(m_testBoard2) == PLAYER_TWO) {
 			System.out.println("OthRules.winCondition Test Two Evaluated: Correct");
 		} else {
 			System.out.println("OthRules.winCondition Test Two Evaluated: Incorrect");
@@ -95,7 +95,7 @@ public class TestOthRules {
 		 * OthRules.winCondition Test Two:
 		 * Empty board (counters of player 0 are not visible)
 		 */
-		othRules = new OthRules();
+		m_othRules = new OthRules();
 		
 		OthCounter[][] m_testBoard3 = new OthCounter[COLUMN][ROW];
 		for(int i = 0; i < COLUMN; i++) {
@@ -105,7 +105,7 @@ public class TestOthRules {
 			}
 		}
 		
-		if(othRules.winCondition(m_testBoard3) == NO_MATCH) {
+		if(m_othRules.winCondition(m_testBoard3) == NO_MATCH) {
 			System.out.println("OthRules.winCondition Test Three Evaluated: Correct");
 		} else {
 			System.out.println("OthRules.winCondition Test Three Evaluated: Incorrect");
@@ -117,9 +117,9 @@ public class TestOthRules {
 		 * Testing the filled board of PLAYER_ONE counters
 		 * All positions filled, so no valid moves should be possible
 		 */
-		othRules = new OthRules();
+		m_othRules = new OthRules();
 		
-		int[][] validSet1 = othRules.checkValidSet(m_testBoard1);
+		int[][] validSet1 = m_othRules.checkValidSet(m_testBoard1);
 		boolean correct1 = true;
 		for(int i = 0; i < COLUMN; i++) {
 			for(int j = 0; j < ROW; j++) {
@@ -140,11 +140,11 @@ public class TestOthRules {
 		 * Constructs an OthGame with default counter setup, 
 		 * then places a specific counter at [FLIP_COL][FLIP_ROW] and tests expected result.
 		 */
-		othRules = new OthRules();
-		othGame = new OthGame();
+		m_othRules = new OthRules();
+		m_othGame = new OthGame();
 		
-		othRules.flipCounters(othGame.getInPlayCounters(), FLIP_COL, FLIP_ROW, PLAYER_ONE);
-		if(othGame.getInPlayCounters()[CHECK_COL][CHECK_ROW].getPlayer() == PLAYER_ONE) {
+		m_othRules.flipCounters(m_othGame.getInPlayCounters(), FLIP_COL, FLIP_ROW, PLAYER_ONE);
+		if(m_othGame.getInPlayCounters()[CHECK_COL][CHECK_ROW].getPlayer() == PLAYER_ONE) {
 			System.out.println("OthRules.flipCounters Test One Evaluated: Correct");
 		} else {
 			System.out.println("OthRules.flipCounters Test One Evaluated: Incorrect");

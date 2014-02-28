@@ -19,8 +19,8 @@ public class TestOthBoard {
 	private static final int PLAYER_TWO = 2;
 	
 	
-	private static OthGame othGame;
-	private static OthBoard othBoard;
+	private static OthGame m_othGame;
+	private static OthBoard m_othBoard;
 	
 	/**
 	 * main method to run tests
@@ -33,12 +33,12 @@ public class TestOthBoard {
 		 * Calls the method after the constructors for an Oth Game and board
 		 * Default counters place has a player2 counter at [3][3], so this is checked
 		 */
-		othBoard = new OthBoard();
-		othGame = new OthGame();
+		m_othBoard = new OthBoard();
+		m_othGame = new OthGame();
 		
-		othBoard.startingCounters(othGame.getOnScreenCounters(), othGame.getInPlayCounters());
+		m_othBoard.startingCounters(m_othGame.getOnScreenCounters(), m_othGame.getInPlayCounters());
 		
-		if(othGame.getInPlayCounters()[COLUMN_CHECK][ROW_CHECK].getPlayer() == PLAYER_TWO) {
+		if(m_othGame.getInPlayCounters()[COLUMN_CHECK][ROW_CHECK].getPlayer() == PLAYER_TWO) {
 			System.out.println("OthBoard.startinCounters Test One Evaluated: Correct");
 		} else {
 			System.out.println("OthBoard.startinCounters Test One Evaluated: Incorrect");
@@ -49,15 +49,15 @@ public class TestOthBoard {
 		 * Calls the method after the constructors for an Oth Game and board
 		 * As the method fills the board with counters of player(0), this is checked for
 		 */
-		othBoard = new OthBoard();
-		othGame = new OthGame();
+		m_othBoard = new OthBoard();
+		m_othGame = new OthGame();
 		
-		othBoard.fillBoard();
+		m_othBoard.fillBoard();
 		
 		boolean testing1 = true;
 		for(int i = 0; i < COLUMN_EIGHT; i++) {
 			for(int j = 0; j < ROW_EIGHT; j++) {
-				if(!(othBoard.getBoard()[i][j].getPlayer() == NO_PLAYER)) {
+				if(!(m_othBoard.getBoard()[i][j].getPlayer() == NO_PLAYER)) {
 					testing1 = false;
 				}
 			}
@@ -73,11 +73,11 @@ public class TestOthBoard {
 		 * OthBoard.placeCounter Test One
 		 * Calls the method after the constructors for an Oth Game and board
 		 */
-		othBoard = new OthBoard();
-		othGame = new OthGame();
+		m_othBoard = new OthBoard();
+		m_othGame = new OthGame();
 		
 		try {
-			othBoard.placeCounter(othGame);
+			m_othBoard.placeCounter(m_othGame);
 			System.out.println("OthBoard.placeCounter Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("OthBoard.placeCounter Test One Evaluated: Incorrect");

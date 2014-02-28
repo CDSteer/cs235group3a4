@@ -12,7 +12,7 @@ import org.lwjgl.opengl.Display;
 
 public class TestC4Input {
 	
-	private static C4Input c4Input;
+	private static C4Input m_c4Input;
 	
 	/**
 	 * main method containing tests
@@ -23,7 +23,7 @@ public class TestC4Input {
 		/**
 		 * C4Input.inputLoop Test One
 		 */
-		c4Input = new C4Input();
+		m_c4Input = new C4Input();
 		
 		try {
 			Display.create();
@@ -33,7 +33,7 @@ public class TestC4Input {
 		}
 		C4Counter testCounter1 = new C4Counter();
 		try {
-			c4Input.inputLoop(testCounter1);
+			m_c4Input.inputLoop(testCounter1);
 			System.out.println("C4Input.inputLoop Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("C4Input.inputLoop Test One Evaluated: Incorrect");

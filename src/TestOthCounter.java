@@ -13,7 +13,7 @@ public class TestOthCounter {
 
 	private static final int NO_PLAYER = 0;
 	
-	private static OthCounter othCounter;
+	private static OthCounter m_othCounter;
 	
 	public static void main(String[] args) {
 		
@@ -22,9 +22,9 @@ public class TestOthCounter {
 		 * Call the method after the constructor has been called
 		 * Constructor calls the OthCounter.setSoundFiles method
 		 */
-		othCounter = new OthCounter(NO_PLAYER);
+		m_othCounter = new OthCounter(NO_PLAYER);
 		try {
-			othCounter.playPlaceSound();
+			m_othCounter.playPlaceSound();
 			System.out.println("OthCounter.playPlaceSound Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("OthCounter.playPlaceSound Test One Evaluated: Incorrect");
@@ -35,9 +35,9 @@ public class TestOthCounter {
 		 * Call the method after the constructor has been called
 		 * Constructor calls the OthCounter.setSoundFiles method
 		 */
-		othCounter = new OthCounter(NO_PLAYER);
+		m_othCounter = new OthCounter(NO_PLAYER);
 		try {
-			othCounter.playNegSound();
+			m_othCounter.playNegSound();
 			System.out.println("OthCounter.playNegSound Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("OthCounter.playNegSound Test One Evaluated: Incorrect");

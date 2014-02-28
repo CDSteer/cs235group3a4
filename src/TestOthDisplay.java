@@ -9,7 +9,7 @@
  */
 public class TestOthDisplay {
 	
-	private static OthDisplay othDisplay;
+	private static OthDisplay m_othDisplay;
 	
 	public static void main(String[] args) {
 		

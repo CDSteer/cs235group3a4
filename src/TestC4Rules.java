@@ -21,7 +21,7 @@ public class TestC4Rules {
 	private static final int LEFT_BORDER = 0;
 	private static final int RIGHT_BORDER = 7;
 	
-	private static C4Rules c4Rules;
+	private static C4Rules m_c4Rules;
 
 	public static void main(String[] args) {
 		
@@ -30,7 +30,7 @@ public class TestC4Rules {
 		 * C4Rules.winCondition Test One:
 		 * Vertical line of player1 squares on left edge
 		 */
-		c4Rules = new C4Rules();
+		m_c4Rules = new C4Rules();
 		C4Board testBoard1 = new C4Board();
 		
 		for(int i = 0; i < WINNING_LENGTH; i++) {
@@ -39,7 +39,7 @@ public class TestC4Rules {
 			testBoard1.getBoard()[i][LEFT_BORDER] = testSquare1;			
 		}
 		
-		if(c4Rules.winCondition(testBoard1) == PLAYER_ONE) {
+		if(m_c4Rules.winCondition(testBoard1) == PLAYER_ONE) {
 			System.out.println("C4Rules.winCondition Test One Evaluated: Correct");
 		} else {
 			System.out.println("C4Rules.winCondition Test One Evaluated: Incorrect");
@@ -49,7 +49,7 @@ public class TestC4Rules {
 		 * C4Rules.winCondition Test Two:
 		 * Vertical line of player2 squares on right edge
 		 */
-		c4Rules = new C4Rules();
+		m_c4Rules = new C4Rules();
 		C4Board testBoard2 = new C4Board();
 		for(int i = 0; i < WINNING_LENGTH; i++) {
 			C4Square testSquare2 = new C4Square(0,0,0,0,true);
@@ -57,7 +57,7 @@ public class TestC4Rules {
 			testBoard2.getBoard()[i][RIGHT_BORDER] = testSquare2;			
 		}
 		
-		if(c4Rules.winCondition(testBoard2) == PLAYER_TWO) {
+		if(m_c4Rules.winCondition(testBoard2) == PLAYER_TWO) {
 			System.out.println("C4Rules.winCondition Test Two Evaluated: Correct");
 		} else {
 			System.out.println("C4Rules.winCondition Test Two Evaluated: Incorrect");
@@ -67,10 +67,10 @@ public class TestC4Rules {
 		 * C4Rules.winCondition Test Three:
 		 * A blank board
 		 */
-		c4Rules = new C4Rules();
+		m_c4Rules = new C4Rules();
 		C4Board testBoard3 = new C4Board();
 			
-		if(c4Rules.winCondition(testBoard3) == NO_WINNER) {
+		if(m_c4Rules.winCondition(testBoard3) == NO_WINNER) {
 			System.out.println("C4Rules.winCondition Test Two Evaluated: Correct");
 		} else {
 			System.out.println("C4Rules.winCondition Test Two Evaluated: Incorrect");

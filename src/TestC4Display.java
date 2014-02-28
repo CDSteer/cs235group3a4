@@ -8,9 +8,8 @@
  *          
  */
 public class TestC4Display {
-	
-	private static C4Game c4Game;
-	private static C4Display c4Display;
+
+	private static C4Display m_c4Display;
 	
 	public static void main(String[] args) {
 		
@@ -18,9 +17,9 @@ public class TestC4Display {
 		 * C4Display.loadTextures Test One
 		 * Call method after constructor
 		 */
-		c4Display = new C4Display();
+		m_c4Display = new C4Display();
 		try {
-			c4Display.loadTextures();
+			m_c4Display.loadTextures();
 			System.out.println("C4Display.loadTextures Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("C4Display.loadTextures Test One Evaluated: Incorrect");

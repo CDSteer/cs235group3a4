@@ -11,7 +11,7 @@ import org.lwjgl.opengl.Display;
 
 public class TestOthInput {
 	
-	private static OthInput othInput;
+	private static OthInput m_othInput;
 	
 	/**
 	 * main method containing tests
@@ -22,7 +22,7 @@ public class TestOthInput {
 		/**
 		 * OthInput.inputLoop Test One
 		 */
-		othInput = new OthInput();
+		m_othInput = new OthInput();
 		
 		try {
 			Display.create();
@@ -31,7 +31,7 @@ public class TestOthInput {
 		}
 		OthGame testGame = new OthGame();
 		try {
-			othInput.inputLoop(testGame);
+			m_othInput.inputLoop(testGame);
 			System.out.println("OthInput.inputLoop Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("OthInput.inputLoop Test One Evaluated: Incorrect");

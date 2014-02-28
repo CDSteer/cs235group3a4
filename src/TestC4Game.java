@@ -15,7 +15,7 @@ public class TestC4Game {
 	private static final int PLAYER_ONE = 1;
 	private static final int PLAYER_TWO = 2;
 	
-	private static C4Game c4Game;
+	private static C4Game m_c4Game;
 	
 	public static void main(String[] args) {
 		
@@ -24,10 +24,10 @@ public class TestC4Game {
 		 * C4Game.playGame Test One
 		 * Call the method after a constructor
 		 */	
-		c4Game = new C4Game();
+		m_c4Game = new C4Game();
 		
 		try {
-			c4Game.playGame();
+			m_c4Game.playGame();
 			System.out.println("C4Game.playgame Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("C4Game.playgame Test One Evaluated: Incorrect");
@@ -39,15 +39,15 @@ public class TestC4Game {
 		 * Call the method for the first time after the game begins
 		 * Method only possible if C4Game.playGame succeeds
 		 */	
-		c4Game = new C4Game();
+		m_c4Game = new C4Game();
 		try {
-			c4Game.playGame();
+			m_c4Game.playGame();
 		} catch (Exception e) {
 			System.out.println("C4Game.nextTurn Test One Evaluated: Incorrect");
 		}
 		
-		c4Game.nextTurn();
-		if(c4Game.getTurn() == PLAYER_TWO) {
+		m_c4Game.nextTurn();
+		if(m_c4Game.getTurn() == PLAYER_TWO) {
 			System.out.println("C4Game.nextTurn Test One Evaluated: Correct");
 		} else {
 			System.out.println("C4Game.nextTurn Test One Evaluated: Incorrect");
@@ -59,16 +59,16 @@ public class TestC4Game {
 		 * Method called after constructor, so board is empty and there is no winner
 		 * Method only possible if C4Game.playGame succeeds
 		 */	
-		c4Game = new C4Game();
+		m_c4Game = new C4Game();
 		try {
-			c4Game.playGame();
+			m_c4Game.playGame();
 		} catch (Exception e) {
 			System.out.println("C4Game.nextTurn Test One Evaluated: Incorrect");
 		}
 		
 		try {
 			System.out.println("C4Game.winCheck Expected Output: Evaluated: No Winner");
-			c4Game.winCheck();
+			m_c4Game.winCheck();
 			System.out.println("C4Game.winCheck Test One Evaluated: Correct");
 		} catch (Exception e) {
 			System.out.println("C4Game.winCheck Test One Evaluated: Incorrect");
