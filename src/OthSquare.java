@@ -37,6 +37,6 @@ public class OthSquare extends AbstractSquare{
         }else {
             glColor3d(0.5, GREEN, 0.0);
         }
-        glRectd(x, y, x + width, y + height);
+        glRectd(m_x, m_y, m_x + m_width, m_y + m_height);
     }
 }

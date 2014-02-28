@@ -12,13 +12,15 @@ import static org.lwjgl.opengl.GL11.glClear;
  * @details draws the game board and all aspects including textures and rendering
  */
 public class C4Display extends AbstractDisplay{
-	private C4GameInfo c4GameInfo;
+
+	private C4GameInfo m_c4GameInfo;
     public C4Display() {
+
         super(WIDTH, HEIGHT, "Connect 4");
     }
 
     public void loadTextures(){
-        c4GameInfo = new C4GameInfo();
+        m_c4GameInfo = new C4GameInfo();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class C4Counter extends AbstractCounter {
     private Audio m_PlaceSound;
     private Audio m_NegSound;
     private Audio m_DropSound;
-    private boolean m_Test = true;
+
 
     /**
      * constructor for a connect four counter, this uses this calls the super constructor

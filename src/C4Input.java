@@ -9,7 +9,11 @@ import org.lwjgl.input.Keyboard;
  * @version *1.0.1*
  */
 public class C4Input extends AbstractInput {
+
     public static final double DROP = .2;
+    private static final double COUNTERMOVE = 31;
+    private static final double LEFTBOUND = 115;
+    private static final double RIGHTBOUND = 394;
 
 	
 	/**
@@ -52,8 +56,4 @@ public class C4Input extends AbstractInput {
             }
         }
     }
-
-    private static final double COUNTERMOVE = 31;
-    private static final double LEFTBOUND = 115;
-    private static final double RIGHTBOUND = 394;
 }

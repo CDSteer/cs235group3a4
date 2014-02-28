@@ -14,64 +14,75 @@ import java.awt.Font;
  */
 public class OthGameInfo extends AbstractGameInfo{
 
-//    Font DisplayFont = new Font("Arial", Font.BOLD, 30);
-//    TrueTypeFont scorefont = new TrueTypeFont(DisplayFont, false);
-//    Font awtFont = new Font("Arial", Font.BOLD, 70);
-    private TrueTypeFont fontX;
-    private TrueTypeFont fontError;
-    private Font font;
-    private String p1Counters;
-    private String p2Counters;
+
+    private TrueTypeFont m_fontX;
+    private TrueTypeFont m_fontError;
+    private Font m_font;
+    private String m_p1Counters;
+    private String m_p2Counters;
+    private static final int FONT_SIZE = 30;
+    private static final int PLAYER_1 = 1;
+    private static final int X_PIXEL_130 = 130;
+    private static final int Y_PIXEL_10 = 10;
+    private static final int X_PIXEL_200 = 200;
+    private static final int Y_PIXEL_380 = 380;
+    private static final int X_PIXEL_400 = 400;
+    private static final int Y_PIXEL_200 = 200;
+    private static final int Y_PIXEL_150 = 150;
+    private static final int Y_PIXEL_100 = 100;
+
+    private static final int PLAYER_2 = 2;
+
 
 
     public OthGameInfo(){
-        font = new Font("Arial", Font.BOLD, 30);
+        m_font = new Font("Arial", Font.BOLD, FONT_SIZE);
 
+    }
+
+    public void setInvalidMoveMessage(){
+        m_fontError = new TrueTypeFont(m_font, false);
+        m_fontError.drawString(X_PIXEL_130, Y_PIXEL_10, "Invalid move");
+    }
+
+    public void setP1WinsMessage(){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        m_fontX = new TrueTypeFont(m_font, false);
+        m_fontX.drawString(X_PIXEL_200, Y_PIXEL_380, "Black Wins!");
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+    }
+
+    public void setP2WinsMessage(){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        m_fontX = new TrueTypeFont(m_font, false);
+        m_fontX.drawString(X_PIXEL_200, Y_PIXEL_380, "White Wins!");
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
     }
 
     public void draw(AbstractGame game){
     
-    	p1Counters = Integer.toString(game.getCounters1());
-    	p2Counters = Integer.toString(game.getCounters2());
+    	m_p1Counters = Integer.toString(game.getCounters1());
+    	m_p2Counters = Integer.toString(game.getCounters2());
         String turnText = "";
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Color.white.bind();
-        fontX = new TrueTypeFont(font, false);
+        m_fontX = new TrueTypeFont(m_font, false);
 
-        //fontX.drawString(100, 400, "Welcome to Othello");
-        if(game.getTurn() == 1){
+
+        if(game.getTurn() == PLAYER_1){
            turnText = "Black's turn";
-        }else if(game.getTurn() == 2){
+        }else if(game.getTurn() == PLAYER_2){
            turnText = "White's turn";
         }
-        fontX.drawString(400, 200, turnText);
+        m_fontX.drawString(X_PIXEL_400, Y_PIXEL_200, turnText);
 
-        //still need to get the players scores and stick them
-        //in these strings
-        fontX.drawString(400, 100, "Black: " + p1Counters);
-        fontX.drawString(400, 150, "White: " + p2Counters);
+        m_fontX.drawString(X_PIXEL_400, Y_PIXEL_100, "Black: " + m_p1Counters);
+        m_fontX.drawString(X_PIXEL_400, Y_PIXEL_150, "White: " + m_p2Counters);
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
     }
 
-    public void invalidMoveMessage(){
-        fontError = new TrueTypeFont(font, false);
-        fontError.drawString(130, 10, "Invalid move");
-    }
 
-    public void p1WinsMessage(){
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        fontX = new TrueTypeFont(font, false);
-        fontX.drawString(200, 380, "Black Wins!");
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-    }
-
-    public void p2WinsMessage(){
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        fontX = new TrueTypeFont(font, false);
-        fontX.drawString(200, 380, "White Wins!");
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-    }
 
 }

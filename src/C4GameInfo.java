@@ -11,14 +11,18 @@ import java.awt.Font;
  */
 public class C4GameInfo extends AbstractGameInfo{
 
-    private Font font;
-    private TrueTypeFont fontX;
+    private Font m_font;
+    private TrueTypeFont m_fontX;
+    private final static int FONT_SIZE = 30;
+    private final static int X_PIXEL = 90;
+    private final static int Y_PIXEL_C4 = 275;
+    private final static int Y_PIXEL_TURN = 330;
     
     /*
      * this method sets the font variable
      */
     public C4GameInfo(){
-        font = new Font("Arial", Font.BOLD, 30);
+        m_font = new Font("Arial", Font.BOLD, FONT_SIZE);
         
     }
     
@@ -30,10 +34,10 @@ public class C4GameInfo extends AbstractGameInfo{
     public void draw(AbstractGame game){
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Color.white.bind();
-        fontX = new TrueTypeFont(font, false);
-        fontX.drawString(90, 275, "Welcome to Connect 4");
+        m_fontX = new TrueTypeFont(m_font, false);
+        m_fontX.drawString(X_PIXEL, Y_PIXEL_C4, "Welcome to Connect 4");
         String turnText = "Player " + game.getTurn() + "'s turn";
-        fontX.drawString(90, 330, turnText);
+        m_fontX.drawString(X_PIXEL, Y_PIXEL_TURN, turnText);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
     }  

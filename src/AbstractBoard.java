@@ -70,5 +70,5 @@ public abstract class AbstractBoard {
      */
     public abstract void fillBoard();
 
-    //public abstract boolean placeCounter(AbstractCounter currentCounter, List<AbstractCounter> onScreenCounters);
+
 }
