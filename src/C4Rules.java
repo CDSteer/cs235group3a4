@@ -1,4 +1,3 @@
-
 /**
  * @author Thomas Werner
  * @date 25/2/2014
@@ -6,7 +5,7 @@
  * @brief Provides the win condition for a game of C4,
  * to be evaluated after every player move.
  */
-public class C4Rules { // extends GameRules (temporarily taken out)
+public class C4Rules {
 	
 	// Constants used by the class
 	private final int ROW_LENGTH = 10;
