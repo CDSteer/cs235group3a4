@@ -12,36 +12,43 @@ import java.util.List;
  */
 public class OthGame extends AbstractGame {
 
-    private OthCounter currentCounter;							//Store counter information
+    private OthCounter m_currentCounter;							//Store counter information
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
-    private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
+    private List<AbstractCounter> m_onScreenCounters;				//Abstract Counter information
     private int m_Turn;
     private OthCounter m_InPlayCounters[][];
-    private int[][] validMoves;
+    private int[][] m_validMoves;
     //TW Test Code
-    private OthRules othRules;
-    private int currentCounters1 = 0;
-    private int currentCounters2 = 0;
+    private OthRules m_othRules;
+    private int m_currentCounters1 = 0;
+    private int m_currentCounters2 = 0;
     private OthBoard m_Board;
     private OthDisplay m_Display;
     private OthInput m_GameInput;
+
+    private static final int PLAYER_1 = 1;
+    private static final int PLAYER_2 = 2;
+    private static final int LIST_ELEMENTS = 10;
+    private static final int ROW_EIGHT = 8;
+    private static final int COLUMN_EIGHT = 8;
+    private static final int BOTH_PLAYERS = 3;
 
 
     public OthGame() {
         super(true);
         m_Display = new OthDisplay();
         m_GameInput = new OthInput();
-		this.currentCounter = new OthCounter(PLAYER_1);
+		this.m_currentCounter = new OthCounter(PLAYER_1);
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
-        this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
+        this.m_onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
         this.m_Board = new OthBoard();
         this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
-        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
+        m_Board.startingCounters(m_onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
-        othRules = new OthRules();
+        m_othRules = new OthRules();
         highLightValid();
         calcCounters();
     }
@@ -89,7 +96,7 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public AbstractCounter getCurrentCounter() {
-        return currentCounter;  //Is this ready yet?
+        return m_currentCounter;  //Is this ready yet?
     }
 
 	/**
@@ -99,7 +106,7 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public List<AbstractCounter> getOnScreenCounters() {
-        return onScreenCounters;  //Is this ready yet?
+        return m_onScreenCounters;  //Is this ready yet?
     }
     
     // TW Test Method
@@ -123,19 +130,19 @@ public class OthGame extends AbstractGame {
     
     // TW Test Method
     public int getCounters1() {
-    	return currentCounters1;
+    	return m_currentCounters1;
     }
     
     public int getCounters2() {
-    	return currentCounters2;
+    	return m_currentCounters2;
     }
     
     public void setCounters1(int value) {
-    	currentCounters1 = value;
+    	m_currentCounters1 = value;
     }
     
     public void setCounters2(int value) {
-    	currentCounters2 = value;
+    	m_currentCounters2 = value;
     }
 
     /** initOthello method for calling Othello game board */
@@ -154,8 +161,8 @@ public class OthGame extends AbstractGame {
     }
 
 	/**
-	 * *****CAMERON, I have no idea what's this doing...*******
-	 * @return null
+	 * Create the gameLoop which updates and renders the display.
+	 * @return Nothing is returned.
 	 */
     @Override
     public void gameLoop() {
@@ -179,16 +186,16 @@ public class OthGame extends AbstractGame {
     public void playGame() {
         m_Display = new OthDisplay();
         m_GameInput = new OthInput();
-        this.currentCounter = new OthCounter(PLAYER_1);
+        this.m_currentCounter = new OthCounter(PLAYER_1);
         this.player1 = new HumPlayer(PLAYER_1);
         this.player2 = new HumPlayer(PLAYER_2);
-        this.onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
+        this.m_onScreenCounters = new ArrayList<AbstractCounter>(LIST_ELEMENTS);
         this.m_Board = new OthBoard();
         this.m_InPlayCounters = new OthCounter[ROW_EIGHT][COLUMN_EIGHT];
-        m_Board.startingCounters(onScreenCounters, m_InPlayCounters);
+        m_Board.startingCounters(m_onScreenCounters, m_InPlayCounters);
         this.m_Turn = PLAYER_1;
         // TW Test Code
-        othRules = new OthRules();
+        m_othRules = new OthRules();
         highLightValid();
         calcCounters();
     }
@@ -211,10 +218,10 @@ public class OthGame extends AbstractGame {
     }
     
     private void highLightValid(){
-        validMoves = othRules.checkValidSet(this.getInPlayCounters());
+        m_validMoves = m_othRules.checkValidSet(this.getInPlayCounters());
         for(int i = 0; i < COLUMN_EIGHT; i++) {
             for(int j = 0; j < ROW_EIGHT; j++) {
-                if(validMoves[i][j] == this.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                if(m_validMoves[i][j] == this.getTurn() || m_validMoves[i][j] == BOTH_PLAYERS) {
                     if(!m_Board.getBoard()[i][j].isUsed()) {
                         m_Board.getBoard()[i][j].setlegal(true);
                     }
@@ -231,13 +238,8 @@ public class OthGame extends AbstractGame {
 	 */
     @Override
     public void gameOver() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
-    private static final int PLAYER_1 = 1;
-    private static final int PLAYER_2 = 2;
-    private static final int LIST_ELEMENTS = 10;
-    private static final int ROW_EIGHT = 8;
-    private static final int COLUMN_EIGHT = 8;
-    private static final int BOTH_PLAYERS = 3;
+
 }

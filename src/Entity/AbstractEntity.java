@@ -12,14 +12,14 @@ import java.awt.*;
  */
 public abstract class AbstractEntity implements Entity {
 
-    protected double x, y, height, width;
-    protected Rectangle hitbox = new Rectangle();
+    protected double m_x, m_y, m_height, m_width;
+    private Rectangle m_hitbox = new Rectangle();
 
     public AbstractEntity(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.m_x = x;
+        this.m_y = y;
+        this.m_width = width;
+        this.m_height = height;
     }
     /**
      * set entity x value.
@@ -28,7 +28,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setX(double x) {
-        this.x = x;
+        this.m_x = x;
     }
     /**
      * set entity y value.
@@ -37,7 +37,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setY(double y) {
-        this.y = y;
+        this.m_y = y;
     }
     /**
      * set entity width value.
@@ -46,7 +46,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setWidth(double width) {
-        this.width = width;
+        this.m_width = width;
     }
     /**
      * set entity height value.
@@ -55,7 +55,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setHeight(double height) {
-        this.height = height;
+        this.m_height = height;
     }
     /**
      * return entity x value.
@@ -64,7 +64,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public double getX() {
-        return x;
+        return m_x;
     }
     /**
      * return entity y value.
@@ -73,7 +73,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public double getY() {
-        return y;
+        return m_y;
     }
     /**
      * return entity height value.
@@ -82,7 +82,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public double getHeight() {
-        return height;
+        return m_height;
     }
     /**
      * return entity width value.
@@ -91,7 +91,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public double getWidth() {
-        return width;
+        return m_width;
     }
 
     /**
@@ -101,8 +101,8 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public boolean intersects(Entity other) {
-        hitbox.setBounds((int) x, (int) y, (int) width, (int) height);
-        return hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+        m_hitbox.setBounds((int) m_x, (int) m_y, (int) m_width, (int) m_height);
+        return m_hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
     }
 
     /**
@@ -111,6 +111,6 @@ public abstract class AbstractEntity implements Entity {
      * @return boolean result
      */
     public boolean inBounds(int mouseX, int mouseY) {
-        return mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height;
+        return mouseX > this.m_x && mouseX < this.m_x + this.m_width && mouseY > this.m_y && mouseY < this.m_y + this.m_height;
     }
 }

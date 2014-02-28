@@ -14,19 +14,25 @@ import java.util.List;
  */
 public class C4Game extends AbstractGame{
 
-    private C4Counter currentCounter;							//Store counter information
+    private C4Counter m_currentCounter;							//Store counter information
     private HumPlayer player1;									//Player1 information
     private HumPlayer player2;									//Player2 information
-    private List<AbstractCounter> onScreenCounters;				//Abstract Counter information
+    private List<AbstractCounter> m_onScreenCounters;				//Abstract Counter information
     private int m_Turn = 1;
     C4Input m_GameInput;
     C4Display m_Display;
 
-    private C4Rules c4rules;
+    private C4Rules m_c4rules;
     private C4Board m_Board;
     
-    private int currentCounters1 = 0;
-    private int currentCounters2 = 0;
+    private int m_currentCounters1 = 0;
+    private int m_currentCounters2 = 0;
+
+    private int m_option;
+    private static final int PLAYER2 = 2;
+    private static final int PLAYER1 = 1;
+    private static final int ON_SCREEN_COUNTERS_ELEMENTS = 10;
+    private static final int SLEEP_TIME = 500;
 
 	/**
 	* Collecting and storing every data from graphic, rules, player.
@@ -36,16 +42,17 @@ public class C4Game extends AbstractGame{
 	* @return void
 	*/
     public C4Game() {
+
         super(true);
         this.m_Display = new C4Display();
         this.m_GameInput = new C4Input();
-        this.currentCounter = new C4Counter();
+        this.m_currentCounter = new C4Counter();
         this.player1 = new HumPlayer(PLAYER1);
         this.player2 = new HumPlayer(PLAYER2);
-        this.onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
+        this.m_onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
         this.m_Board = new C4Board();
         // TW Test Code
-        c4rules = new C4Rules();
+        m_c4rules = new C4Rules();
         
     }
 	/**
@@ -75,7 +82,7 @@ public class C4Game extends AbstractGame{
      * @return currentCounters1
      */
     public int getCounters1() {
-    	return currentCounters1;
+    	return m_currentCounters1;
     }
     
     /**
@@ -83,7 +90,7 @@ public class C4Game extends AbstractGame{
      * @return currentCounters2
      */
     public int getCounters2() {
-    	return currentCounters2;
+    	return m_currentCounters2;
     }
 
     /**
@@ -102,7 +109,7 @@ public class C4Game extends AbstractGame{
 	 * @return AbstractCounter
 	 */
     public AbstractCounter getCurrentCounter() {
-        return currentCounter;
+        return m_currentCounter;
     }
 
 	/**
@@ -111,7 +118,7 @@ public class C4Game extends AbstractGame{
 	 * @return List<AbstractCounter>
 	 */
     public List<AbstractCounter> getOnScreenCounters() {
-        return onScreenCounters;
+        return m_onScreenCounters;
     }
 
 	/**
@@ -124,13 +131,13 @@ public class C4Game extends AbstractGame{
     public void playGame() {
         m_Display = new C4Display();
         m_GameInput = new C4Input();
-        currentCounter = new C4Counter();
+        m_currentCounter = new C4Counter();
         player1 = new HumPlayer(PLAYER1);
         player2 = new HumPlayer(PLAYER2);
-        onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
+        m_onScreenCounters = new ArrayList<AbstractCounter>(ON_SCREEN_COUNTERS_ELEMENTS);
         m_Board = new C4Board();
         // TW Test Code
-        c4rules = new C4Rules();
+        m_c4rules = new C4Rules();
     }
 
 	/**
@@ -139,14 +146,14 @@ public class C4Game extends AbstractGame{
 	 */
     @Override
     public void nextTurn() {
-        if (currentCounter.getPlayer() == PLAYER1){
-            currentCounter = new C4Counter();
-            currentCounter.setPlayer(PLAYER2);
-            m_Turn = 2;
+        if (m_currentCounter.getPlayer() == PLAYER1){
+            m_currentCounter = new C4Counter();
+            m_currentCounter.setPlayer(PLAYER2);
+            m_Turn = PLAYER2;
         } else {
-            currentCounter = new C4Counter();
-            currentCounter.setPlayer(PLAYER1);
-            m_Turn = 1;
+            m_currentCounter = new C4Counter();
+            m_currentCounter.setPlayer(PLAYER1);
+            m_Turn = PLAYER1;
         }
         winCheck();
 
@@ -156,27 +163,27 @@ public class C4Game extends AbstractGame{
      * @return void
      */
     public void winCheck() {
-        if(c4rules.winCondition(m_Board) == 0) {
+        if(m_c4rules.winCondition(m_Board) == 0) {
 
-        } else if (c4rules.winCondition(m_Board) == PLAYER1) {
+        } else if (m_c4rules.winCondition(m_Board) == PLAYER1) {
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Please click 'Yes' to play again or 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.NO_OPTION){
+            m_option = JOptionPane.showConfirmDialog(null, "Player 1 Wins! Please click 'Yes' to play again or 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
+            if (m_option == JOptionPane.NO_OPTION){
                 setRunning(false);
-            } else if (option == JOptionPane.YES_OPTION){
+            } else if (m_option == JOptionPane.YES_OPTION){
                 playGame();
             }
-        } else if (c4rules.winCondition(m_Board) == PLAYER2) {
+        } else if (m_c4rules.winCondition(m_Board) == PLAYER2) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
             //display player wins alert
-            option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Please click 'Yes' to play again 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.NO_OPTION){
+            m_option = JOptionPane.showConfirmDialog(null, "Player 2 Wins! Please click 'Yes' to play again 'No' to close.", "Would you like to play again?",  JOptionPane.YES_NO_OPTION);
+            if (m_option == JOptionPane.NO_OPTION){
                 setRunning(false);
-            } else if (option == JOptionPane.YES_OPTION){
+            } else if (m_option == JOptionPane.YES_OPTION){
                 playGame();
             }
         } else {
@@ -203,7 +210,7 @@ public class C4Game extends AbstractGame{
 	 */
     @Override
     public void gameOver() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
 	/**
@@ -214,12 +221,12 @@ public class C4Game extends AbstractGame{
     public void gameLoop() {
 
         while (this.isRunning()) {
-            m_GameInput.inputLoop(currentCounter);
-            if (m_Board.placeCounter(currentCounter, this.onScreenCounters)){
+            m_GameInput.inputLoop(m_currentCounter);
+            if (m_Board.placeCounter(m_currentCounter, this.m_onScreenCounters)){
                 this.nextTurn();
             }
             m_Display.render(this);
-            currentCounter.dropCounter(getTime().getDelta());
+            m_currentCounter.dropCounter(getTime().getDelta());
             Display.update();
             Display.sync(this.getTime().getFrameRate());
             if (Display.isCloseRequested()) {
@@ -228,8 +235,5 @@ public class C4Game extends AbstractGame{
         }
     }
 
-    private int option;
-    private static final int PLAYER2 = 2;
-    private static final int PLAYER1 = 1;
-    private static final int ON_SCREEN_COUNTERS_ELEMENTS = 10;
+
 }

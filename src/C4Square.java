@@ -22,7 +22,7 @@ import static org.lwjgl.opengl.GL11.glDisable;
  */
 public class C4Square extends AbstractSquare{
 
-    private static Texture square;
+    private static Texture m_square;
     private static boolean m_Test = false;
 
     /**
@@ -44,16 +44,16 @@ public class C4Square extends AbstractSquare{
     public void draw(){
         glEnable(GL_TEXTURE_2D);
         Color.white.bind();
-        square.bind();
+        m_square.bind();
         glBegin(GL11.GL_QUADS);
         glTexCoord2f(0, 0);
-        glVertex2d(x, y);
+        glVertex2d(m_x, m_y);
         glTexCoord2f(1, 0);
-        glVertex2d(x + square.getTextureWidth(), y);
+        glVertex2d(m_x + m_square.getTextureWidth(), m_y);
         glTexCoord2f(1, 1);
-        glVertex2d(x + square.getTextureWidth(), y + square.getTextureHeight());
+        glVertex2d(m_x + m_square.getTextureWidth(), m_y + m_square.getTextureHeight());
         glTexCoord2f(0, 1);
-        glVertex2d(x, y + square.getTextureHeight());
+        glVertex2d(m_x, m_y + m_square.getTextureHeight());
         glEnd();
         glDisable(GL_TEXTURE_2D);
     }
@@ -63,14 +63,14 @@ public class C4Square extends AbstractSquare{
 	*/
     public static void setTexture(){
         try {
-            square = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/square.png")));
+            m_square = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/square.png")));
             if (m_Test){
-                System.out.println("Texture loaded: " + square);
-                System.out.println(">> Image width: " + square.getImageWidth());
-                System.out.println(">> Image height: " + square.getImageHeight());
-                System.out.println(">> Texture width: " + square.getTextureWidth());
-                System.out.println(">> Texture height: " + square.getTextureHeight());
-                System.out.println(">> Texture ID: " + square.getTextureID());
+                System.out.println("Texture loaded: " + m_square);
+                System.out.println(">> Image width: " + m_square.getImageWidth());
+                System.out.println(">> Image height: " + m_square.getImageHeight());
+                System.out.println(">> Texture width: " + m_square.getTextureWidth());
+                System.out.println(">> Texture height: " + m_square.getTextureHeight());
+                System.out.println(">> Texture ID: " + m_square.getTextureID());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -89,6 +89,6 @@ public class C4Square extends AbstractSquare{
 	* removes textures when games connect 4 is closed
 	*/
     public void releaseTexture(){
-        square.release();
+        m_square.release();
     }
 }
