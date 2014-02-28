@@ -1,4 +1,3 @@
-
 /**
  * @author Thomas Werner
  * @date 25/2/2014
@@ -9,7 +8,7 @@
  * 			Provides method for flipping counters
  * 			Provides method for calculating available moves for players
  */
-public class OthRules { // extends GameRules (temporarily taken out)
+public class OthRules {
 
 	// Constants used by the class
 	private final int OTH_ROWS = 8;
