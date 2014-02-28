@@ -12,6 +12,10 @@ public class TestSplashScreen {
 	
 	public static void main(String[] args) {
 		
+		/*
+		 * SplashScreen.initGUI Test One
+		 */
+		
 		screen = new SplashScreen();
 		try {
 			screen.initGUI();
