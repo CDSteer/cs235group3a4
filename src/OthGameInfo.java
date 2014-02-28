@@ -30,7 +30,6 @@ public class OthGameInfo extends AbstractGameInfo{
     private static final int Y_PIXEL_200 = 200;
     private static final int Y_PIXEL_150 = 150;
     private static final int Y_PIXEL_100 = 100;
-
     private static final int PLAYER_2 = 2;
 
 

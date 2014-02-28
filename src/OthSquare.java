@@ -27,7 +27,7 @@ public class OthSquare extends AbstractSquare{
 
     @Override
     public void releaseTexture() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
@@ -35,7 +35,7 @@ public class OthSquare extends AbstractSquare{
         if (!m_legal){
             glColor3d(0.0, GREEN, 0.0);
         }else {
-            glColor3d(0.5, GREEN, 0.0);
+            glColor3d(GREEN, GREEN, 0.0);
         }
         glRectd(m_x, m_y, m_x + m_width, m_y + m_height);
     }

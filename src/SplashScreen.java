@@ -10,14 +10,16 @@ import java.awt.event.ActionListener;
  */
 public class SplashScreen extends JFrame{
 
-    private Main splash;
+    private Main m_splash;
+    private static final int JFRAME_WIDTH = 750;
+    private static final int JFRAME_HEIGHT = 350;
 
     /**
      * Set splash screen to visible
      */
     public SplashScreen(){
-        splash = new Main();
-        splash.setVisible(true);
+        m_splash = new Main();
+        m_splash.setVisible(true);
     }
 
     /**
@@ -26,7 +28,7 @@ public class SplashScreen extends JFrame{
     public void initGUI() {
         /** 2 cols 1 row JPanel */
         JPanel panel = new JPanel(new GridLayout(1,2));
-        splash.getContentPane().add(panel);
+        m_splash.getContentPane().add(panel);
 
         ImageIcon c4ButtonIMG = new ImageIcon("res/Connect4Button.png");
         ImageIcon othButtonIMG = new ImageIcon("res/OthelloButton.png");
@@ -40,10 +42,10 @@ public class SplashScreen extends JFrame{
         c4Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                splash.setVisible(false);
+                m_splash.setVisible(false);
                 C4Game game = new C4Game();
                 game.init();
-                splash.setVisible(true);
+                m_splash.setVisible(true);
             }
         });
 
@@ -53,10 +55,10 @@ public class SplashScreen extends JFrame{
         othButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                splash.setVisible(false);
+                m_splash.setVisible(false);
                 OthGame game = new OthGame();
                 game.init();
-                splash.setVisible(true);
+                m_splash.setVisible(true);
             }
         });
 
@@ -65,14 +67,10 @@ public class SplashScreen extends JFrame{
         panel.add(othButton);
 
         //initialise JFrame
-        splash.setTitle("A4 Partial Implementation : Group 3 ");
-        splash.setSize(JFRAME_WIDTH, JFRAME_HEIGHT);
-        splash.setLocationRelativeTo(null);
-        splash.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        m_splash.setTitle("A4 Partial Implementation : Group 3 ");
+        m_splash.setSize(JFRAME_WIDTH, JFRAME_HEIGHT);
+        m_splash.setLocationRelativeTo(null);
+        m_splash.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    private static final int ARIAL_FONT_SIZE = 34;
-    private static final int JFRAME_WIDTH = 750;
-    private static final int JFRAME_HEIGHT = 350;
 
 }

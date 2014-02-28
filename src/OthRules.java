@@ -19,6 +19,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 	private final int PLAYER_TWO = 2;
 	private final int BOTH_PLAYERS = 3;
 	private final int NO_MATCH = 0;
+    private final int LOOP_TWO = 2;
 	
 	// variables holding counter numbers
 	private int m_player1Counters;
@@ -508,7 +509,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col+1][row].getPlayer() != NO_MATCH) ) {
 				
 				VD: 
-				for (int j = col + 2; j < OTH_COLUMNS; j++) {
+				for (int j = col + LOOP_TWO; j < OTH_COLUMNS; j++) {
 					setCheckCounter(board[j][row]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -529,7 +530,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col-1][row].getPlayer() != NO_MATCH) ) {
 				
 				VU: 
-				for (int j = col - 2; j >= 0; j--) {		
+				for (int j = col - LOOP_TWO; j >= 0; j--) {
 					setCheckCounter(board[j][row]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -550,7 +551,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col][row+1].getPlayer() != NO_MATCH) ) {
 				
 				RR: 
-				for(int i = row + 2; i < OTH_ROWS; i++) {
+				for(int i = row + LOOP_TWO; i < OTH_ROWS; i++) {
 					setCheckCounter(board[col][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -571,7 +572,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col][row-1].getPlayer() != NO_MATCH) ) {
 				
 				RL: 
-				for(int i = row - 2; i >= 0; i--) {			
+				for(int i = row - LOOP_TWO; i >= 0; i--) {
 					setCheckCounter(board[col][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -592,7 +593,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col-1][row+1].getPlayer() != NO_MATCH) ) {
 				
 				DUR: 
-				for (int i = row + 2, j = col - 2; i < OTH_ROWS && j >= 0; i++, j--) {
+				for (int i = row + LOOP_TWO, j = col - LOOP_TWO; i < OTH_ROWS && j >= 0; i++, j--) {
 					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -613,7 +614,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col-1][row-1].getPlayer() != NO_MATCH) ) {
 				
 				DUL: 
-				for (int i = row - 2, j = col - 2; i >= 0 && j >= 0; i--, j--) {
+				for (int i = row - LOOP_TWO, j = col - LOOP_TWO; i >= 0 && j >= 0; i--, j--) {
 					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -634,7 +635,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col+1][row+1].getPlayer() != NO_MATCH) ) {
 				
 				DDR: 
-				for(int i = row + 2, j = col + 2; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
+				for(int i = row + LOOP_TWO, j = col + LOOP_TWO; i < OTH_ROWS && j < OTH_COLUMNS; i++, j++) {
 					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
@@ -655,7 +656,7 @@ public class OthRules { // extends GameRules (temporarily taken out)
 			&& (board[col+1][row-1].getPlayer() != NO_MATCH) ) {
 				
 				DDL: 
-				for(int i = row - 2, j = col + 2; i >= 0 && j < OTH_COLUMNS; i--, j++) {
+				for(int i = row - LOOP_TWO, j = col + LOOP_TWO; i >= 0 && j < OTH_COLUMNS; i--, j++) {
 					setCheckCounter(board[j][i]);
 					checkPlayerMatch(player);
 					if(getCheckCounter().getPlayer() == 0) {
