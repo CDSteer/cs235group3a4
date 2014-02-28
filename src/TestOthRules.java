@@ -15,10 +15,10 @@
  * 		OthRules.checkDiagonalUpLeft
  * 		OthRules.checkDiagonalDownRight
  * 		OthRules.checkDiagonalDownLeft
- * are also called.
+ * 		are also called.
  * 
- * OthRules.flipCounters is tested X times. (need to do these)
- * during this test, methods:
+ * 		OthRules.flipCounters is tested one time(s). 
+ * 		during this test, methods:
  * 		OthRules.flipVerticalDown
  * 		OthRules.flipVerticalUp
  * 		OthRules.flipRowsRight
@@ -27,7 +27,7 @@
  * 		OthRules.flipDiagonalUpLeft
  * 		OthRules.flipDiagonalDownRight
  * 		OthRules.flipDiagonalDownLeft
- * are also called.
+ * 		are also called.
  * 
  * @author Tom
  *
@@ -39,7 +39,12 @@ public class TestOthRules {
 	private static final int NO_MATCH = 0;
 	private static final int PLAYER_ONE = 1;
 	private static final int PLAYER_TWO = 2;
+	private static final int FLIP_COL = 5;
+	private static final int FLIP_ROW = 4;
+	private static final int CHECK_COL = 4;
+	private static final int CHECK_ROW = 4;
 	
+	private static OthGame othGame;
 	private static OthRules othRules;
 	
 	
@@ -129,6 +134,23 @@ public class TestOthRules {
 		} else {
 			System.out.println("OthRules.checkValidSet Test One Evaluated: Incorrect");
 		}
+		
+		/*
+		 * OthRules.flipCounters Test One
+		 * Constructs an OthGame with default counter setup, 
+		 * then places a specific counter at [FLIP_COL][FLIP_ROW] and tests expected result.
+		 */
+		othRules = new OthRules();
+		othGame = new OthGame();
+		
+		othRules.flipCounters(othGame.getInPlayCounters(), FLIP_COL, FLIP_ROW, PLAYER_ONE);
+		if(othGame.getInPlayCounters()[CHECK_COL][CHECK_ROW].getPlayer() == PLAYER_ONE) {
+			System.out.println("OthRules.flipCounters Test One Evaluated: Correct");
+		} else {
+			System.out.println("OthRules.flipCounters Test One Evaluated: Incorrect");
+		}
+		
+				
 
 	}
 }
