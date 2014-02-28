@@ -5,10 +5,8 @@ import javax.swing.*;
 import java.util.List;
 
 /**
-* @file OthBoard.java
-* @author Chris, Cameron
+* @author Chris Jenkins, Cameron Steer
 * @date February 1, 2014, Verified and Updated by Design Manager Curtis on 23rd Feb 2014
-* @see
 * @brief This class extends AbstractBoard with othello details
 * @details This class allows us to create an instant of the othello board and draw it on screen.
 */
@@ -37,6 +35,11 @@ public class OthBoard extends AbstractBoard{
         return m_board;
     }
 
+    /**
+     * starting counter positions
+     * @param onScreenCounters
+     * @param inPlayCounters
+     */
     public void startingCounters(List<AbstractCounter> onScreenCounters, OthCounter inPlayCounters[][]){
 
         for (int i=0; i< ROW; i++) {
@@ -78,6 +81,9 @@ public class OthBoard extends AbstractBoard{
         inPlayCounters[ROW_FOUR][COLUMN_THREE] = othCounter;
     }
 
+    /**
+     * draw board
+     */
     @Override
     public void draw(){
         for (int i=0; i< ROW; i++) {
@@ -87,6 +93,9 @@ public class OthBoard extends AbstractBoard{
         }
     }
 
+    /**
+     * fill the game board
+     */
     @Override
     public void fillBoard() {
 
@@ -104,7 +113,11 @@ public class OthBoard extends AbstractBoard{
         }
     }
 
-
+    /**
+     * method to place a counter on the Othello board
+     * @param game
+     * @return true
+     */
     public boolean placeCounter(OthGame game) {
 
     	  	
@@ -142,6 +155,9 @@ public class OthBoard extends AbstractBoard{
         return true;
     }
 
+    /**
+     * unhighlight method
+     */
     private void unHightlight(){
         for(int i = 0; i < COLUMN; i++) {
             for(int j = 0; j < ROW; j++) {
@@ -150,6 +166,10 @@ public class OthBoard extends AbstractBoard{
         }
     }
     
+    /**
+     * method to check if the game is over 
+     * @param game
+     */
     private void checkGameOver(OthGame game) {
          // Code for ending game
         anyMovesOneCheck = true;
