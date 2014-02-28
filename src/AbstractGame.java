@@ -68,6 +68,5 @@ public abstract class AbstractGame implements Game{
     public abstract int getCounters1();
     public abstract int getCounters2();
     public abstract void calcCounters();
-
     public abstract void init();
 }

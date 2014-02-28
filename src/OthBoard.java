@@ -16,10 +16,10 @@ public class OthBoard extends AbstractBoard{
 
     private OthSquare[][] m_board;
     // TW Code
-    private OthRules othrules;
-    private int[][] validMoves;
-    private boolean anyMovesOne;
-    private boolean anyMovesTwo;
+    private OthRules m_othrules;
+    private int[][] m_validMoves;
+    private boolean m_anyMovesOne;
+    private boolean m_anyMovesTwo;
     
 
     public OthBoard(){
@@ -28,7 +28,7 @@ public class OthBoard extends AbstractBoard{
         this.fillBoard();
         
         // TW Code
-        othrules = new OthRules();
+        m_othrules = new OthRules();
 
     }
 
@@ -109,7 +109,7 @@ public class OthBoard extends AbstractBoard{
 
     	  	
     	// TW Test Code
-    	validMoves = othrules.checkValidSet(game.getInPlayCounters());
+    	m_validMoves = m_othrules.checkValidSet(game.getInPlayCounters());
 
     
         for (int i=0; i<ROW; i++) {
@@ -117,7 +117,7 @@ public class OthBoard extends AbstractBoard{
                 if (m_board[i][j].inBounds(Mouse.getX(), OthDisplay.HEIGHT - Mouse.getY())&& !m_board[i][j].isUsed()){
                 
                  // TW Test Code
-                 if(validMoves[i][j] == game.getTurn() || validMoves[i][j] == BOTH_PLAYERS) {
+                 if(m_validMoves[i][j] == game.getTurn() || m_validMoves[i][j] == BOTH_PLAYERS) {
 
 					OthCounter othCounter = new OthCounter(game.getTurn());
 					othCounter.center(m_board[i][j]);
@@ -126,7 +126,7 @@ public class OthBoard extends AbstractBoard{
 					game.getOnScreenCounters().add(othCounter);
 					othCounter.playPlaceSound();
 				
-					othrules.flipCounters(game.getInPlayCounters(), i, j, game.getTurn());
+					m_othrules.flipCounters(game.getInPlayCounters(), i, j, game.getTurn());
                     unHightlight();
 					game.nextTurn();
                  } else {
@@ -156,7 +156,7 @@ public class OthBoard extends AbstractBoard{
          System.out.println(game.getCounters1() + game.getCounters2());
 
          if((game.getCounters1() + game.getCounters2()) == MAX_COUNTERS) {
-            if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+            if(m_othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
                 System.out.println("Evaluated: Draw!");
                 System.out.println("PLACEHOLDER: EXIT GAME");
                 option = JOptionPane.showConfirmDialog(null, "No More Moves, Draw! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -166,7 +166,7 @@ public class OthBoard extends AbstractBoard{
                     game.playGame();
                 }
                 anyMovesOneCheck = false;
-            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+            } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
                 System.out.println("Evaluated: Player 1 win!");
                 System.out.println("PLACEHOLDER: EXIT GAME");
                 option = JOptionPane.showConfirmDialog(null, "No More Moves, Black wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -176,7 +176,7 @@ public class OthBoard extends AbstractBoard{
                     game.playGame();
                 }
                 anyMovesOneCheck = false;
-            } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+            } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
                  System.out.println("Evaluated: Player 2 win!" );
                  System.out.println("PLACEHOLDER: EXIT GAME");
                 option = JOptionPane.showConfirmDialog(null, "No More Moves, White wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -189,27 +189,27 @@ public class OthBoard extends AbstractBoard{
             }
          }
         
-        validMoves = othrules.checkValidSet(game.getInPlayCounters());
-        anyMovesOne = false;
-        anyMovesTwo = false;
+        m_validMoves = m_othrules.checkValidSet(game.getInPlayCounters());
+        m_anyMovesOne = false;
+        m_anyMovesTwo = false;
         if (anyMovesOneCheck = true){
             for(int i = 0; i < COLUMN; i++) {
                 for(int j = 0; j < ROW; j++) {
-                     if(validMoves[i][j] == PLAYER_1 || validMoves[i][j] == BOTH_PLAYERS) {
+                     if(m_validMoves[i][j] == PLAYER_1 || m_validMoves[i][j] == BOTH_PLAYERS) {
                         if(!m_board[i][j].isUsed()) {
-                            anyMovesOne = true;
+                            m_anyMovesOne = true;
                         }
                      }
-                     if(validMoves[i][j] == PLAYER_2 || validMoves[i][j] == BOTH_PLAYERS) {
+                     if(m_validMoves[i][j] == PLAYER_2 || m_validMoves[i][j] == BOTH_PLAYERS) {
                          if(!m_board[i][j].isUsed()) {
-                            anyMovesTwo = true;
+                            m_anyMovesTwo = true;
                          }
                      }
                 }
             }
 
-            if(game.getTurn() == PLAYER_1 && anyMovesOne == false) {
-                if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+            if(game.getTurn() == PLAYER_1 && m_anyMovesOne == false) {
+                if(m_othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
                     System.out.println("Evaluated: Draw!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, Draw! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -218,7 +218,7 @@ public class OthBoard extends AbstractBoard{
                     } else if (option == JOptionPane.YES_OPTION){
                         game.playGame();
                     }
-                } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+                } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
                     System.out.println("Evaluated: Player 1 win!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, Black wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -227,7 +227,7 @@ public class OthBoard extends AbstractBoard{
                     } else if (option == JOptionPane.YES_OPTION){
                         game.playGame();
                     }
-                } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+                } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
                     System.out.println("Evaluated: Player 2 win!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, White wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -237,9 +237,9 @@ public class OthBoard extends AbstractBoard{
                         game.playGame();
                     }
                 }
-            } else if(game.getTurn() == PLAYER_2 && anyMovesTwo == false) {
+            } else if(game.getTurn() == PLAYER_2 && m_anyMovesTwo == false) {
 
-                if(othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
+                if(m_othrules.winCondition(game.getInPlayCounters()) == NO_WINNER) {
                     System.out.println("Evaluated: Draw!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, Draw! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -248,7 +248,7 @@ public class OthBoard extends AbstractBoard{
                     } else if (option == JOptionPane.YES_OPTION){
                         game.playGame();
                     }
-                } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
+                } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_1) {
                     System.out.println("Evaluated: Player 1 win!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, Black wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);
@@ -257,7 +257,7 @@ public class OthBoard extends AbstractBoard{
                     } else if (option == JOptionPane.YES_OPTION){
                         game.playGame();
                     }
-                } else if (othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
+                } else if (m_othrules.winCondition(game.getInPlayCounters()) == PLAYER_2) {
                     System.out.println("Evaluated: Player 2 win!");
                     System.out.println("PLACEHOLDER: EXIT GAME");
                     option = JOptionPane.showConfirmDialog(null, "No More Moves, White wins! Please click 'No' to close or 'Yes' to play again!", "Would you like to play again?", JOptionPane.YES_NO_OPTION);

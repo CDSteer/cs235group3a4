@@ -74,8 +74,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
     public void draw() {
         //counters with player 0 are not rendered
         if (this.getPlayer() > 0){
-            float x1 = (float)x;
-            float y1 = (float)y;
+            float x1 = (float)m_x;
+            float y1 = (float)m_y;
 
             //filled circle
             float x2,y2;
@@ -104,9 +104,9 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      * @return void
      */
     public void center(AbstractSquare square){
-        x = square.getX() + square.getWidth() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
-        y = square.getY() + square.getHeight() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
-        System.out.println(x+","+y);
+        m_x = square.getX() + square.getWidth() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
+        m_y = square.getY() + square.getHeight() / DIVIDE_BY_TWO - SUBTRACT_2_AND_A_HALF / DIVIDE_BY_TWO;
+        System.out.println(m_x+","+m_y);
     }
 
     /**
@@ -115,8 +115,8 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      * @return void
      */
     public void reset(AbstractSquare square) {
-        x = square.getX() + square.getWidth() / DIVIDE_BY_TWO;
-        y = Y_RESET;
+        m_x = square.getX() + square.getWidth() / DIVIDE_BY_TWO;
+        m_y = Y_RESET;
         this.setDY(0);
     }
     /**
@@ -124,7 +124,7 @@ public abstract class AbstractCounter extends AbstractMovableEntity {
      * @return void
      */
     public void toSting(){
-        System.out.println("x: " + x + "y: " + y);
+        System.out.println("x: " + m_x + "y: " + m_y);
     }
 
     public abstract void setColor();

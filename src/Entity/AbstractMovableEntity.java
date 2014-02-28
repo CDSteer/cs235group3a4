@@ -10,8 +10,9 @@ package Entity;
  */
 public abstract class AbstractMovableEntity extends AbstractEntity implements MoveableEntity{
 
-    private double dx;
-    private double dy;
+    private double m_dx;
+    private double m_dy;
+
 
     /**
      * Constructor for a new entity
@@ -23,8 +24,8 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      */
     public AbstractMovableEntity(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.dx = 0;
-        this.dy = 0;
+        this.m_dx = 0;
+        this.m_dy = 0;
     }
 
     /**
@@ -34,8 +35,8 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      */
     @Override
     public void update(int delta){
-        this.x += delta * dx;
-        this.y += delta * dy;
+        this.m_x += delta * m_dx;
+        this.m_y += delta * m_dy;
     }
     /**
      * return entity delta x value.
@@ -43,7 +44,7 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      * @return dX
      */
     public double getDX(){
-        return dx;
+        return m_dx;
     }
     /**
      * return entity delta y value.
@@ -51,7 +52,7 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      * @return dY
      */
     public double getDY(){
-        return dy;
+        return m_dy;
     }
     /**
      * set entity delta x value.
@@ -59,7 +60,7 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      * @return void
      */
     public void setDX(double dx){
-        this.dx = dx;
+        this.m_dx = dx;
     }
     /**
      * set entity delta y value.
@@ -67,7 +68,7 @@ public abstract class AbstractMovableEntity extends AbstractEntity implements Mo
      * @return void
      */
     public void setDY(double dy){
-        this.dy = dy;
+        this.m_dy = dy;
     }
 
 }

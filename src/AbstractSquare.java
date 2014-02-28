@@ -25,8 +25,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 public abstract class AbstractSquare extends AbstractEntity {
 
-    private boolean used;
-    private int player;
+    private boolean m_used;
+    private int m_player;
 
 
     /**
@@ -39,8 +39,8 @@ public abstract class AbstractSquare extends AbstractEntity {
      */
     public AbstractSquare(double x, double y, double width, double height, boolean used) {
         super(x, y, width, height);
-        this.used = used;
-        this.player = 0;
+        this.m_used = used;
+        this.m_player = 0;
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class AbstractSquare extends AbstractEntity {
      * @param used
      */
     public void setUsed(boolean used){
-        this.used = used;
+        this.m_used = used;
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class AbstractSquare extends AbstractEntity {
      * @return player
      */
     public int getPlayer(){
-        return player;
+        return m_player;
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class AbstractSquare extends AbstractEntity {
      * @param _player
      */
     public void setPlayer(int _player){
-        this.player = _player;
+        this.m_player = _player;
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class AbstractSquare extends AbstractEntity {
      * @return used
      */
     public boolean isUsed(){
-        return used;
+        return m_used;
     }
 
     /**

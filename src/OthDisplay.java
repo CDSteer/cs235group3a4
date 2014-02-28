@@ -8,15 +8,19 @@ import static org.lwjgl.opengl.GL11.glClear;
  * @brief Extends AbstractDisplay class and displays the Othello game
  */
 public class OthDisplay extends AbstractDisplay{
-    private OthGameInfo othGameInfo;
-    
-    public OthDisplay() {
-        super(WIDTH, HEIGHT, "Othello");
-        othGameInfo = new OthGameInfo();
-    }
 
+    private OthGameInfo m_othGameInfo;
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
+
+    public OthDisplay() {
+
+        super(WIDTH, HEIGHT, "Othello");
+        m_othGameInfo = new OthGameInfo();
+
+    }
+
+
 
     /**
      * renders the game board
@@ -31,7 +35,7 @@ public class OthDisplay extends AbstractDisplay{
             counters.draw();
         }
 
-        othGameInfo.draw(game);
+        m_othGameInfo.draw(game);
 
     }
 }
