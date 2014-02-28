@@ -18,9 +18,9 @@ public class OthBoard extends AbstractBoard{
     private int[][] m_validMoves;
     private boolean m_anyMovesOne;
     private boolean m_anyMovesTwo;
-    private static final String DRAW = "No More Moves, Draw! Click No to close or Yes to play again!";
-    private static final String BLACK = "No More Moves, Black wins! Click No to close or Yes to play again!";
-    private static final String WHITE = "No More Moves, White wins! Please click No to close or Yes to play again!";
+    private final String DRAW = "No More Moves, Draw! Click No to close or Yes to play again!";
+    private final String BLACK = "No More Moves, Black wins! Click No to close or Yes to play again!";
+    private final String WHITE = "No More Moves, White wins! Please click No to close or Yes to play again!";
     
 
     public OthBoard(){
