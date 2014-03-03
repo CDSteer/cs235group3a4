@@ -131,7 +131,7 @@ public class C4Rules {
 	 * @param value
 	 */
 	private void setDownDiagLineTwo(int value) {
-		m_DownDiagLineOne = value;
+		m_DownDiagLineTwo = value;
 	}
 	
 	/** 
